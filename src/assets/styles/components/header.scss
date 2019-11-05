@@ -1,0 +1,22 @@
+@import "../colors";
+
+.header-container {
+  height: 17.5rem;
+  background-image: url('http://planetstyles.net/demo/milk/3.2/3/ext/planetstyles/flightdeck/store/railway3.jpg');
+  background-position: center;
+
+  &--gradient {
+    background: linear-gradient(to right, rgba(133,147,152,0.8) 0%,rgba(40,48,72,0.8) 100%);
+  }
+
+  &--upper {
+    color: $white;
+    padding: 1rem;
+
+    .upper-item {
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: 700;
+    }
+  }
+}
