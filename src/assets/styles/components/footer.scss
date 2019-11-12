@@ -1,0 +1,42 @@
+.footer {
+  position: relative;
+  .upper {
+    height: 160px;
+    background: #4a569d;
+    background: linear-gradient(to right, #4a569d 1%,#dc2424 100%);
+    justify-content: space-evenly;
+
+    &--inner-container {
+      width: 32rem;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      @include breakpoint(sm-max) {
+        justify-content: center;
+      }
+    }
+
+    &--item {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      border: .1rem solid white;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+
+    &--item:hover {
+      transition: .3s;
+      background: white;
+      color: #4a569d;
+    }
+  }
+
+  .bottom {
+    background: #2D3039;
+    color: #4a569d;
+    cursor: pointer;
+  }
+}

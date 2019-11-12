@@ -4,9 +4,25 @@
   height: 17.5rem;
   background-image: url('http://planetstyles.net/demo/milk/3.2/3/ext/planetstyles/flightdeck/store/railway3.jpg');
   background-position: center;
+  position: relative;
+
+  @include breakpoint(sm-max) {
+    height: auto;
+  }
+
+  .particles {
+    canvas {
+      position: absolute;
+      height: 340px!important;
+    }
+  }
 
   &--gradient {
-    background: linear-gradient(to right, rgba(133,147,152,0.8) 0%,rgba(40,48,72,0.8) 100%);
+    background: linear-gradient(to right, rgba(74,86,157,0.8) 0%,rgba(75,86,156,0.8) 1%,rgba(220,36,36,0.8) 100%);
+
+    @include breakpoint(sm-max) {
+      padding-bottom: 1em;
+    }
   }
 
   &--upper {
@@ -15,8 +31,53 @@
 
     .upper-item {
       font-size: 1rem;
+      position: relative;
       cursor: pointer;
       font-weight: 700;
+      margin-bottom: 0;
+    }
+
+    .quick-links {
+      @include breakpoint(sm-max) {
+        display: none;
+      }
+    }
+
+    .upper-item:hover::after {
+      display: block;
+    }
+
+    .upper-item:after {
+      content: "";
+      display: none;
+      position: absolute;
+      height: 1px;
+      width: 100%;
+      background: white;
     }
   }
+
+  &--main {
+    width: 35em;
+    margin: .3rem auto;
+    color: $white;
+
+    .title {
+      font-size: 3rem;
+
+      @include breakpoint(sm-max) {
+        font-size: 2rem;
+      }
+    }
+
+    .subtitle-description {
+      font-size: .8rem;
+    }
+
+    @include breakpoint(md-max) {
+      width: 100%;
+      padding-bottom: 1rem;
+    }
+  }
+
 }

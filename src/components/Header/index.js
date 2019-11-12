@@ -3,9 +3,7 @@ import Header from "./Header";
 
 const HeaderContainer = () => {
 
-  return (
-    <Header />
-  )
+  return <Header />
 };
 
 export default HeaderContainer;

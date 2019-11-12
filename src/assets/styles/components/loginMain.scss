@@ -1,0 +1,39 @@
+.login-btn {
+  background: #4a569d;
+  color: white;
+  padding: .5rem;
+  font-weight: bold;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.form-label {
+  color:rgb(129, 129, 129);
+  font-weight: bold;
+  font-size: .9rem;
+
+  input {
+    height: 2.4rem;
+  }
+
+  input:focus {
+    outline: none;
+  }
+}
+
+
+.login-divider {
+  height: 1px;
+  background: #ECF0F1;
+  width: 100%;
+}
+
+
+.forgot-pass-title {
+  font-size: .8rem;
+  cursor: pointer;
+  font-weight: 600;
+  color: #4a569d;
+}

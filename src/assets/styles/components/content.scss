@@ -1,0 +1,25 @@
+.content {
+  background: white;
+
+
+  .card-header {
+    background: #4a569d;
+    background: linear-gradient(to right, #4a569d 1%,#dc2424 100%);
+    color: white;
+  }
+
+  .title {
+    font-size: 1rem;
+    flex: 3;
+  }
+}
+
+.card {
+  border: none;
+}
+
+
+.card-body {
+  background: #ECF0F1;
+  padding: .5rem;
+}
