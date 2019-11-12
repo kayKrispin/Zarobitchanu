@@ -1,35 +1,14 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Particles from 'react-particles-js';
+import Portal from "../../components/Portal";
+import Particles from "./components"
+import PropTypes from "prop-types";
 
 
-
-const Header = () => (
+const Header = ({ showModal, toggleModal }) => (
   <div className="header-container">
     <div className="header-container--gradient h-100">
-      <Particles
-        className="particles"
-        params={{
-        "particles": {
-          "number": {
-            "value": 150
-          },
-          "size": {
-            "value": 3
-          },
-          "move": {
-            "speed": 7
-          },
-        },
-        "interactivity": {
-          "events": {
-            "onhover": {
-              "enable": true,
-              "mode": "repulse"
-            }
-          }
-        }
-      }}/>
+      <Particles/>
       <div className="header-container--upper d-flex justify-content-between">
       <div className="d-flex left-section align-items-center">
         <FontAwesomeIcon className="mr-2" icon={["fas", "bars"]} />
@@ -43,11 +22,11 @@ const Header = () => (
       </div>
       <div className="d-flex right-section align-items-center">
         <FontAwesomeIcon className="mr-1" icon={["fas", "edit"]} />
-        <h4 className="upper-item mr-3">
+        <h4 onClick={() => toggleModal(!showModal)} className="upper-item mr-3">
           Register
         </h4>
         <FontAwesomeIcon className="mr-1" icon={["fas", "sign-in-alt"]} />
-        <h4 className="upper-item ml-1">
+        <h4 onClick={() => toggleModal(!showModal)} className="upper-item ml-1">
           Login
         </h4>
       </div>
@@ -64,7 +43,14 @@ const Header = () => (
       </p>
     </div>
   </div>
+    <Portal showModal={showModal} toggleModal={toggleModal} children={<div>hello there</div>} maxWidth={500}/>
   </div>
 );
 
 export default Header;
+
+
+Header.propTypes = {
+  showModal: PropTypes.bool,
+  toggleModal: PropTypes.func
+};

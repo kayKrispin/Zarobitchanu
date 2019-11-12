@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "./Header";
 
 const HeaderContainer = () => {
 
-  return <Header />
+  const [showModal, toggleModal] = useState(false);
+
+  const props = {
+    showModal,
+    toggleModal,
+  };
+
+  return <Header {...props} />
 };
 
 export default HeaderContainer;

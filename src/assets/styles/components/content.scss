@@ -12,6 +12,20 @@
     font-size: 1rem;
     flex: 3;
   }
+
+  .information-header {
+    margin-top: 1rem;
+    background: #4C5D77;
+  }
+
+  .information-container {
+    background: white;
+    padding: 1rem;
+
+    .subtitle-info {
+      font-size: .8rem;
+    }
+  }
 }
 
 .card {

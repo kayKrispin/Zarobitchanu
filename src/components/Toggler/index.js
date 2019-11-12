@@ -1,7 +1,9 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 const Toggler = ({ onClick }) => {
   const [toggle, handleToggle] = useState(false);
+
+
 
   const handleClick = () => {
     onClick();

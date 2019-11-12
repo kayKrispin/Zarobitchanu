@@ -29,6 +29,7 @@ const Forum = ({ className }) => (
       <div className="d-flex align-items-start ml-5 flex-wrap">
         <img
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTs1Mtx-INbdQ5D3Xmsyq-D3HjpKmXnhKiqJsyzfNxzJ8gx-ewB&s"
+          alt=""
           className="avatar mr-3 mt-2"/>
         <div className="flex-column d-flex">
           <p className="theme-name">

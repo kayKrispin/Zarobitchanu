@@ -16,6 +16,16 @@ const LoginForm = () => (
         Login
       </button>
       <div className="login-divider mt-4"/>
+      <div className="sidebar">
+        <h3 className="mb-0 mt-3  social-title">Social login </h3>
+      </div>
+      <button onClick={(e) => { e.preventDefault() }} className="login-btn google-btn mt-3 w-100">
+        Login with Google
+      </button>
+      <button onClick={(e) => { e.preventDefault() }} className="login-btn fb-btn mt-3 w-100">
+        Login with Facebook
+      </button>
+      <div className="login-divider mt-4"/>
       <p className="forgot-pass-title mt-3">I forgot my password</p>
     </form>
   </React.Fragment>
