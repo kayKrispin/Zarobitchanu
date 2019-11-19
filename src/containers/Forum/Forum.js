@@ -1,7 +1,8 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 
-const Forum = ({ className }) => (
+const Forum = ({ className, id }) => (
   <div className={`forum-container ${className} `}>
     <div className="forum-container--left-section d-flex align-items-center">
       <div className="forum-vision mr-4 ml-3 d-flex justify-content-center align-items-center">
@@ -9,7 +10,9 @@ const Forum = ({ className }) => (
       </div>
       <div className="d-flex flex-column">
         <h3 className="title">
-          Lяхляндія
+          <Link to={`themes/${id}`}>
+            {id}
+          </Link>
         </h3>
         <p>
           бийте братья ляха всюди де бачиите.казацька шабля блисне тай лях дрисне

@@ -8,6 +8,7 @@
     "@fortawesome/free-regular-svg-icons": "^5.11.2",
     "@fortawesome/free-solid-svg-icons": "^5.11.2",
     "@fortawesome/react-fontawesome": "^0.1.7",
+    "antd": "^3.25.2",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.3.1",
     "concurrently": "^5.0.0",
@@ -20,6 +21,7 @@
     "react-bootstrap": "^1.0.0-beta.14",
     "react-dom": "^16.11.0",
     "react-particles-js": "^2.7.0",
+    "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
     "react-transition-group": "^4.3.0"
   },

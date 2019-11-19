@@ -5,8 +5,8 @@ import { CSSTransition } from "react-transition-group";
 
 const Portal =  ({ toggleModal, showModal, children, maxWidth }) => {
   return  ReactDOM.createPortal (
-    <CSSTransition  in={showModal} timeout={500} classNames="alert" mountOnEnter unmountOnExit>
-      <div className="my_modal" onClick={() => {toggleModal(!showModal)}}>
+    <CSSTransition in={showModal} timeout={500} classNames="alert" mountOnEnter unmountOnExit>
+      <div className="my_modal" onClick={() => {toggleModal(false)}}>
         <div style={{width: maxWidth && maxWidth}} className="modal_body" onClick={e => e.stopPropagation()}>
           {children}
         </div>

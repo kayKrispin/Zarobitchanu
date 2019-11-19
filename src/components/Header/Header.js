@@ -1,11 +1,13 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Portal from "../../components/Portal";
-import Particles from "./components"
+import Particles from "./components";
+import LoginModal from "../../components/LoginModal";
+import RegisterModal from "../../components/RegisterModal";
 import PropTypes from "prop-types";
 
 
-const Header = ({ showModal, toggleModal }) => (
+const Header = ({ showModal, toggleModal, activeModal, modalHandler }) => (
   <div className="header-container">
     <div className="header-container--gradient h-100">
       <Particles/>
@@ -22,11 +24,11 @@ const Header = ({ showModal, toggleModal }) => (
       </div>
       <div className="d-flex right-section align-items-center">
         <FontAwesomeIcon className="mr-1" icon={["fas", "edit"]} />
-        <h4 onClick={() => toggleModal(!showModal)} className="upper-item mr-3">
+        <h4 onClick={() => modalHandler("register")} className="upper-item mr-3">
           Register
         </h4>
         <FontAwesomeIcon className="mr-1" icon={["fas", "sign-in-alt"]} />
-        <h4 onClick={() => toggleModal(!showModal)} className="upper-item ml-1">
+        <h4 onClick={() => modalHandler("login")} className="upper-item ml-1">
           Login
         </h4>
       </div>
@@ -43,7 +45,28 @@ const Header = ({ showModal, toggleModal }) => (
       </p>
     </div>
   </div>
-    <Portal showModal={showModal} toggleModal={toggleModal} children={<div>hello there</div>} maxWidth={500}/>
+    <Portal
+      showModal={activeModal === "login" && showModal}
+      toggleModal={toggleModal}
+      children={
+        <LoginModal
+          closeModal={toggleModal}
+          loginDivider={true}
+        />
+      }
+      maxWidth={500}
+    />
+    <Portal
+      showModal={activeModal === "register" && showModal}
+      toggleModal={toggleModal}
+      children={
+        <RegisterModal
+          closeModal={toggleModal}
+          loginDivider={true}
+        />
+      }
+      maxWidth={500}
+    />
   </div>
 );
 

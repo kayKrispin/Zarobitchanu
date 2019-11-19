@@ -1,7 +1,7 @@
 import  React from "react";
 import { Accordion, Card } from "react-bootstrap";
 import Toggler from "../../components/Toggler";
-import LoginForm from "../../components/LoginFormMain";
+import LoginForm from "../../components/LoginForm";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const Sidebar = () => (

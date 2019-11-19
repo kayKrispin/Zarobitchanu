@@ -1,21 +1,26 @@
 import React from "react";
-import Content from "../Content";
+import ForumContent from "../ForumContent";
+import ThemeContent from "../ThemeContent";
 import Sidebar from "../Sidebar";
+import { Switch, Route, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Row, Col } from "react-bootstrap";
 
 const ContetPlaceholder = () => (
   <div className="main-container">
     <div className="content-placeholder">
-      <p className="content-placeholder--home-btn cursor-pointer">
+      <Link to="/" className="content-placeholder--home-btn">
         <FontAwesomeIcon className="mr-2" icon={["fas", "home"]} />
         <span className="title">
         Board home
       </span>
-      </p>
+      </Link>
       <Row className="mt-4">
         <Col xl={9}>
-          <Content/>
+          <Switch>
+            <Route exact path="/" component={ForumContent} />
+            <Route exact path="/themes/:id" component={ThemeContent} />
+          </Switch>
         </Col>
         <Col xl={3}>
           <Sidebar/>

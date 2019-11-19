@@ -4,7 +4,7 @@ import Toggler from "../../../../components/Toggler";
 import Forum from "../../../Forum";
 import React from "react";
 
-const Special = () => (
+const Special = ({ forums }) => (
   <Accordion defaultActiveKey="0">
     <Card>
       <Card.Header className="d-flex justify-content-between align-items-center mb-0">
@@ -28,9 +28,15 @@ const Special = () => (
       </Card.Header>
       <Accordion.Collapse eventKey="0">
         <Card.Body>
-          <Forum/>
-          <Forum/>
-          <Forum className="mb-0"/>
+          {
+            forums.slice(0,3).map(id => {
+              const lastItem = id === 3 && "mb-0";
+
+              return (
+                <Forum className={lastItem} key={id} />
+              )
+            })
+          }
         </Card.Body>
       </Accordion.Collapse>
     </Card>

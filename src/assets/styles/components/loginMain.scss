@@ -40,10 +40,16 @@
   color: #4a569d;
 }
 
+.forget-password-main {
+  font-size: 1.1rem;
+  color: #676767;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
 
 .google-btn {
-  background: white;
-  color: red;
+  background: red;
+  color: white;
   border: 1px solid red;
 }
 
@@ -56,4 +62,13 @@
   font-size: 1rem;
   color: #676767;
   font-weight: bold;
+}
+
+
+.cross-icon {
+  cursor: pointer;
+  position: absolute;
+  color: grey;
+  top: 1rem;
+  right: 1rem;
 }

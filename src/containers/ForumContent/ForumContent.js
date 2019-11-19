@@ -3,12 +3,12 @@ import Information from "./components/Information";
 import General from "./components/General";
 import Special from "./components/Special";
 
-const Content = () => (
+const ForumContent = ({ forums }) => (
   <div className="content">
-    <General/>
-    <Special/>
-    <Information/>
+    <General forums={forums} />
+    <Special forums={forums} />
+    <Information />
   </div>
 );
 
-export default Content;
+export default ForumContent;
