@@ -1,0 +1,40 @@
+.topics-container {
+  &--topics {
+    background: #F8F8F8;
+    padding: 1rem;
+
+
+    .topic {
+      background: white;
+      padding: 1rem;
+      border-bottom: 1px solid #ECF0F1;
+
+      &--time-container {
+        color: lightgrey;
+        font-size: 1rem;
+        padding-bottom: 2rem;
+      }
+
+      &--avatar {
+        height: 8rem;
+        width: 8rem;
+      }
+    }
+  }
+
+  &--pagination {
+
+    .ant-pagination-prev {
+      display: none;
+    }
+
+    .ant-pagination-item-active {
+      border: none;
+      color: white;
+      a {
+        background-color: #4a569d;
+        color: white;
+      }
+    }
+  }
+}

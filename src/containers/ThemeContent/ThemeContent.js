@@ -9,6 +9,18 @@ const ThemeContent = ({ themeTitle, themes }) => (
     <h2>
       {themeTitle}
     </h2>
+    <div className="d-flex mb-3 align-items-center justify-content-between">
+      <div>
+          <button className="themes-container--new-topic mr-3">
+              New Topic
+              <FontAwesomeIcon className="ml-2" icon={["fas", "pencil-alt"]} />
+          </button>
+          <input className="themes-container--search" placeholder="Search this forum" type="text"/>
+      </div>
+        <div>
+            <p className="font-weight-bolder">6 Topics  Page 1 of 1</p>
+        </div>
+    </div>
     <Accordion className="mb-3" defaultActiveKey="0">
       <Card>
         <Card.Header className="d-flex justify-content-between align-items-center mb-0">
@@ -34,7 +46,7 @@ const ThemeContent = ({ themeTitle, themes }) => (
           <Card.Body back-speed={100}>
             {
               themes.map(id => (
-                <Forum id={id} className={id === 9 && "mb-0"} key={id} />
+                <Forum themes={true} id={id} className={id === 9 && "mb-0"} key={id} />
               ))
             }
           </Card.Body>

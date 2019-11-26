@@ -8,10 +8,10 @@ const Special = ({ forums }) => (
   <Accordion defaultActiveKey="0">
     <Card>
       <Card.Header className="d-flex justify-content-between align-items-center mb-0">
-        <h5 className="m-0 title flex-grow-3 font-weight-bold">
+        <h5 className="m-0 title font-weight-bold">
           Special themes
         </h5>
-        <div className="d-flex align-items-center flex-grow-1 justify-content-between">
+        <div className="d-flex align-items-center forum-icons justify-content-between">
           <div className="d-flex">
             <p className="m-0">
               <FontAwesomeIcon className="mr-2" icon={["fas", "scroll"]} />

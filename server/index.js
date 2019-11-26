@@ -6,7 +6,9 @@ const mongoose = require('mongoose');
 
 const app =  express();
 
-//mongoose.connect('mongodb://localhost:27017/gymvisitors');
+mongoose.connect('mongodb://localhost:27017/zarobitchanu', () => {
+  console.log("db connected succesfully");
+});
 mongoose.Promise = global.Promise;
 
 app.use(express.static(__dirname + '/public'));

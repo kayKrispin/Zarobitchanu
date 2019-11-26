@@ -3,4 +3,20 @@
       font-size: 1rem;
       flex: 3;
     }
+
+  &--new-topic {
+    background-color: #4a569d;
+    color: white;
+    padding: .3rem .6rem;
+    border: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &--search {
+    padding: .2rem .6rem;
+    color: lightgrey;
+  }
 }

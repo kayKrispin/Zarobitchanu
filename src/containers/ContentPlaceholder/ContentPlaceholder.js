@@ -1,6 +1,7 @@
 import React from "react";
 import ForumContent from "../ForumContent";
 import ThemeContent from "../ThemeContent";
+import TopicContent from "../TopicContent";
 import Sidebar from "../Sidebar";
 import { Switch, Route, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,6 +21,7 @@ const ContetPlaceholder = () => (
           <Switch>
             <Route exact path="/" component={ForumContent} />
             <Route exact path="/themes/:id" component={ThemeContent} />
+            <Route exact path="/themes/topics/:id" component={TopicContent} />
           </Switch>
         </Col>
         <Col xl={3}>
