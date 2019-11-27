@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const RegisterForm = ({ imageBlob, handleImageBlob, avatar }) => (
+const RegisterForm = ({imageBlob, handleImageBlob, avatar, register, handleSubmit, onSubmit }) => (
     <div>
-      <form action="">
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="user-avatar">
           <div className="user-avatar--container">
             {avatar}
@@ -19,29 +19,28 @@ const RegisterForm = ({ imageBlob, handleImageBlob, avatar }) => (
         </div>
         <label className="d-flex form-label flex-column">
           Email:
-          <input type="text"/>
+          <input name="Email" ref={register} type="text"/>
         </label>
         <label className="d-flex form-label flex-column">
           Password:
-          <input type="text"/>
+          <input name="Password" ref={register} type="text"/>
         </label>
         <label className="d-flex form-label flex-column">
           Confirm Password:
-          <input type="text"/>
+            <input name="Confirm" ref={register} type="text"/>
         </label>
-        <button onClick={(e) => { e.preventDefault() }} className="login-btn mt-3 w-100">
-          Register
-        </button>
-
+          <button className="login-btn mt-3 w-100">
+              Register
+          </button>
       </form>
     </div>
 );
-
 
 export default RegisterForm;
 
 
 RegisterForm.propTypes = {
   imageBlob: PropTypes.string,
-  handleImageBlob: PropTypes.func
+  handleImageBlob: PropTypes.func,
+  handleSubmit: PropTypes.func.isRequired
 };

@@ -4,7 +4,6 @@ import { CSSTransition } from "react-transition-group";
 
 
 const Portal =  ({ toggleModal, showModal, children, maxWidth }) => {
-  console.log(showModal)
   return  ReactDOM.createPortal (
     <CSSTransition in={showModal} timeout={500} classNames="alert" mountOnEnter unmountOnExit>
       <div className="my_modal" onClick={() => {toggleModal(false)}}>
