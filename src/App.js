@@ -1,8 +1,10 @@
 import React from 'react';
-import './App.css';
-import Header from "./components/Header";
 import ContentHolder from "./containers/ContentPlaceholder";
+import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Modal from "./components/Modal";
+import './App.css';
+
 
 const App = () => {
   return (
@@ -10,6 +12,7 @@ const App = () => {
         <Header/>
         <ContentHolder/>
         <Footer/>
+        <Modal/>
     </div>
   );
 };

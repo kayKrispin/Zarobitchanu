@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import RegisterForm from "./RegisterForm";
-import {Avatar} from "antd";
+import { Avatar } from "antd";
 
 const RegisterFormContainer = () => {
 
