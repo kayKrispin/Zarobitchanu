@@ -27,3 +27,15 @@ export const login = async data => {
         throw err;
     }
 };
+
+export const verify = async () => {
+    try {
+        return fetch(`${API_URL}/verify`, {
+            method: "GET"
+        });
+    }
+    catch (err) {
+        if (err.response && err.response.data) throw err.response.data;
+        throw err;
+    }
+};

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import RegisterForm from "./RegisterForm";
 import useForm from "react-hook-form";
-import { actions as modalActions } from "../../redux/modules/Modal";
+import { modalActions } from "../../redux/modules/Modal";
 import { Avatar } from "antd";
 import { connect } from "react-redux";
 import { actions as authActions } from "../../redux/modules/Auth"
@@ -10,11 +10,7 @@ const RegisterFormContainer = ({ handleRegister, loading, serverError, userAvata
 
   const [imageBlob, handleImageBlob] = useState(" ");
   const [imageFile, handleImageFile] = useState(null);
-  const { register, handleSubmit } = useForm(); // initialise the hook
-
-  useEffect(() => {
-      // if (userAvatar) close();
-  }, [userAvatar]);
+  const { register, handleSubmit } = useForm(); // initialise the form hook
 
   const onSubmit = (values, e) => {
       values.img = imageBlob;

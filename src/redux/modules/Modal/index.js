@@ -1,4 +1,5 @@
 import store from "./store";
-import *  as actions from "./actions";
+import *  as modalActions from "./actions";
+import *  as modalTypes from "./types";
 
-export { store, actions }
+export { store, modalActions, modalTypes };

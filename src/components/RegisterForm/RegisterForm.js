@@ -1,8 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Spin } from "antd";
-import { message } from 'antd';
-
 
 const RegisterForm = ({
                         handleImage,
@@ -24,15 +22,9 @@ const RegisterForm = ({
   const successMsg = userAvatar &&
     <span className="success-msg d-flex mt-3 justify-content-center">
             Congratuliations.You have succesfully registrated.
-    </span>
-
-  const success = () => {
-    message.success('You have registred, login now plz');
-  };
+    </span>;
 
   if (loading) btnStyles.push("disabled-login");
-
-  if (userAvatar) success();
 
   return (
     <div>

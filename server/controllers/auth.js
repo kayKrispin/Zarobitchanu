@@ -1,4 +1,7 @@
 const User = require('../models/user');
+const jwt  =  require("jsonwebtoken");
+const config  = require('../config');
+
 
 async function signUp (req,res,next) {
   const { email } = req.body;
@@ -26,8 +29,6 @@ async function signUp (req,res,next) {
   const { email, password } = req.body;
   const user = await User.findOne({ email: email });
 
-  console.log(user)
-
   try {
     if (user !== null && User.isValidPassword(password, user.password)) {
       res.json({user, token: User.generateJWT(email)})
@@ -45,7 +46,34 @@ async function signUp (req,res,next) {
   }
 };
 
+async function verifyToken (req, res, next) {
+    const header = req.headers.authorization;
+    let token;
+
+    if (header) token = header.split(" ")[1];
+
+    if (token) {
+        jwt.verify(token, config.jwt_secret, async (err, decoded) => {
+            if (err) {
+                return next({
+                    status: 401,
+                    message: "Unauthorized"
+                });
+            } else {
+                const user = await User.findOne({ email: decoded.email });
+                res.json({ user })
+            }
+        });
+    } else {
+        return next({
+            status: 404,
+            message: "Something goes wrong"
+        });
+    }
+};
+
 module.exports = {
   signUp,
-  signIn
+  signIn,
+  verifyToken
 };

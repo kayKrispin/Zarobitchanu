@@ -3,7 +3,8 @@ import ReactDOM from "react-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import { actions } from "../../redux/modules/Modal";
+import { modalActions } from "../../redux/modules/Modal";
+import { actions } from "../../redux/modules/Auth";
 import { CSSTransition } from "react-transition-group";
 
 
@@ -42,7 +43,7 @@ const Modal = ({ isOpen, content, close, width, show }) => {
 
 export default connect(
   state => state.modalStore,
-  dispatch => ({ close: () => dispatch(actions.closeModal()) })
+  dispatch => ({ close: () => dispatch(modalActions.closeModal()) })
 )(Modal);
 
 Modal.propTypes = {

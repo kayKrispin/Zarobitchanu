@@ -6,15 +6,20 @@ import {
    loginRequest,
    loginRequestSuccess,
    loginRequestError,
+   verifyRequest,
+   verifyRequestSuccess,
+   verifyRequestError,
    showLoading,
-   hideLoading
+   hideLoading,
+   clearError
 } from "./reducers";
 
 const initialState = {
   isAuthenticated: false,
   user: {},
   loading: false,
-  error: " "
+  error: " ",
+  verifying: true
 };
 
 export default (state = initialState, action) => {
@@ -37,11 +42,23 @@ export default (state = initialState, action) => {
         case types.LOGIN_REQUEST_ERROR:
             return loginRequestError(state, action);
 
+        case types.VERIFY_USER_REQUEST:
+            return verifyRequest(state, action);
+
+        case types.VERIFY_USER_REQUEST_SUCCESS:
+            return verifyRequestSuccess(state, action);
+
+        case types.VERIFY_USER_REQUEST_ERROR:
+            return verifyRequestError(state, action);
+
         case types.SHOW_LOADING:
             return showLoading(state, action);
 
         case types.HIDE_LOADING:
             return hideLoading(state, action);
+
+        case types.CLEAR_ERROR:
+            return clearError(state, action);
 
         default:
             return state;

@@ -3,6 +3,10 @@ function getHeaders(extraHeaders = {}) {
         "Content-Type": "application/json"
     };
 
+    const token = JSON.parse(localStorage.getItem("token") || "{}");
+
+    if (token) headers["Authorization"] = `Bearer ${token}`;
+
     Object.keys(extraHeaders).forEach(key => {
         if (extraHeaders[key] === null) delete headers[key];
         else headers[key] = extraHeaders[key]

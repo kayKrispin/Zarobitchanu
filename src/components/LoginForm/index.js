@@ -4,16 +4,12 @@ import { connect } from "react-redux";
 import { actions as authActions } from "../../redux/modules/Auth";
 import PropTypes from "prop-types";
 import useForm from "react-hook-form";
-import {actions as modalActions} from "../../redux/modules/Modal";
+import { modalActions } from "../../redux/modules/Modal";
 
 const LoginFormContainer = ({ loginDivider, login, serverError, close, token }) => {
 
   const [forgetPasswordForm, handleForgetPassword] = useState(false);
   const { register, handleSubmit } = useForm(); // initialise the hook
-
-  useEffect(() => {
-    if (token) close();
-  }, [token]);
 
   const onSubmit = (values, e) => {
     login(values);

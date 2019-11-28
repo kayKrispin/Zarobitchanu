@@ -12,4 +12,8 @@ router.post("/signin", (req, res, next) => {
   authController.signIn(req, res, next).catch(err => next(err));
 });
 
+router.get("/verify", (req, res, next) => {
+    authController.verifyToken(req, res, next).catch(err => next(err));
+});
+
 module.exports = router;

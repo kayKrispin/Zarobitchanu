@@ -15,9 +15,23 @@ export const registerRequestError = error => ({
     error
 });
 
+export const verifyRequest = () => ({
+    type: types.VERIFY_USER_REQUEST,
+});
+
+export const verifyRequestSuccess = user => ({
+    type: types.VERIFY_USER_REQUEST_SUCCESS,
+    user
+});
+
+export const verifyRequestError = error => ({
+    type: types.VERIFY_USER_REQUEST_ERROR,
+    error
+});
+
 export const loginRequest = credentials => ({
     type: types.LOGIN_REQUEST,
-  credentials
+    credentials
 });
 
 export const loginRequestSuccess = user => ({
@@ -28,4 +42,8 @@ export const loginRequestSuccess = user => ({
 export const loginRequestError = error => ({
   type: types.LOGIN_REQUEST_ERROR,
   error
+});
+
+export const clearError = () => ({
+   type: types.CLEAR_ERROR
 });

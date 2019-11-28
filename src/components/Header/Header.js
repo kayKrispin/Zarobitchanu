@@ -4,7 +4,7 @@ import Particles from "./components";
 import LoginModal from "../../components/LoginModal";
 import RegisterModal from "../../components/RegisterModal";
 import { connect } from "react-redux";
-import { actions } from "../../redux/modules/Modal";
+import { modalActions } from "../../redux/modules/Modal";
 import Portal from "../../components/Portal";
 import PropTypes from "prop-types";
 
@@ -69,7 +69,7 @@ const Header = ({ showModal, toggleModal, activeModal, modalHandler, openModal }
 export default connect(
   null,
   dispatch => ({
-    openModal: (content, width) => dispatch(actions.openModal(content, width))
+    openModal: (content, width) => dispatch(modalActions.openModal(content, width))
   })
 )(Header);
 
