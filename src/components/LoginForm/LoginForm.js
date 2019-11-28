@@ -3,12 +3,12 @@ import Login from "./components/Login";
 import ForgetPassword from "./components/ForgetPassword";
 import PropTypes from "prop-types";
 
-const LoginForm = ({ loginDivider, handleForgetPassword, forgetPasswordForm }) => (
+const LoginForm = (props) => (
   <React.Fragment>
     {
-      forgetPasswordForm
-        ? <ForgetPassword handleForgetPassword={handleForgetPassword}/>
-        : <Login loginDivider={loginDivider} handleForgetPassword={handleForgetPassword} />
+      props.forgetPasswordForm
+        ? <ForgetPassword handleForgetPassword={props.handleForgetPassword}/>
+        : <Login {...props}/>
     }
   </React.Fragment>
 );

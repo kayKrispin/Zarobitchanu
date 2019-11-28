@@ -9,8 +9,10 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 
-import './index.css';
 import 'antd/es/pagination/style/index.css';
+import 'antd/es/spin/style/index.css';
+import 'antd/es/avatar/style/index.css';
+
 import './assets/styles/index.scss';
 
 

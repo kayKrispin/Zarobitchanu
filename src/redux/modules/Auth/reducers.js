@@ -4,11 +4,31 @@ export const registerRequest = state => ({
 
 export const registerRequestSuccess = (state, action) => ({
     ...state,
-    user: action.user,
+    ...action.user,
+    emailVerifyed: false,
+    error: " "
 });
 
 export const registerReuqestError = (state, action) => ({
     ...state,
+    user: {},
+    error: action.error,
+});
+
+export const loginRequest = state => ({
+    ...state
+});
+
+export const loginRequestSuccess = (state, action) => ({
+    ...state,
+    ...action.user,
+    emailVerifyed: false,
+    error: " "
+});
+
+export const loginRequestError = (state, action) => ({
+    ...state,
+    user: {},
     error: action.error,
 });
 

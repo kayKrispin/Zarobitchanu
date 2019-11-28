@@ -11,9 +11,31 @@ function *register ({ credentials }) {
 
     try {
         const response = yield call(auth.register, credentials);
+
         yield put(actions.registerRequestSuccess(response));
     } catch (error) {
-        yield put(actions.registerRequestError(error));
+        const errorMessage = yield error.json();
+
+        yield put(actions.registerRequestError(errorMessage.error));
+    } finally {
+        yield put({ type: types.HIDE_LOADING })
+    }
+}
+
+function *login ({ credentials }) {
+
+    yield put({ type: types.SHOW_LOADING });
+
+    try {
+        const response = yield call(auth.login, credentials);
+
+        localStorage.setItem("token", JSON.stringify(response.token));
+
+        yield put(actions.loginRequestSuccess(response));
+    } catch (error) {
+        const errorMessage = yield error.json();
+
+        yield put(actions.loginRequestError(errorMessage.error));
     } finally {
         yield put({ type: types.HIDE_LOADING })
     }
@@ -21,6 +43,7 @@ function *register ({ credentials }) {
 
 export default function *() {
     yield all([
-        yield takeLatest(types.REGISTER_REQUEST, register)
+        yield takeLatest(types.REGISTER_REQUEST, register),
+        yield takeLatest(types.LOGIN_REQUEST, login)
     ])
 }

@@ -1,31 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import RegisterForm from "./RegisterForm";
 import useForm from "react-hook-form";
+import { actions as modalActions } from "../../redux/modules/Modal";
 import { Avatar } from "antd";
 import { connect } from "react-redux";
-import { actions } from "../../redux/modules/Auth"
+import { actions as authActions } from "../../redux/modules/Auth"
 
-const RegisterFormContainer = ({ handleRegister }) => {
-  const [imageBlob, handleImageBlob] = useState("");
+const RegisterFormContainer = ({ handleRegister, loading, serverError, userAvatar, close }) => {
+
+  const [imageBlob, handleImageBlob] = useState(" ");
+  const [imageFile, handleImageFile] = useState(null);
   const { register, handleSubmit } = useForm(); // initialise the hook
 
-  const onSubmit = values => {
-      handleRegister(values)
+  useEffect(() => {
+      // if (userAvatar) close();
+  }, [userAvatar]);
+
+  const onSubmit = (values, e) => {
+      values.img = imageBlob;
+      handleRegister(values);
+      e.target.reset();
   };
 
-  let avatar =
-      imageBlob
-      ?  <img className="user-avatar--icon" src={imageBlob} alt=""/>
+  const handleImage = image => {
+    handleImageBlob(URL.createObjectURL(image));
+    handleImageFile(image);
+  };
+
+  let avatar = imageBlob
+      ? <img className="user-avatar--icon" src={imageBlob} alt=""/>
       : <Avatar className="user-avatar--icon" icon="user"/>;
 
   const props = {
     imageBlob,
-    handleImageBlob,
+    handleImage,
     avatar,
     register,
     handleSubmit,
+    loading,
+    serverError,
+    userAvatar,
     onSubmit
   };
+
 
   return (
     <RegisterForm {...props} />
@@ -33,8 +50,13 @@ const RegisterFormContainer = ({ handleRegister }) => {
 };
 
 export default connect(
-    null,
+    state => ({
+      loading: state.authStore.loading,
+      serverError: state.authStore.error,
+      userAvatar: state.authStore.user.img
+    }),
     dispatch => ({
-        handleRegister: credentials => dispatch(actions.registerRequest(credentials))
+        handleRegister: credentials => dispatch(authActions.registerRequest(credentials)),
+        close: () => dispatch(modalActions.closeModal())
     })
 )(RegisterFormContainer);

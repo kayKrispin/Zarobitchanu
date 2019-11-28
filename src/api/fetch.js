@@ -3,19 +3,21 @@ function getHeaders(extraHeaders = {}) {
         "Content-Type": "application/json"
     };
 
+    Object.keys(extraHeaders).forEach(key => {
+        if (extraHeaders[key] === null) delete headers[key];
+        else headers[key] = extraHeaders[key]
+    });
+
     return headers;
 }
 
-
 async function modifiedFetch(url, params = {}) {
     const headers = getHeaders(params.headers);
-console.log(params)
 
     const response = await fetch(url, {
         headers,
         ...params
     });
-
 
     // Response not in 200-299 range
     if (!response.ok) return Promise.reject(response);
@@ -26,7 +28,7 @@ console.log(params)
 
     // Parse json from body
     try {
-        return response;
+        return JSON.parse(text);
     }
     catch (error) {
         return Promise.reject(error)

@@ -1,9 +1,42 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Spin } from "antd";
+import { message } from 'antd';
 
-const RegisterForm = ({imageBlob, handleImageBlob, avatar, register, handleSubmit, onSubmit }) => (
+
+const RegisterForm = ({
+                        handleImage,
+                        avatar,
+                        register,
+                        handleSubmit,
+                        onSubmit,
+                        loading,
+                        serverError,
+                        userAvatar
+}) => {
+
+  const btnStyles = ["login-btn mt-3 w-100"];
+
+  const failedMsg = serverError &&
+    <span className="error-msg d-flex mt-3 justify-content-center">
+            {serverError}
+    </span>;
+  const successMsg = userAvatar &&
+    <span className="success-msg d-flex mt-3 justify-content-center">
+            Congratuliations.You have succesfully registrated.
+    </span>
+
+  const success = () => {
+    message.success('You have registred, login now plz');
+  };
+
+  if (loading) btnStyles.push("disabled-login");
+
+  if (userAvatar) success();
+
+  return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
         <div className="user-avatar">
           <div className="user-avatar--container">
             {avatar}
@@ -11,7 +44,7 @@ const RegisterForm = ({imageBlob, handleImageBlob, avatar, register, handleSubmi
           <p className="form-label mt-2">Choose your avatar</p>
           <input
             onChange={ e =>
-              handleImageBlob(URL.createObjectURL(e.target.files[0]))
+              handleImage(e.target.files[0])
             }
             className="user-avatar--file-uploader"
             type="file"
@@ -19,22 +52,28 @@ const RegisterForm = ({imageBlob, handleImageBlob, avatar, register, handleSubmi
         </div>
         <label className="d-flex form-label flex-column">
           Email:
-          <input name="Email" ref={register} type="text"/>
+          <input name="email" ref={register} type="text"/>
         </label>
         <label className="d-flex form-label flex-column">
           Password:
-          <input name="Password" ref={register} type="text"/>
+          <input name="password" ref={register} type="text"/>
         </label>
-        <label className="d-flex form-label flex-column">
-          Confirm Password:
-            <input name="Confirm" ref={register} type="text"/>
-        </label>
-          <button className="login-btn mt-3 w-100">
-              Register
-          </button>
+        <button disabled={loading} className={btnStyles.join(" ")}>
+          {
+            loading ? <Spin /> : "Register"
+          }
+        </button>
+        {
+          failedMsg
+        }
+
+        {
+          successMsg
+        }
       </form>
     </div>
-);
+  )
+};
 
 export default RegisterForm;
 

@@ -1,6 +1,7 @@
 const express =  require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+
 const cors = require('cors');
 
 const app =  express();
@@ -15,12 +16,11 @@ app.use(express.static(__dirname + '/public'));
 
 app.use(bodyParser.json());
 
-app.post('/api/signup', function (req, res) {
-  res.status(200).send({ kaec: "bul", surname: "hello" });
-});
+app.use("/api", require("./routes"));
 
 app.use(function (err, req, res, next) {
-  res.status(404).send({ error: err.message });
+  const status = err.status || 500;
+  res.status(status).send({ error: err.message });
 });
 
 app.listen(8080, function () {
