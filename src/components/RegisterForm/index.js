@@ -8,7 +8,7 @@ import { actions as authActions } from "../../redux/modules/Auth"
 
 const RegisterFormContainer = ({ handleRegister, loading, serverError, userAvatar, close }) => {
 
-  const [imageBlob, handleImageBlob] = useState(" ");
+  const [imageBlob, handleImageBlob] = useState(null);
   const [imageFile, handleImageFile] = useState(null);
   const { register, handleSubmit } = useForm(); // initialise the form hook
 

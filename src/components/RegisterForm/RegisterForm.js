@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Spin } from "antd";
+import { Avatar} from "antd";
 
 const RegisterForm = ({
                         handleImage,
