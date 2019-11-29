@@ -47,3 +47,11 @@ export const loginRequestError = error => ({
 export const clearError = () => ({
    type: types.CLEAR_ERROR
 });
+
+export const logoutRequest = () => ({
+  type: types.LOGOUT_REQUEST
+});
+
+export const logoutSuccess = () => ({
+  type: types.LOGOUT_REQUEST_SUCCESS
+});

@@ -11,6 +11,7 @@ import {
    verifyRequestError,
    showLoading,
    hideLoading,
+   logoutRequestSuccess,
    clearError
 } from "./reducers";
 
@@ -59,6 +60,9 @@ export default (state = initialState, action) => {
 
         case types.CLEAR_ERROR:
             return clearError(state, action);
+
+        case types.LOGOUT_REQUEST_SUCCESS:
+          return logoutRequestSuccess(state, action);
 
         default:
             return state;

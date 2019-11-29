@@ -15,7 +15,7 @@ const UserSchema = new Schema({
       required: [true,'Password field is required'],
     },
     img: {
-      type: String
+      type: Object
     }
   }
 );

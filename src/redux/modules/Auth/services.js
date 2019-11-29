@@ -3,10 +3,17 @@ import fetch from "../../../api/fetch";
 
 
 export const register = async data => {
+
+    const formData = new FormData();
+
+    formData.append('email', data.email);
+    formData.append('password', data.password);
+    formData.append('image', data.img);
+
     try {
         return fetch(`${API_URL}/signup`, {
             method: "POST",
-            body: JSON.stringify(data)
+            body: formData
         });
     }
     catch (err) {

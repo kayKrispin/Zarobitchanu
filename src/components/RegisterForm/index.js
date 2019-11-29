@@ -10,10 +10,10 @@ const RegisterFormContainer = ({ handleRegister, loading, serverError, userAvata
 
   const [imageBlob, handleImageBlob] = useState(null);
   const [imageFile, handleImageFile] = useState(null);
-  const { register, handleSubmit } = useForm(); // initialise the form hook
+  const { register, handleSubmit } = useForm(); // initialise the form hook;
 
   const onSubmit = (values, e) => {
-      values.img = imageBlob;
+      values.img = imageFile;
       handleRegister(values);
       e.target.reset();
   };
@@ -22,6 +22,8 @@ const RegisterFormContainer = ({ handleRegister, loading, serverError, userAvata
     handleImageBlob(URL.createObjectURL(image));
     handleImageFile(image);
   };
+
+  console.log(imageBlob)
 
   let avatar = imageBlob
       ? <img className="user-avatar--icon" src={imageBlob} alt=""/>

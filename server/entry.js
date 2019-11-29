@@ -10,7 +10,7 @@ mongoose.connect('mongodb://localhost:27017/zarobitchanu', { useNewUrlParser: tr
 
 mongoose.Promise = global.Promise;
 
-app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
+app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 
 app.use(express.static(__dirname + '/public'));
 

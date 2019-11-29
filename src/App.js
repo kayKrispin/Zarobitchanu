@@ -16,7 +16,7 @@ const App = ({ verifyingToken, verifyToken }) => {
         verifyToken();
     },[]);
 
-    if (verifyingToken) return <AppSkeleton/>
+    if (verifyingToken) return <AppSkeleton/>;
 
   return (
     <div>

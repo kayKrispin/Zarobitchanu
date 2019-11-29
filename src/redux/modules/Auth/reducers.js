@@ -55,6 +55,13 @@ export const showLoading = state => ({
     loading: true,
 });
 
+export const logoutRequestSuccess = state => ({
+    ...state,
+    loading: true,
+    isAuthenticated: false,
+    user: {}
+});
+
 export const hideLoading = state => ({
     ...state,
     loading: false,

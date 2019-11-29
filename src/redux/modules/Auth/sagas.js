@@ -60,10 +60,26 @@ function *verify () {
     }
 }
 
+function *logout () {
+
+    yield put({ type: types.SHOW_LOADING });
+
+    try {
+        localStorage.clear();
+        yield put(actions.logoutSuccess());
+    } catch (error) {
+        throw new Error("Something goes wrong");
+    } finally {
+        yield put({ type: types.HIDE_LOADING })
+    }
+}
+
+
 export default function *() {
     yield all([
         yield takeLatest(types.VERIFY_USER_REQUEST, verify),
         yield takeLatest(types.REGISTER_REQUEST, register),
         yield takeLatest(types.LOGIN_REQUEST, login),
+        yield takeLatest(types.LOGOUT_REQUEST, logout),
     ])
 }

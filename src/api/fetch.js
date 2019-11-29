@@ -1,6 +1,5 @@
 function getHeaders(extraHeaders = {}) {
     const headers = {
-        "Content-Type": "application/json"
     };
 
     const token = JSON.parse(localStorage.getItem("token") || "{}");

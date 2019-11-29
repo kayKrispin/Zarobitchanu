@@ -25,6 +25,35 @@
     }
   }
 
+  &--authorized {
+    display: flex;
+    align-items: center;
+
+    .img {
+      position: absolute;
+      width: 2rem;
+      height: 2rem;
+    }
+
+    .logout-btn {
+      background: transparent;
+      border: none;
+      font-size: 1.1rem;
+      color: white;
+      cursor: pointer;
+      position: relative;
+      z-index: 111111;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .username {
+      font-size: 1.1rem;
+    }
+  }
+
   &--upper {
     color: $white;
     padding: 1rem;

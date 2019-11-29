@@ -1,11 +1,35 @@
 const User = require('../models/user');
 const jwt  =  require("jsonwebtoken");
 const config  = require('../config');
+const fs = require("fs");
+const multer = require("multer");
 
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "./upload");
+  },
+  filename: function (req, file, cb) {
+    cb(null, new Date.toString() + "hello");
+  }
+});
+
+const upload = multer({ storage: storage});
 
 async function signUp (req,res,next) {
   const { email } = req.body;
   const duplicate = await User.findOne({email: email});
+
+  var img = fs.readFileSync(req.file.path);
+  var encode_image = img.toString('base64');
+
+  // Define a JSONobject for the image attributes for saving to database
+  var finalImg = {
+    contentType: req.file.mimetype,
+    image:  new Buffer(encode_image, 'base64')
+  };
+
+  req.body.img = finalImg;
 
   try {
     const user = await User.create(req.body);
@@ -23,7 +47,6 @@ async function signUp (req,res,next) {
       })
   }
 }
-
 
  async function signIn (req, res, next) {
   const { email, password } = req.body;
