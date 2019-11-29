@@ -1,34 +1,16 @@
 import  React from "react";
-import { Accordion, Card } from "react-bootstrap";
-import Toggler from "../../components/Toggler";
-import LoginForm from "../../components/LoginForm";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import UnauthorizedSidebar from "./components/UnauthorizedSidebar";
+import AuthorizedSidebar from "./components/AuthenticatedSidebar";
+import { Accordion } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Sidebar = () => (
+const Sidebar = ({ isAuthenticated }) => (
   <div className="sidebar">
     <div className="upper-divider"/>
     <Accordion defaultActiveKey="0">
-      <Card>
-        <Card.Header className="d-flex justify-content-between align-items-center pr-0 pl-0">
-          <div className="d-flex align-items-center">
-            <h5 className="title m-0">
-              Login
-            </h5>
-            <div className="divider ml-2 mr-2"/>
-            <h5 className="title m-0">
-              Register
-            </h5>
-          </div>
-          <Accordion.Toggle as={Toggler} variant="link" eventKey="0">
-            Click me!
-          </Accordion.Toggle>
-        </Card.Header>
-        <Accordion.Collapse eventKey="0">
-          <Card.Body className="p-0">
-            <LoginForm/>
-          </Card.Body>
-        </Accordion.Collapse>
-      </Card>
+        {
+          isAuthenticated ? <AuthorizedSidebar/> : <UnauthorizedSidebar/>
+        }
     </Accordion>
     <div className="mt-2">
       <button className="buy-btn">

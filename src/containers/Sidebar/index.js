@@ -1,9 +1,15 @@
 import React from "react";
 import Sidebar from "./Sidebar";
+import { connect } from "react-redux";
 
-const SidebarContainer = () => {
+const SidebarContainer = ({ isAuthenticated }) => {
 
-  return <Sidebar/>
+  return <Sidebar isAuthenticated={isAuthenticated}/>
 };
 
-export default SidebarContainer;
+export default connect(
+    state => ({
+        isAuthenticated: state.authStore.isAuthenticated
+    }),
+    null
+)(SidebarContainer);

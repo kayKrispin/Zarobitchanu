@@ -1,5 +1,5 @@
 import { API_URL } from "../../../api/constans";
-import fetch from "../../../api/fetch";
+import modifiedFetch from "../../../api/fetch";
 
 
 export const register = async data => {
@@ -13,7 +13,8 @@ export const register = async data => {
     try {
         return fetch(`${API_URL}/signup`, {
             method: "POST",
-            body: formData
+            body: formData,
+            image: true
         });
     }
     catch (err) {
@@ -24,7 +25,7 @@ export const register = async data => {
 
 export const login = async data => {
     try {
-        return fetch(`${API_URL}/signin`, {
+        return modifiedFetch(`${API_URL}/signin`, {
             method: "POST",
             body: JSON.stringify(data)
         });
@@ -37,7 +38,7 @@ export const login = async data => {
 
 export const verify = async () => {
     try {
-        return fetch(`${API_URL}/verify`, {
+        return modifiedFetch(`${API_URL}/verify`, {
             method: "GET"
         });
     }

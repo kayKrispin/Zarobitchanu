@@ -14,7 +14,7 @@ const App = ({ verifyingToken, verifyToken }) => {
 
     useEffect(() => {
         verifyToken();
-    },[]);
+    }, []);
 
     if (verifyingToken) return <AppSkeleton/>;
 

@@ -5,7 +5,9 @@ import {Avatar} from "antd";
 const AuthenticatedHeader = ({ userName, avatar, handleLogout }) => (
   <div className="header-container--authorized">
     {
-      avatar ? <img className="img" src={avatar} alt=""/> : <Avatar className="user-avatar--icon" icon="user"/>
+      avatar
+          ? <img className="img" src={avatar} alt=""/>
+          : <Avatar className="user-avatar--icon mr-2" icon="user"/>
     }
     <p className="username">{userName}</p>
     <button onClick={handleLogout} className="logout-btn">Logout</button>

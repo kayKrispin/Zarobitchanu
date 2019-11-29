@@ -1,35 +1,41 @@
 const User = require('../models/user');
 const jwt  =  require("jsonwebtoken");
-const config  = require('../config');
-const fs = require("fs");
-const multer = require("multer");
+const config = require('../config');
+const nodemailer = require("nodemailer")
 
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "./upload");
-  },
-  filename: function (req, file, cb) {
-    cb(null, new Date.toString() + "hello");
-  }
+let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'tarasbashuryn@gmail.com',
+        pass: 'kaecxuec1993'
+    }
 });
 
-const upload = multer({ storage: storage});
+let mailOptions = {
+    from: 'sriyank.siddhartha@gmail.com',
+    to: 'smartherd@gmail.com, sriyank@smartherd.com, tarasbashuryn@gmail.com',
+    subject: 'Sending Email using Node.js',
+    text: `Whats up mah whats up mah`
+    // html: '<h1>Hi Smartherd</h1><p>Your Messsage</p>'
+};
+
+transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+        console.log(error);
+    } else {
+        console.log('Email sent: ' + info.response);
+    }
+});
+
 
 async function signUp (req,res,next) {
   const { email } = req.body;
   const duplicate = await User.findOne({email: email});
 
-  var img = fs.readFileSync(req.file.path);
-  var encode_image = img.toString('base64');
-
-  // Define a JSONobject for the image attributes for saving to database
-  var finalImg = {
-    contentType: req.file.mimetype,
-    image:  new Buffer(encode_image, 'base64')
-  };
-
-  req.body.img = finalImg;
+  if (req.file) {
+      const IMAGE_URL = `http://localhost:8080/${req.file.path}`;
+      req.body.img = IMAGE_URL;
+  }
 
   try {
     const user = await User.create(req.body);

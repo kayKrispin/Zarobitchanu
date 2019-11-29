@@ -13,7 +13,9 @@ function *register ({ credentials }) {
     try {
         const response = yield call(auth.register, credentials);
 
-        yield put(actions.registerRequestSuccess(response));
+        const user = yield response.json();
+
+        yield put(actions.registerRequestSuccess(user));
     } catch (error) {
         const errorMessage = yield error.json();
 

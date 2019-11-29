@@ -12,7 +12,9 @@ mongoose.Promise = global.Promise;
 
 app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/uploads'));
+
+app.use("/uploads", express.static('uploads'));
 
 app.use(bodyParser.json());
 

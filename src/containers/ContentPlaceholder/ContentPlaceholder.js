@@ -10,12 +10,20 @@ import { Row, Col } from "react-bootstrap";
 const ContetPlaceholder = () => (
   <div className="main-container">
     <div className="content-placeholder">
-      <Link to="/" className="content-placeholder--home-btn">
-        <FontAwesomeIcon className="mr-2" icon={["fas", "home"]} />
-        <span className="title">
+      <div className="d-flex">
+          <Link to="/" className="content-placeholder--home-btn">
+              <FontAwesomeIcon className="mr-2" icon={["fas", "home"]} />
+              <span className="title">
         Board home
       </span>
-      </Link>
+          </Link>
+          <div className="content-placeholder--home-btn ml-3">
+              <FontAwesomeIcon className="mr-2" icon={["fas", "plus"]} />
+              <span className="title">
+        Add forum
+      </span>
+          </div>
+      </div>
       <Row className="mt-4">
         <Col xl={9}>
           <Switch>
