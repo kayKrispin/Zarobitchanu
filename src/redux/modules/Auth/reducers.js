@@ -9,6 +9,18 @@ export const registerRequestSuccess = (state, action) => ({
     error: " "
 });
 
+export const resetPasswordRequestSuccess = (state, action) => ({
+    ...state,
+    user: {...action.user},
+    error: " "
+});
+
+export const resetPasswordConfirmationRequestSuccess = (state, action) => ({
+    ...state,
+    message: action.message,
+    error: " "
+});
+
 export const registerReuqestError = (state, action) => ({
     ...state,
     user: {},
@@ -21,7 +33,7 @@ export const verifyRequest = state => ({
 
 export const verifyRequestSuccess = (state, action) => ({
     ...state,
-    ...action.user,
+    ...action.user || {},
     isAuthenticated: true,
     verifying: false
 });
@@ -40,7 +52,6 @@ export const loginRequestSuccess = (state, action) => ({
     ...state,
     ...action.user,
     isAuthenticated: true,
-    emailVerifyed: false,
     error: " "
 });
 
@@ -69,6 +80,6 @@ export const hideLoading = state => ({
 
 
 export const clearError = state => ({
-    ...state,
+    user: { },
     error: " ",
 });

@@ -6,10 +6,11 @@ import PropTypes from "prop-types";
 import useForm from "react-hook-form";
 import { modalActions } from "../../redux/modules/Modal";
 
-const LoginFormContainer = ({ loginDivider, login, serverError, close, token }) => {
+const LoginFormContainer = ({ loginDivider, login, serverError, close, token, handleResetPassword, user }) => {
 
   const [forgetPasswordForm, handleForgetPassword] = useState(false);
-  const { register, handleSubmit } = useForm(); // initialise the hook
+  const { register, handleSubmit, errors } = useForm(); // initialise the hook
+  const emailValidation = /^\S+@\S+\.\S+$/;
 
   const onSubmit = (values, e) => {
     login(values);
@@ -23,6 +24,10 @@ const LoginFormContainer = ({ loginDivider, login, serverError, close, token }) 
     register,
     handleSubmit,
     serverError,
+    emailValidation,
+    errors,
+    handleResetPassword,
+    user,
     onSubmit,
   };
 
@@ -34,10 +39,12 @@ export default connect(
     loading: state.authStore.loading,
     token: state.authStore.token,
     serverError: state.authStore.error,
+    user: state.authStore.user
   }),
   dispatch => ({
     login: credentials => dispatch(authActions.loginRequest(credentials)),
-    close: () => dispatch(modalActions.closeModal())
+    close: () => dispatch(modalActions.closeModal()),
+    handleResetPassword: email => dispatch(authActions.resetPasswordRequest(email))
   })
 )(LoginFormContainer);
 

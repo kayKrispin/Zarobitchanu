@@ -27,4 +27,17 @@ router.get("/verify", (req, res, next) => {
     authController.verifyToken(req, res, next).catch(err => next(err));
 });
 
+router.post("/activateAccount", (req, res, next) => {
+    authController.activateAccount(req, res, next).catch(err => next(err));
+});
+
+router.post("/resetPassword", (req, res, next) => {
+    authController.resetPassword(req, res, next).catch(err => next(err));
+});
+
+router.post("/resetPasswordConfirmation", (req, res, next) => {
+    authController.resetPasswordConfirmation(req, res, next).catch(err => next(err));
+});
+
+
 module.exports = router;

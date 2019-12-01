@@ -35,7 +35,7 @@ const HeaderContainer = ({ openModal, userName, isAuthenticated, avatar, handleL
 export default connect(
   state => ({
     isAuthenticated: state.authStore.isAuthenticated,
-    userName: state.authStore.user.email,
+    userName: state.authStore.user.email || {},
     avatar: state.authStore.user.img
   }),
   dispatch => ({
@@ -46,7 +46,7 @@ export default connect(
 
 
 HeaderContainer.propTypes = {
-  userName: PropTypes.string,
+  userName: PropTypes.any,
   openModal: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
   avatar: PropTypes.string

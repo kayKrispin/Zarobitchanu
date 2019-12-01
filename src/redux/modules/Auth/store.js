@@ -12,6 +12,8 @@ import {
    showLoading,
    hideLoading,
    logoutRequestSuccess,
+   resetPasswordRequestSuccess,
+   resetPasswordConfirmationRequestSuccess,
    clearError
 } from "./reducers";
 
@@ -49,6 +51,12 @@ export default (state = initialState, action) => {
         case types.VERIFY_USER_REQUEST_SUCCESS:
             return verifyRequestSuccess(state, action);
 
+        case types.RESET_PASSWORD_REQUEST_SUCCESS:
+            return resetPasswordRequestSuccess(state, action);
+
+        case types.RESET_PASSWORD_CONFIRMATION_REQUEST_SUCCESS:
+            return resetPasswordConfirmationRequestSuccess(state, action);
+
         case types.VERIFY_USER_REQUEST_ERROR:
             return verifyRequestError(state, action);
 
@@ -60,6 +68,9 @@ export default (state = initialState, action) => {
 
         case types.CLEAR_ERROR:
             return clearError(state, action);
+
+        case types.RESET_PASSWORD_REQUEST_ERROR:
+            return loginRequestError(state, action);
 
         case types.LOGOUT_REQUEST_SUCCESS:
           return logoutRequestSuccess(state, action);

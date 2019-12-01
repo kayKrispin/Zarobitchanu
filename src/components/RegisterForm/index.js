@@ -6,13 +6,14 @@ import { Avatar } from "antd";
 import { connect } from "react-redux";
 import { actions as authActions } from "../../redux/modules/Auth"
 
-const RegisterFormContainer = ({ handleRegister, loading, serverError, userAvatar, close }) => {
+const RegisterFormContainer = ({ handleRegister, loading, serverError, userAvatar, close, user }) => {
 
   const [imageBlob, handleImageBlob] = useState(null);
   const [imageFile, handleImageFile] = useState(null);
-  const { register, handleSubmit } = useForm(); // initialise the form hook;
+  const { register, handleSubmit, errors } = useForm(); // initialise the form hook;
 
   const onSubmit = (values, e) => {
+      if (!values.email || Object.values(errors).length > 0) return;
       values.img = imageFile;
       handleRegister(values);
       e.target.reset();
@@ -22,8 +23,6 @@ const RegisterFormContainer = ({ handleRegister, loading, serverError, userAvata
     handleImageBlob(URL.createObjectURL(image));
     handleImageFile(image);
   };
-
-  console.log(imageBlob)
 
   let avatar = imageBlob
       ? <img className="user-avatar--icon" src={imageBlob} alt=""/>
@@ -38,7 +37,9 @@ const RegisterFormContainer = ({ handleRegister, loading, serverError, userAvata
     loading,
     serverError,
     userAvatar,
-    onSubmit
+    onSubmit,
+    user,
+    errors
   };
 
 
@@ -51,7 +52,7 @@ export default connect(
     state => ({
       loading: state.authStore.loading,
       serverError: state.authStore.error,
-      userAvatar: state.authStore.user.img
+      user: state.authStore.user
     }),
     dispatch => ({
         handleRegister: credentials => dispatch(authActions.registerRequest(credentials)),

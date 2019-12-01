@@ -1,4 +1,4 @@
-function getHeaders(extraHeaders = {}) {
+function getHeaders(extraHeaders = {}, removeContentType = false) {
     const headers = {
         "Content-Type": "application/json"
     };
@@ -6,6 +6,7 @@ function getHeaders(extraHeaders = {}) {
     const token = JSON.parse(localStorage.getItem("token") || "{}");
 
     if (token) headers["Authorization"] = `Bearer ${token}`;
+    if (removeContentType) delete headers["Content-Type"];
 
     Object.keys(extraHeaders).forEach(key => {
         if (extraHeaders[key] === null) delete headers[key];
@@ -15,8 +16,8 @@ function getHeaders(extraHeaders = {}) {
     return headers;
 }
 
-async function modifiedFetch(url, params = {}) {
-    const headers = getHeaders(params.headers);
+async function modifiedFetch(url, params = {}, removeContentType ) {
+    const headers = getHeaders(params.headers, removeContentType);
 
     const response = await fetch(url, {
         headers,
@@ -30,6 +31,8 @@ async function modifiedFetch(url, params = {}) {
     const text = await response.text();
     if (!text) return true;
 
+
+    console.log(text)
     // Parse json from body
     try {
         return JSON.parse(text);

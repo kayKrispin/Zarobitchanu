@@ -1,5 +1,4 @@
 import { all, put, call, takeLatest } from "redux-saga/effects";
-
 import * as auth from "./services";
 import * as actions from "./actions";
 import * as types from "./types";
@@ -13,9 +12,9 @@ function *register ({ credentials }) {
     try {
         const response = yield call(auth.register, credentials);
 
-        const user = yield response.json();
+        localStorage.setItem("token", JSON.stringify(response.token));
 
-        yield put(actions.registerRequestSuccess(user));
+        yield put(actions.registerRequestSuccess(response));
     } catch (error) {
         const errorMessage = yield error.json();
 
@@ -46,6 +45,23 @@ function *login ({ credentials }) {
     }
 }
 
+function *activateAccount ({ code }) {
+
+    yield put({ type: types.SHOW_LOADING });
+
+    try {
+        const response = yield call(auth.activateAccount, code);
+
+        yield put(actions.activateAccountSuccess(response));
+    } catch (error) {
+        const errorMessage = yield error.json();
+
+        yield put(actions.activateAccountRequestError(errorMessage.error));
+    } finally {
+        yield put({ type: types.HIDE_LOADING })
+    }
+}
+
 function *verify () {
 
     yield put({ type: types.SHOW_LOADING });
@@ -57,6 +73,40 @@ function *verify () {
     } catch (error) {
 
         yield put(actions.verifyRequestError());
+    } finally {
+        yield put({ type: types.HIDE_LOADING })
+    }
+}
+
+function *resetPassword ({ email }) {
+
+    yield put({ type: types.SHOW_LOADING });
+
+    try {
+        const response = yield call(auth.resetPassword, email);
+
+        yield put(actions.resetPasswordSuccess(response));
+    } catch (error) {
+        const errorMessage = yield error.json();
+
+        yield put(actions.resetPasswordRequestError(errorMessage.error));
+    } finally {
+        yield put({ type: types.HIDE_LOADING })
+    }
+}
+
+function *resetPasswordConfirmation (data) {
+
+    yield put({ type: types.SHOW_LOADING });
+
+    try {
+        const response = yield call(auth.resetPasswordConfirmation, data);
+
+        yield put(actions.resetPasswordConfirmationSuccess(response));
+    } catch (error) {
+        const errorMessage = yield error.json();
+
+        yield put(actions.resetPasswordConfirmationRequestError(errorMessage.error));
     } finally {
         yield put({ type: types.HIDE_LOADING })
     }
@@ -82,6 +132,9 @@ export default function *() {
         yield takeLatest(types.VERIFY_USER_REQUEST, verify),
         yield takeLatest(types.REGISTER_REQUEST, register),
         yield takeLatest(types.LOGIN_REQUEST, login),
+        yield takeLatest(types.RESET_PASSWORD_REQUEST, resetPassword),
+        yield takeLatest(types.RESET_PASSWORD_CONFIRMATION_REQUEST, resetPasswordConfirmation),
+        yield takeLatest(types.ACTIVATE_USER_ACCOUNT_REQUEST, activateAccount),
         yield takeLatest(types.LOGOUT_REQUEST, logout),
     ])
 }
