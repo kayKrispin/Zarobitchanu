@@ -69,6 +69,7 @@ async function signUp (req, res, next) {
   }
 };
 
+
 async function verifyToken (req, res, next) {
     const header = req.headers.authorization;
     let token;

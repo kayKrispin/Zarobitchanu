@@ -36,6 +36,20 @@ export const login = async data => {
     }
 };
 
+export const socialLogin = async data => {
+
+    try {
+        return modifiedFetch(`${API_URL}/socialSignin`, {
+            method: "POST",
+            body: JSON.stringify(data)
+        });
+    }
+    catch (err) {
+        if (err.response && err.response.data) throw err.response.data;
+        throw err;
+    }
+};
+
 export const verify = async () => {
     try {
         return modifiedFetch(`${API_URL}/verify`, {

@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import useForm from "react-hook-form";
 import { modalActions } from "../../redux/modules/Modal";
 
-const LoginFormContainer = ({ loginDivider, login, serverError, close, token, handleResetPassword, user }) => {
+const LoginFormContainer = ({ loginDivider, login, serverError, close, token, handleResetPassword, user, socialLogin }) => {
 
   const [forgetPasswordForm, handleForgetPassword] = useState(false);
   const { register, handleSubmit, errors } = useForm(); // initialise the hook
@@ -16,6 +16,23 @@ const LoginFormContainer = ({ loginDivider, login, serverError, close, token, ha
     login(values);
     e.target.reset();
   };
+
+    const responseGoogle = response => {
+
+      if (response) {
+          const credentials = {
+              email: response.profileObj.email,
+              password: response.profileObj.familyName,
+              img: response.profileObj.imageUrl
+          };
+
+          socialLogin(credentials)
+      }
+    };
+
+    const responseFacebook = (response) => {
+        console.log(response);
+    };
 
   const props = {
     loginDivider,
@@ -29,6 +46,8 @@ const LoginFormContainer = ({ loginDivider, login, serverError, close, token, ha
     handleResetPassword,
     user,
     onSubmit,
+    responseFacebook,
+    responseGoogle
   };
 
   return <LoginForm {...props}/>
@@ -43,6 +62,7 @@ export default connect(
   }),
   dispatch => ({
     login: credentials => dispatch(authActions.loginRequest(credentials)),
+    socialLogin: credentials => dispatch(authActions.loginSocialRequest(credentials)),
     close: () => dispatch(modalActions.closeModal()),
     handleResetPassword: email => dispatch(authActions.resetPasswordRequest(email))
   })

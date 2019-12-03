@@ -126,12 +126,36 @@ function *logout () {
     }
 }
 
+function *socialLogin ({ credentials }) {
+
+    yield put({ type: types.SHOW_LOADING });
+
+    try {
+        const response = yield call(auth.socialLogin, credentials);
+
+        localStorage.setItem("token", JSON.stringify(response.token));
+
+        yield put({ type: modalTypes.CLOSE_MODAL });
+
+        yield put(actions.loginSocialRequestSuccess(response));
+    } catch (error) {
+
+    console.log(error)
+
+        yield put(actions.loginSocialRequestError(error));
+    } finally {
+        yield put({ type: types.HIDE_LOADING })
+    }
+}
+
+
 
 export default function *() {
     yield all([
         yield takeLatest(types.VERIFY_USER_REQUEST, verify),
         yield takeLatest(types.REGISTER_REQUEST, register),
         yield takeLatest(types.LOGIN_REQUEST, login),
+        yield takeLatest(types.LOGIN_SOCIAL_REQUEST, socialLogin),
         yield takeLatest(types.RESET_PASSWORD_REQUEST, resetPassword),
         yield takeLatest(types.RESET_PASSWORD_CONFIRMATION_REQUEST, resetPasswordConfirmation),
         yield takeLatest(types.ACTIVATE_USER_ACCOUNT_REQUEST, activateAccount),

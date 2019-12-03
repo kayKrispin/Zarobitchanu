@@ -31,8 +31,6 @@ async function modifiedFetch(url, params = {}, removeContentType ) {
     const text = await response.text();
     if (!text) return true;
 
-
-    console.log(text)
     // Parse json from body
     try {
         return JSON.parse(text);

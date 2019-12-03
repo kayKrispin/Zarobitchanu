@@ -1,6 +1,17 @@
 import React from "react";
+import { GoogleLogin } from 'react-google-login';
+import FacebookLogin from 'react-facebook-login';
 
-const Login = ({ loginDivider, handleForgetPassword, register, handleSubmit, onSubmit, serverError, loading }) => (
+const Login = ({
+                   loginDivider,
+                   handleForgetPassword,
+                   register,
+                   handleSubmit,
+                   onSubmit,
+                   serverError,
+                   responseGoogle,
+                   responseFacebook
+}) => (
   <React.Fragment>
     <form onSubmit={handleSubmit(onSubmit)} >
       {
@@ -23,12 +34,21 @@ const Login = ({ loginDivider, handleForgetPassword, register, handleSubmit, onS
       <div className="sidebar">
         <h3 className="mb-0 mt-3  social-title">Social login </h3>
       </div>
-      <button onClick={(e) => { e.preventDefault() }} className="login-btn google-btn mt-3 w-100">
-        Login with Google
-      </button>
-      <button onClick={(e) => { e.preventDefault() }} className="login-btn fb-btn mt-3 w-100">
-        Login with Facebook
-      </button>
+        <GoogleLogin
+            clientId="613880626150-c69acudo8li5c1qgmf9dkokuruioq37r.apps.googleusercontent.com"
+            render={renderProps => (
+                <button onClick={renderProps.onClick} className="login-btn google-btn mt-3 w-100">
+                Login with Google
+                </button>
+            )}
+            buttonText="Login"
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+            cookiePolicy={'single_host_origin'}
+        />
+                <button  className="login-btn fb-btn mt-3 w-100">
+                Login with Facebook
+                </button>
       {
         !loginDivider &&  <div className="login-divider mb-3"/>
       }

@@ -44,6 +44,21 @@ export const loginRequestError = error => ({
   error
 });
 
+export const loginSocialRequest = credentials => ({
+    type: types.LOGIN_SOCIAL_REQUEST,
+    credentials
+});
+
+export const loginSocialRequestSuccess = user => ({
+    type: types.LOGIN_REQUEST_SUCCESS,
+    user
+});
+
+export const loginSocialRequestError = error => ({
+    type: types.LOGIN_REQUEST_ERROR,
+    error
+});
+
 export const activateAccountRequest = code => ({
     type: types.ACTIVATE_USER_ACCOUNT_REQUEST,
     code
