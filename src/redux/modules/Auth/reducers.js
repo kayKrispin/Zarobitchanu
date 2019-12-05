@@ -50,7 +50,7 @@ export const loginRequest = state => ({
 
 export const loginRequestSuccess = (state, action) => ({
     ...state,
-    user: { ...action.user },
+    ...action.user,
     isAuthenticated: true,
     error: " "
 });

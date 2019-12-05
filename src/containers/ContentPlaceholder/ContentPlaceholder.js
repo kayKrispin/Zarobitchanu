@@ -4,12 +4,13 @@ import ThemeContent from "../ThemeContent";
 import TopicContent from "../TopicContent";
 import AccountVeryfication from "../../components/AccountVeryfication";
 import ResetPassword from "../../components/ResetPassword";
+import CreateForumModal from "../../components/CreateForumModal";
 import Sidebar from "../Sidebar";
 import { Switch, Route, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Row, Col } from "react-bootstrap";
 
-const ContetPlaceholder = () => (
+const ContetPlaceholder = ({ openModal }) => (
   <div className="main-container">
     <div className="content-placeholder">
       <div className="d-flex">
@@ -19,7 +20,7 @@ const ContetPlaceholder = () => (
         Board home
       </span>
           </Link>
-          <div className="content-placeholder--home-btn ml-3">
+          <div onClick={() => openModal(<CreateForumModal />, 500)} className="content-placeholder--home-btn ml-3">
               <FontAwesomeIcon className="mr-2" icon={["fas", "plus"]} />
               <span className="title">
         Add forum

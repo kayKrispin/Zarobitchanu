@@ -13,7 +13,7 @@ import 'antd/es/pagination/style/index.css';
 import 'antd/es/spin/style/index.css';
 import 'antd/es/avatar/style/index.css';
 import 'antd/es/skeleton/style/index.css';
-
+import 'antd/es/switch/style/index.css';
 
 import './assets/styles/index.scss';
 
