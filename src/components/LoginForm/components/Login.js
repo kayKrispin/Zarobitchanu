@@ -56,7 +56,7 @@ const Login = ({
       {
         serverError &&
         <span className="error-msg d-flex mt-3 justify-content-center">
-            {serverError}
+            {serverError.toString()}
         </span>
       }
     </form>
