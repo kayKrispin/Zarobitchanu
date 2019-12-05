@@ -45,14 +45,14 @@ async function signUp (req, res, next) {
   const { email, password } = req.body;
   const user = await User.findOne({ email: email });
 
-  try {
-    if (user !== null && User.isValidPassword(password, user.password)) {
-        if (!user.emailVerifyed) {
-            return next({
-                status: 401,
-                message: "Please verify your account!"
-            });
-        }
+     try {
+        if (user !== null && User.isValidPassword(password, user.password)) {
+            if (!user.emailVerifyed) {
+                return next({
+                    status: 401,
+                    message: "Please verify your account!"
+                });
+            }
 
       res.json({user, token: User.generateJWT(email)})
     } else {
@@ -186,7 +186,26 @@ async function resetPasswordConfirmation (req, res, next) {
     }
 };
 
+async function socialSignin (req ,res, next) {
+    const { email } = req.body;
+    const user  = await User.findOne({ email: email });
 
+    req.body.emailVerifyed = true;
+
+    try {
+        if (user !== null) {
+            res.json({ user, token: User.generateJWT(email) })
+        } else {
+            const user = await User.create(req.body);
+            res.json({ user, token: User.generateJWT(email) })
+        }
+    } catch (e) {
+        return next({
+            status: 404,
+            message: "Something goes wrong"
+        })
+    }
+};
 
 module.exports = {
   signUp,
@@ -194,5 +213,6 @@ module.exports = {
   activateAccount,
   resetPassword,
   resetPasswordConfirmation,
-  verifyToken
+  verifyToken,
+  socialSignin
 };

@@ -4,12 +4,14 @@ import AuthorizedSidebar from "./components/AuthenticatedSidebar";
 import { Accordion } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Sidebar = ({ isAuthenticated }) => (
+const Sidebar = ({ isAuthenticated, responseGoogle, responseFacebook }) => (
   <div className="sidebar">
     <div className="upper-divider"/>
     <Accordion defaultActiveKey="0">
         {
-          isAuthenticated ? <AuthorizedSidebar/> : <UnauthorizedSidebar/>
+          isAuthenticated
+              ? <AuthorizedSidebar/>
+              : <UnauthorizedSidebar responseFacebook={responseFacebook} responseGoogle={responseGoogle} />
         }
     </Accordion>
     <div className="mt-2">

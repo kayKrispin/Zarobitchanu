@@ -2,8 +2,10 @@ import React from "react";
 import { Card, Accordion } from "react-bootstrap";
 import LoginForm from "../../../components/LoginForm";
 import Toggler from "../../../components/Toggler";
+import { GoogleLogin } from 'react-google-login';
 
-const UnauthorizedSidebar = () => (
+
+const UnauthorizedSidebar = ({ responseGoogle }) => (
     <Card>
         <Card.Header className="d-flex justify-content-between align-items-center pr-0 pl-0">
             <div className="d-flex align-items-center">
@@ -22,6 +24,21 @@ const UnauthorizedSidebar = () => (
         <Accordion.Collapse eventKey="0">
             <Card.Body className="p-0">
                 <LoginForm/>
+                <div className="sidebar">
+                    <h3 className="mb-0 mt-3  social-title">Social login </h3>
+                </div>
+                <GoogleLogin
+                    clientId="613880626150-c69acudo8li5c1qgmf9dkokuruioq37r.apps.googleusercontent.com"
+                    render={renderProps => (
+                        <button onClick={renderProps.onClick} className="login-btn google-btn mt-3 w-100">
+                            Login with Google
+                        </button>
+                    )}
+                    buttonText="Login"
+                    onSuccess={responseGoogle}
+                    onFailure={responseGoogle}
+                    cookiePolicy={'single_host_origin'}
+                />
             </Card.Body>
         </Accordion.Collapse>
     </Card>

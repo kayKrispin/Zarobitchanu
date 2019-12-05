@@ -10,7 +10,7 @@ const Forum = ({ className, id, themes }) => {
       <div className={`forum-container ${className}`}>
           <div className="forum-container--left-section d-flex align-items-center">
               <div className="forum-vision mr-4 ml-3 d-flex justify-content-center align-items-center">
-                  <FontAwesomeIcon className="ml-2 mr-2 minus-sign" icon={["fas", "minus"]} />
+                  <FontAwesomeIcon className="ml-2 mr-2 minus-sign cursor-pointer" icon={["fas", "minus"]} />
               </div>
               <div className="d-flex flex-column">
                   <h3 className="title">

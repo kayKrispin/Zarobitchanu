@@ -39,4 +39,8 @@ router.post("/resetPasswordConfirmation", (req, res, next) => {
     authController.resetPasswordConfirmation(req, res, next).catch(err => next(err));
 });
 
+router.post("/socialSignin", (req, res, next) => {
+    authController.socialSignin(req, res, next).catch(err => next(err));
+});
+
 module.exports = router;
