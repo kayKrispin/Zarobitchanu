@@ -6,11 +6,11 @@ export const createForumRequest = data => ({
 });
 
 export const createForumRequestSuccess = forum => ({
-    type: types.REGISTER_REQUEST_SUCCESS,
-    user
+    type: types.CREATE_FORUM_REQUEST_SUCCESS,
+    forum
 });
 
-export const registerRequestError = error => ({
-    type: types.REGISTER_REQUEST_ERROR,
+export const createForumRequestError = error => ({
+    type: types.CREATE_FORUM_REQUEST_ERROR,
     error
 });

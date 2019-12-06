@@ -15,6 +15,8 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage});
 
+
+//Auth routes
 router.post("/signup", upload.single('image'), (req, res, next) => {
   authController.signUp(req, res, next).catch(err => next(err));
 });

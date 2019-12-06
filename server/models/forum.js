@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 const Schema  = mongoose.Schema;
 
 const ForumSchema = new Schema({
-    forums: [
-        {
+
             title: {
                 type: Schema.Types.String
             },
@@ -14,13 +13,8 @@ const ForumSchema = new Schema({
                 type: Schema.Types.Boolean,
             },
             topics: [
-                {
-                    topicTitle: Schema.String,
-                    topicAuthor: Schema.String,
-                }
+
             ]
-        }
-    ]
 
     }
 );

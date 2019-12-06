@@ -4,24 +4,25 @@ import { connect } from "react-redux";
 import { Switch } from "antd";
 import { modalActions } from "../../redux/modules/Modal";
 import { actions } from "../../redux/modules/Auth";
+import { actions as forumActions } from "../../redux/modules/Forum";
 import useForm from "react-hook-form";
 
-const CreateForumModal = ({ loginDivider, close, clearForm }) => {
+const CreateForumModal = ({ close, clearForm, createForum }) => {
 
     const { register, handleSubmit, errors } = useForm(); // initialise the hook
     const [switchValue, handleSwitch] = useState(false);
 
     const onSubmit = values => {
         values.category = switchValue;
-        console.log(values);
+
+        console.log(values)
+        createForum(values);
     };
 
     const handleClose = () => {
         close();
         clearForm();
     };
-
-    console.log(switchValue)
 
     return (
         <React.Fragment>
@@ -30,11 +31,11 @@ const CreateForumModal = ({ loginDivider, close, clearForm }) => {
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <label className="d-flex form-label flex-column">
                         Forum Title:
-                        <input name="email" ref={register}  type="text"/>
+                        <input name="title" ref={register}  type="text"/>
                     </label>
                     <label className="d-flex form-label flex-column">
                         Description:
-                        <input name="password" ref={register} type="text"/>
+                        <input name="subtitle" ref={register} type="text"/>
                     </label>
                     <label className="d-flex form-label flex-column">
                         General:
@@ -53,6 +54,7 @@ export default connect(
     null,
     dispatch => ({
         close: () => dispatch(modalActions.closeModal()),
-        clearForm: () => dispatch(actions.clearError())
+        clearForm: () => dispatch(actions.clearError()),
+        createForum: data => dispatch(forumActions.createForumRequest(data))
     })
 )(CreateForumModal);
