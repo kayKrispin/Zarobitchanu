@@ -6,7 +6,7 @@ import Special from "./components/Special";
 const ForumContent = ({ forums }) => (
   <div className="content">
     <General forums={forums} />
-    <Special forums={forums} />
+    {/*<Special forums={forums} />*/}
     <Information />
   </div>
 );

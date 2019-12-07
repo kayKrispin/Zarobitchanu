@@ -29,11 +29,11 @@ const Special = ({ forums }) => (
       <Accordion.Collapse eventKey="0">
         <Card.Body>
           {
-            forums.slice(0,3).map(id => {
+            forums.slice(0,3).map((id, index) => {
               const lastItem = id === 3 && "mb-0";
 
               return (
-                <Forum className={lastItem} key={id} />
+                <Forum className={lastItem} key={index} />
               )
             })
           }

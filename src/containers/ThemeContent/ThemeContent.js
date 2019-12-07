@@ -3,15 +3,20 @@ import {Accordion, Card} from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Toggler from "../../components/Toggler";
 import Forum from "../Forum";
+import CreateEntityModal from "../../components/CreateEntityModal";
 
-const ThemeContent = ({ themeTitle, themes }) => (
+
+const ThemeContent = ({ themeTitle, themes, openModal, forumId, forumTitle, topics }) => (
   <div className="themes-container">
     <h2>
-      {themeTitle}
+      {forumTitle && forumTitle}
     </h2>
     <div className="d-flex mb-3 align-items-center justify-content-between">
       <div>
-          <button className="themes-container--new-topic mr-3">
+          <button
+              onClick={() => openModal(<CreateEntityModal forumId={forumId} themeModal={true} />, 500)}
+              className="themes-container--new-topic mr-3"
+          >
               New Topic
               <FontAwesomeIcon className="ml-2" icon={["fas", "pencil-alt"]} />
           </button>
@@ -45,8 +50,8 @@ const ThemeContent = ({ themeTitle, themes }) => (
         <Accordion.Collapse eventKey="0">
           <Card.Body back-speed={100}>
             {
-              themes.map(id => (
-                <Forum themes={true} id={id} className={id === 9 && "mb-0"} key={id} />
+            topics && topics.map((item, index) => (
+                <Forum themes={true} item={item} id={index} className={index === 9 && "mb-0"} key={index} />
               ))
             }
           </Card.Body>

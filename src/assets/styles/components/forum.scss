@@ -5,6 +5,7 @@
   margin-bottom: .5rem;
 
   &--left-section {
+    flex: 2;
     .title {
       color: #676767;
       margin-bottom: 0;
@@ -62,6 +63,7 @@
     background: white;
     border-radius: 50%;
     border: 2px solid  lightgrey;
+    cursor: pointer;
 
     .minus-sign {
       color: lightgrey;

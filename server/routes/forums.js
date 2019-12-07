@@ -7,4 +7,20 @@ router.post("/createForum", (req, res, next) => {
   forumController.createForum(req, res, next).catch(err => next(err));
 });
 
+router.get("/getForums", (req, res, next) => {
+    forumController.getForums(req, res, next).catch(err => next(err));
+});
+
+router.post("/deleteForum", (req, res, next) => {
+    forumController.deleteForum(req, res, next).catch(err => next(err));
+});
+
+router.post("/createTopic", (req, res, next) => {
+    forumController.createTopic(req, res, next).catch(err => next(err));
+});
+
+router.post("/getTopics", (req, res, next) => {
+    forumController.getTopics(req, res, next).catch(err => next(err));
+});
+
 module.exports = router;

@@ -4,6 +4,7 @@ import logger from 'redux-logger';
 import { combineReducers } from "redux";
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { store as modalStore } from './modules/Modal';
+import { store as forumStore } from './modules/Forum';
 import { store as authStore } from './modules/Auth';
 import rootSaga from "./rootSaga"
 
@@ -11,6 +12,7 @@ const sagaMiddleware = createSagaMiddleware();
 
 const reducers = {
   authStore,
+  forumStore,
   modalStore
 };
 

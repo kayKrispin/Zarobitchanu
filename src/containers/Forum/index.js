@@ -1,9 +1,24 @@
 import React from "react";
 import Forum from "./Forum";
+import { actions } from "../../redux/modules/Forum";
+import { connect } from "react-redux";
 
-const ForumContainer  = ({ className, id, themes }) => {
+const ForumContainer  = ({ className, id, themes, item, deleteForum }) => {
 
-  return <Forum className={className} id={id} themes={themes}/>
+  const props = {
+    className,
+    id,
+    item,
+    themes,
+    deleteForum
+  };
+
+  return <Forum {...props}/>
 };
 
-export default ForumContainer;
+export default connect(
+    null,
+    dispatch => ({
+        deleteForum: id => dispatch(actions.deleteForumRequest(id))
+    })
+)(ForumContainer);

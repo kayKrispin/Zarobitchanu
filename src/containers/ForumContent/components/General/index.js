@@ -6,6 +6,9 @@ import React from "react";
 
 const General = ({ forums }) => (
   <Accordion className="mb-3" defaultActiveKey="0">
+      {
+        console.log(forums, "general")
+      }
     <Card>
       <Card.Header className="d-flex justify-content-between align-items-center mb-0">
         <h5 className="m-0 title font-weight-bold">
@@ -29,8 +32,8 @@ const General = ({ forums }) => (
       <Accordion.Collapse eventKey="0">
         <Card.Body back-speed={100}>
           {
-            forums.map(id => (
-                <Forum id={id} className={id === 9 && "mb-0"} key={id} />
+           forums && forums.map((item, index) => (
+                <Forum key={index} item={item} className={index === 9 && "mb-0"} />
             ))
           }
         </Card.Body>

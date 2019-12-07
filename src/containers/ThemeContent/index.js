@@ -1,17 +1,38 @@
 import React, { useEffect } from "react";
 import ThemeContent from "./ThemeContent";
+import { connect } from "react-redux";
+import { actions } from "../../redux/modules/Forum";
+import { modalActions } from "../../redux/modules/Modal";
 
-const ThemeContentContainer = ({ match }) => {
+const ThemeContentContainer = ({ match, openModal, getTopics, forumTitle, topics }) => {
 
-  const themeTitle = match.params.id;
-  const themes = ["Eby ve", "Cmon", "Lets do at", "Not bad"];
+  const forumId = match.params.id;
+  const themes = [];
+
+  useEffect(() => {
+      getTopics(forumId)
+  }, []);
 
   const props = {
-    themeTitle,
-    themes
+    forumId,
+    openModal,
+    themes,
+    forumTitle,
+    topics
   };
 
   return <ThemeContent {...props} />
 };
 
-export default ThemeContentContainer;
+export default connect(
+    state => ({
+        forumTitle: state.forumStore.forumTitle,
+        topics: state.forumStore.topics
+    }),
+    dispatch => ({
+        openModal: (content, width) => dispatch(modalActions.openModal(content, width)),
+        getTopics: id => dispatch(actions.getTopicsRequest(id)),
+    })
+)(ThemeContentContainer);
+
+
