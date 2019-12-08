@@ -17,7 +17,10 @@ const ForumSchema = new Schema({
                     title: Schema.Types.String,
                     replies: [
 
-                    ]
+                    ],
+                    createdAt: {
+                        type: Schema.Types.String
+                    },
                 }
             ],
             createdAt: {

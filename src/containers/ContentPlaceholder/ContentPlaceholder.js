@@ -20,7 +20,15 @@ const ContetPlaceholder = ({ openModal }) => (
         Board home
       </span>
           </Link>
-          <div onClick={() => openModal(<CreateForumModal themeModal={false} />, 500)} className="content-placeholder--home-btn ml-3">
+          <div
+              onClick={() =>
+                  openModal(
+                      <CreateForumModal
+                          title="Forum"
+                          themeModal={false}
+                      />, 500
+                  )}
+              className="content-placeholder--home-btn ml-3">
               <FontAwesomeIcon className="mr-2" icon={["fas", "plus"]} />
               <span className="title">
         Add forum

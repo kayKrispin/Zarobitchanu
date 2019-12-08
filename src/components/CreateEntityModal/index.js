@@ -7,14 +7,27 @@ import { actions } from "../../redux/modules/Auth";
 import { actions as forumActions } from "../../redux/modules/Forum";
 import useForm from "react-hook-form";
 
-const CreateForumModal = ({ close, clearForm, createForum, themeModal, createTopic, forumId }) => {
+const CreateForumModal = ({
+                              close,
+                              clearForm,
+                              createForum,
+                              themeModal,
+                              createTopic,
+                              forumId,
+                              title,
+                              isReply,
+                              user,
+                              createReply,
+                              selectedForumId,
+    match,
+                              topicId
+}) => {
 
     const { register, handleSubmit, errors } = useForm(); // initialise the hook
     const [switchValue, handleSwitch] = useState(false);
 
-    const title = themeModal ? "Topic" : "Forum";
-
     const onSubmit = values => {
+        //Create topic
         if (themeModal) {
             values.createdAt = new Date();
             values.forumId = forumId;
@@ -24,7 +37,19 @@ const CreateForumModal = ({ close, clearForm, createForum, themeModal, createTop
 
             return
         }
+        //Create reply
+        if (isReply) {
+            values.createdAt = new Date();
+            values.user = user && user._id;
+            values.forumId = selectedForumId;
+            values.topicId = topicId;
 
+            createReply(values);
+            close();
+            return;
+        }
+
+        //Create forum
         values.isSpecial = switchValue;
         values.createdAt = new Date();
 
@@ -42,12 +67,24 @@ const CreateForumModal = ({ close, clearForm, createForum, themeModal, createTop
             <div>
                 <FontAwesomeIcon onClick={handleClose} className="mr-2 cross-icon" icon={["fas", "times"]} />
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <label className="d-flex form-label flex-column">
-                        {title} Title:
-                        <input name="title" ref={register}  type="text"/>
-                    </label>
                     {
-                        !themeModal && (
+                        isReply
+                            ? (
+                                <label className="d-flex form-label flex-column">
+                                    {title} Text:
+                                    <textarea name="text" ref={register} />
+                                </label>
+                            )
+                            : (
+                                <label className="d-flex form-label flex-column">
+                                    {title} Title:
+                                    <input name="title" ref={register}  type="text"/>
+                                </label>
+                            )
+                    }
+
+                    {
+                        !themeModal && !isReply && (
                             <div>
                                 <label className="d-flex form-label flex-column">
                                     Description:
@@ -72,15 +109,20 @@ const CreateForumModal = ({ close, clearForm, createForum, themeModal, createTop
                 </form>
             </div>
         </React.Fragment>
+
     )
 };
 
 export default connect(
-    null,
+    state => ({
+        user: state.authStore.user,
+        selectedForumId: state.forumStore.selectedForumId
+    }),
     dispatch => ({
         close: () => dispatch(modalActions.closeModal()),
         clearForm: () => dispatch(actions.clearError()),
         createForum: data => dispatch(forumActions.createForumRequest(data)),
-        createTopic: data => dispatch(forumActions.createTopicRequest(data))
+        createTopic: data => dispatch(forumActions.createTopicRequest(data)),
+        createReply: data => dispatch(forumActions.createReplyRequest(data))
     })
 )(CreateForumModal);

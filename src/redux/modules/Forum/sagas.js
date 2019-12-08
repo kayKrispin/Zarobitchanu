@@ -80,12 +80,81 @@ function *getTopics ({ id }) {
 
     try {
         const response = yield call(auth.getTopics, id);
-        console.log(response)
 
         yield put(actions.getTopicsRequestSuccess(response));
     } catch (error) {
 
         yield put(actions.getTopicsRequestError(error));
+    } finally {
+        yield put({ type: types.HIDE_LOADING })
+    }
+}
+
+function *deleteTopic (data) {
+
+    yield put({ type: types.SHOW_LOADING });
+
+    try {
+        const response = yield call(auth.deleteTopic, { ...data.forumId });
+
+        yield put(actions.getTopicsRequest(data.forumId.forumId))
+        yield put(actions.deleteTopicRequestSuccess(response));
+    } catch (error) {
+
+        yield put(actions.deleteTopicRequestError(error));
+    } finally {
+        yield put({ type: types.HIDE_LOADING })
+    }
+}
+
+
+function *searchTopic (data) {
+
+    yield put({ type: types.SHOW_LOADING });
+
+    console.log(data)
+
+    try {
+        const response = yield call(auth.searchTopic, data);
+
+        yield put(actions.searchTopicsRequestSuccess(response));
+    } catch (error) {
+
+        yield put(actions.searchTopicsRequestError(error));
+    } finally {
+        yield put({ type: types.HIDE_LOADING })
+    }
+}
+
+
+function *createReply (data) {
+
+    yield put({ type: types.SHOW_LOADING });
+
+    try {
+        const response = yield call(auth.createReply, data);
+
+        yield put(actions.createReplyRequestSuccess(response));
+    } catch (error) {
+
+        yield put(actions.createReplyRequestError(error));
+    } finally {
+        yield put({ type: types.HIDE_LOADING })
+    }
+}
+
+function *setForumId ({ id }) {
+
+    yield put({ type: types.SHOW_LOADING });
+
+    try {
+
+        localStorage.setItem("forumId", JSON.stringify({id}))
+
+        yield put(actions.setActiveForumidRequestSuccess(id));
+    } catch (error) {
+
+        yield put(actions.createReplyRequestError(error));
     } finally {
         yield put({ type: types.HIDE_LOADING })
     }
@@ -97,6 +166,10 @@ export default function *() {
     yield takeLatest(types.GET_FORUMS_REQUEST, getForums),
     yield takeLatest(types.DELETE_FORUM_REQUEST, deleteForum),
     yield takeLatest(types.CREATE_TOPIC_REQUEST, createTopic),
-    yield takeLatest(types.GET_TOPICS_REQUEST, getTopics)
+    yield takeLatest(types.GET_TOPICS_REQUEST, getTopics),
+    yield takeLatest(types.DELETE_TOPIC_REQUEST, deleteTopic),
+    yield takeLatest(types.SEARCH_TOPICS_REQUEST, searchTopic),
+    yield takeLatest(types.CREATE_REPLY_REQUEST, createReply),
+    yield takeLatest(types.SET_ACTIVE_FORUM_ID, setForumId)
   ])
 }

@@ -23,4 +23,16 @@ router.post("/getTopics", (req, res, next) => {
     forumController.getTopics(req, res, next).catch(err => next(err));
 });
 
+router.post("/deleteTopic", (req, res, next) => {
+    forumController.deleteTopic(req, res, next).catch(err => next(err));
+});
+
+router.post("/searchTopic", (req, res, next) => {
+    forumController.searchTopic(req, res, next).catch(err => next(err));
+});
+
+router.post("/createReply", (req, res, next) => {
+    forumController.createReply(req, res, next).catch(err => next(err));
+});
+
 module.exports = router;

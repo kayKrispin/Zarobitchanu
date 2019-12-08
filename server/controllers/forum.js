@@ -82,11 +82,77 @@ async function getTopics (req, res, next) {
     }
 };
 
+async function deleteTopic (req, res, next) {
+
+    const { topicId } = req.body;
+
+    try {
+        await Forum.update(
+           { },
+           { $pull: { topics: { _id: topicId } } },
+           { multi: true }
+       );
+
+        res.json({})
+    } catch (e) {
+        return next({
+            status: 404,
+            message: "Something goes wrong"
+        })
+    }
+};
+
+async function searchTopic (req, res, next) {
+
+    const { key, forumId } = req.body;
+
+
+    try {
+       const forum = await Forum.findOne({_id: forumId })
+       const filteredTopics = forum.topics.filter(val => val.title.toLowerCase().includes(key));
+
+       res.send([ ...filteredTopics ])
+
+    } catch (e) {
+        return next({
+            status: 404,
+            message: "Something goes wrong"
+        })
+    }
+};
+
+async function createReply (req, res, next) {
+
+    const {  forumId, topicId } = req.body;
+
+    delete req.body.forumId;
+    delete req.body.topicId;
+
+    try {
+        const forum = await Forum.findOne({ _id: forumId});
+        const topic = forum.topics.id(topicId);
+
+        topic.replies.push(req.body);
+
+        await forum.save();
+
+        res.send([...topic.replies])
+
+    } catch (e) {
+        return next({
+            status: 404,
+            message: "Something goes wrong"
+        })
+    }
+};
 
 module.exports = {
   createForum,
   getForums,
   deleteForum,
   createTopic,
-  getTopics
+  getTopics,
+  deleteTopic,
+  searchTopic,
+  createReply
 };

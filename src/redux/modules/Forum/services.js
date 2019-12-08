@@ -64,3 +64,42 @@ export const getTopics = async id => {
         throw err;
     }
 };
+
+export const deleteTopic = async data => {
+    try {
+        return modifiedFetch(`${API_URL}/forum/deleteTopic`, {
+            method: "POST",
+            body: JSON.stringify(data)
+        });
+    }
+    catch (err) {
+        if (err.response && err.response.data) throw err.response.data;
+        throw err;
+    }
+};
+
+export const searchTopic = async ({ key, forumId }) => {
+    try {
+        return modifiedFetch(`${API_URL}/forum/searchTopic`, {
+            method: "POST",
+            body: JSON.stringify({ key, forumId })
+        });
+    }
+    catch (err) {
+        if (err.response && err.response.data) throw err.response.data;
+        throw err;
+    }
+};
+
+export const createReply = async ({ data }) => {
+    try {
+        return modifiedFetch(`${API_URL}/forum/createReply`, {
+            method: "POST",
+            body: JSON.stringify(data)
+        });
+    }
+    catch (err) {
+        if (err.response && err.response.data) throw err.response.data;
+        throw err;
+    }
+};

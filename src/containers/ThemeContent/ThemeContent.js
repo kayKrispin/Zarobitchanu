@@ -1,12 +1,12 @@
 import React from "react";
-import {Accordion, Card} from "react-bootstrap";
+import { Accordion, Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Toggler from "../../components/Toggler";
 import Forum from "../Forum";
 import CreateEntityModal from "../../components/CreateEntityModal";
 
 
-const ThemeContent = ({ themeTitle, themes, openModal, forumId, forumTitle, topics }) => (
+const ThemeContent = ({ themeTitle, themes, openModal, forumId, forumTitle, topics, match, searchTopicByName }) => (
   <div className="themes-container">
     <h2>
       {forumTitle && forumTitle}
@@ -14,16 +14,21 @@ const ThemeContent = ({ themeTitle, themes, openModal, forumId, forumTitle, topi
     <div className="d-flex mb-3 align-items-center justify-content-between">
       <div>
           <button
-              onClick={() => openModal(<CreateEntityModal forumId={forumId} themeModal={true} />, 500)}
+              onClick={() => openModal(<CreateEntityModal title="Topic" forumId={forumId} themeModal={true} />, 500)}
               className="themes-container--new-topic mr-3"
           >
               New Topic
               <FontAwesomeIcon className="ml-2" icon={["fas", "pencil-alt"]} />
           </button>
-          <input className="themes-container--search" placeholder="Search this forum" type="text"/>
+          <input
+              onChange={e => searchTopicByName(e.target.value)}
+              className="themes-container--search"
+              placeholder="Search topics by name"
+              type="text"
+          />
       </div>
         <div>
-            <p className="font-weight-bolder">6 Topics  Page 1 of 1</p>
+            <p className="font-weight-bolder">{topics && topics.length} Topics  Page 1 of 1</p>
         </div>
     </div>
     <Accordion className="mb-3" defaultActiveKey="0">
@@ -51,7 +56,13 @@ const ThemeContent = ({ themeTitle, themes, openModal, forumId, forumTitle, topi
           <Card.Body back-speed={100}>
             {
             topics && topics.map((item, index) => (
-                <Forum themes={true} item={item} id={index} className={index === 9 && "mb-0"} key={index} />
+                <Forum
+                    match={match}
+                    themes={true}
+                    item={item} id={index}
+                    className={index === 9 && "mb-0"}
+                    key={index}
+                />
               ))
             }
           </Card.Body>

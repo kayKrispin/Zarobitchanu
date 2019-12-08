@@ -60,6 +60,22 @@ export const deleteForumRequestError = error => ({
     error
 });
 
+export const deleteTopicRequest = (forumId, topicId) => ({
+    type: types.DELETE_TOPIC_REQUEST,
+    forumId,
+    topicId
+});
+
+export const deleteTopicRequestSuccess = topics => ({
+    type: types.DELETE_TOPIC_REQUEST_SUCCESS,
+    topics
+});
+
+export const deleteTopicRequestError = error => ({
+    type: types.DELETE_TOPIC_REQUEST_ERROR,
+    error
+});
+
 export const getForumsRequest = () => ({
     type: types.GET_FORUMS_REQUEST
 });
@@ -74,3 +90,44 @@ export const getForumsRequestError = error => ({
     error
 });
 
+export const searchTopicsRequest = (key, forumId) => ({
+    type: types.SEARCH_TOPICS_REQUEST,
+    key,
+    forumId
+});
+
+export const searchTopicsRequestSuccess = topics => ({
+    type: types.SEARCH_TOPICS_REQUEST_SUCCESS,
+    topics
+});
+
+export const searchTopicsRequestError = error => ({
+    type: types.SEARCH_TOPICS_REQUEST_ERROR,
+    error
+});
+
+export const createReplyRequest = data => ({
+    type: types.CREATE_REPLY_REQUEST,
+    data
+});
+
+
+export const createReplyRequestSuccess = replies => ({
+    type: types.CREATE_REPLY_REQUEST_SUCCESS,
+    replies
+});
+
+export const createReplyRequestError = error => ({
+    type: types.CREATE_REPLY_REQUEST_ERROR,
+    error
+});
+
+export const setActiveForumidRequest = id => ({
+    type: types.SET_ACTIVE_FORUM_ID,
+    id
+});
+
+export const setActiveForumidRequestSuccess = id => ({
+    type: types.SET_ACTIVE_FORUM_ID_SUCCESS,
+    id
+});

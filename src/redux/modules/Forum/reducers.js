@@ -33,6 +33,14 @@ export const getTopicsRequestError = (state, action) => ({
     error: action.error
 });
 
+export const searchTopicsRequestSuccess = (state, action) => {
+
+    return {
+        ...state,
+         topics: [...action.topics]
+    }
+};
+
 export const deleteForumRequestSuccess = (state, action) => {
 
     const filteredForums = sortByDate(action.forums);
@@ -47,6 +55,38 @@ export const deleteForumRequestSuccess = (state, action) => {
 export const deleteForumRequestError = (state, action) => ({
     ...state,
     forum: {},
+    error: action.error
+});
+
+export const deleteTopicRequestSuccess = (state, action) => {
+
+    const filteredTopics = sortByDate(action.topics);
+
+    return {
+        ...state,
+        forums: [...filteredTopics],
+        error: "",
+    }
+};
+
+export const deleteTopicRequestError = (state, action) => ({
+    ...state,
+    forum: {},
+    error: action.error
+});
+
+export const setActiveForumId = (state, action) => ({
+    ...state,
+    selectedForumId: action.id
+});
+
+export const createReplySuccess = (state, action) => ({
+    ...state,
+    replies: action.replies
+});
+
+export const createReplyError = (state, action) => ({
+    ...state,
     error: action.error
 });
 

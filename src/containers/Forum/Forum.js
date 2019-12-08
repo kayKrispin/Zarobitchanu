@@ -2,14 +2,14 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
-const Forum = ({ className, id, themes, item, deleteForum }) => {
+const Forum = ({ className, id, themes, item, deleteForum, deleteEntity, forumId }) => {
 
   const isTopic = themes ? "topics" : "themes";
 
   return (
       <div className={`forum-container ${className}`}>
           <div className="forum-container--left-section d-flex align-items-center">
-              <div onClick={() => deleteForum(item._id)} className="forum-vision mr-4 ml-3 d-flex justify-content-center align-items-center">
+              <div onClick={() => deleteEntity(item._id)} className="forum-vision mr-4 ml-3 d-flex justify-content-center align-items-center">
                   <FontAwesomeIcon className="ml-2 mr-2 minus-sign cursor-pointer" icon={["fas", "minus"]} />
               </div>
               <div className="d-flex flex-column">

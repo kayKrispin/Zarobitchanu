@@ -3,9 +3,9 @@ import TopicHeader from "./components/TopicHeader";
 import TopicSingle from "./components/TopicSingle";
 
 
-const TopicContent = () => (
+const TopicContent = props => (
     <div className="topics-container">
-        <TopicHeader/>
+        <TopicHeader {...props}/>
         <div className="topics-container--topics">
             <TopicSingle/>
             <TopicSingle/>
