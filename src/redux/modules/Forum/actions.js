@@ -131,3 +131,21 @@ export const setActiveForumidRequestSuccess = id => ({
     type: types.SET_ACTIVE_FORUM_ID_SUCCESS,
     id
 });
+
+export const getRepliesRequest = (forumId, topicId) => ({
+   type: types.GET_REPLIES_REQUEST,
+   forumId,
+   topicId
+});
+
+export const getReplyRequestSuccess = replies => ({
+    type: types.GET_REPLIES_REQUEST_SUCCESS,
+    replies
+});
+
+export const getReplyRequestError = error => ({
+    type: types.GET_REPLIES_REQUEST_ERROR,
+    error
+});
+
+

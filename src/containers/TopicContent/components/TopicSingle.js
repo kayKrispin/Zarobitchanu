@@ -2,20 +2,22 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getCurrentTime } from "../../../helpers";
 
-const TopicSingle = () => (
+const TopicSingle = ({ item }) => (
     <div className="topic d-flex justify-content-between mb-3">
         <div>
             <div className="topic--time-container mb-3">
                 <FontAwesomeIcon className="mr-2" icon={["fas", "clock"]} />
-                {getCurrentTime()} pm
+                {getCurrentTime(item.createdAt)} pm
             </div>
-            <p>Wow man thats realy myne post</p>
+            <p>
+              {item.text}
+            </p>
         </div>
         <div className="d-flex justify-content-center flex-column align-items-center">
-            <img className="topic--avatar" src="https://img.pngio.com/png-avatar-108-images-in-collection-page-3-png-avatar-300_300.png" alt=""/>
-            <p className="mt-2 mb-2">
+            <img className="topic--avatar" src={item.userAvatar} alt=""/>
+            <p className="mt-2 mb-2 topic--fullName">
                 <strong>
-                    Bill
+                  {item.userName}
                 </strong>
             </p>
             <span className="pb-2">

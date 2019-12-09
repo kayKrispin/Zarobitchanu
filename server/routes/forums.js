@@ -35,4 +35,8 @@ router.post("/createReply", (req, res, next) => {
     forumController.createReply(req, res, next).catch(err => next(err));
 });
 
+router.post("/getReplies", (req, res, next) => {
+    forumController.getReplies(req, res, next).catch(err => next(err));
+});
+
 module.exports = router;

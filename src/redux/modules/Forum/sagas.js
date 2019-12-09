@@ -160,6 +160,22 @@ function *setForumId ({ id }) {
     }
 }
 
+function *getReplies (data) {
+
+  yield put({ type: types.SHOW_LOADING });
+
+  try {
+    const response = yield call(auth.getReplies, data);
+
+    yield put(actions.getReplyRequestSuccess(response));
+  } catch (error) {
+
+    yield put(actions.getReplyRequestError(error));
+  } finally {
+    yield put({ type: types.HIDE_LOADING })
+  }
+}
+
 export default function *() {
   yield all([
     yield takeLatest(types.CREATE_FORUM_REQUEST, createForum),
@@ -170,6 +186,7 @@ export default function *() {
     yield takeLatest(types.DELETE_TOPIC_REQUEST, deleteTopic),
     yield takeLatest(types.SEARCH_TOPICS_REQUEST, searchTopic),
     yield takeLatest(types.CREATE_REPLY_REQUEST, createReply),
-    yield takeLatest(types.SET_ACTIVE_FORUM_ID, setForumId)
+    yield takeLatest(types.SET_ACTIVE_FORUM_ID, setForumId),
+    yield takeLatest(types.GET_REPLIES_REQUEST, getReplies)
   ])
 }

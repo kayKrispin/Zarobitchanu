@@ -103,3 +103,17 @@ export const createReply = async ({ data }) => {
         throw err;
     }
 };
+
+
+export const getReplies = async ({ forumId, topicId }) => {
+    try {
+        return modifiedFetch(`${API_URL}/forum/getReplies`, {
+            method: "POST",
+            body: JSON.stringify({ forumId, topicId })
+        });
+    }
+    catch (err) {
+        if (err.response && err.response.data) throw err.response.data;
+        throw err;
+    }
+};

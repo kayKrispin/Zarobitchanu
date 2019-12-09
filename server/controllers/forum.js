@@ -1,4 +1,5 @@
 const Forum = require('../models/forum');
+const User = require('../models/user');
 
 
 async function createForum (req, res, next) {
@@ -123,12 +124,16 @@ async function searchTopic (req, res, next) {
 
 async function createReply (req, res, next) {
 
-    const {  forumId, topicId } = req.body;
+    const {  forumId, topicId, userId } = req.body;
 
     delete req.body.forumId;
     delete req.body.topicId;
 
     try {
+          //Update user posts quantity
+        await User.findOneAndUpdate({_id: userId}, {$push: {posts: 1}});
+
+
         const forum = await Forum.findOne({ _id: forumId});
         const topic = forum.topics.id(topicId);
 
@@ -146,6 +151,25 @@ async function createReply (req, res, next) {
     }
 };
 
+async function getReplies (req, res, next) {
+
+  const {  forumId, topicId } = req.body;
+
+  try {
+    const forum = await Forum.findOne({ _id: forumId});
+
+    const topic = forum.topics.id(topicId);
+
+    res.send([...topic.replies])
+
+  } catch (e) {
+    return next({
+      status: 404,
+      message: "Something goes wrong"
+    })
+  }
+};
+
 module.exports = {
   createForum,
   getForums,
@@ -154,5 +178,6 @@ module.exports = {
   getTopics,
   deleteTopic,
   searchTopic,
-  createReply
+  createReply,
+  getReplies
 };

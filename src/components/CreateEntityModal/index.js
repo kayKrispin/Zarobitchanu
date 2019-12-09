@@ -40,7 +40,9 @@ const CreateForumModal = ({
         //Create reply
         if (isReply) {
             values.createdAt = new Date();
-            values.user = user && user._id;
+            values.userName = user && user.email;
+            values.userAvatar = user && user.img;
+            values.userId = user && user._id;
             values.forumId = selectedForumId;
             values.topicId = topicId;
 

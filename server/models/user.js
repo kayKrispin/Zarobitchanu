@@ -20,7 +20,12 @@ const UserSchema = new Schema({
     emailVerifyed: {
         type: Boolean,
         default: false
-    }
+    },
+    posts: [
+      {
+        type: String
+      }
+    ]
   }
 );
 

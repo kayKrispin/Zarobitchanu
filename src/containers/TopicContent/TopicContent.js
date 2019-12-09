@@ -7,10 +7,14 @@ const TopicContent = props => (
     <div className="topics-container">
         <TopicHeader {...props}/>
         <div className="topics-container--topics">
-            <TopicSingle/>
-            <TopicSingle/>
-            <TopicSingle/>
-            <TopicSingle/>
+          {
+            props.replies && props.replies.map(reply => (
+              <TopicSingle key={reply.createdAt} item={reply}/>
+            ))
+          }
+          {
+            props.replies.length < 1 && <span>There is no reply in this topics..cmon you can be a first one</span>
+          }
         </div>
     </div>
 );

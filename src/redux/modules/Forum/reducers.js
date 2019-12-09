@@ -90,6 +90,16 @@ export const createReplyError = (state, action) => ({
     error: action.error
 });
 
+export const getRepliesSuccess = (state, action) => ({
+  ...state,
+  replies: action.replies
+});
+
+export const getRepliesError = (state, action) => ({
+  ...state,
+  error: action.error
+});
+
 export const getForumsRequestSuccess = (state, action) => {
 
     const filteredForums = sortByDate(action.forums);

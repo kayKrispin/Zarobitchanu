@@ -13,7 +13,9 @@ import {
   searchTopicsRequestSuccess,
   setActiveForumId,
   createReplySuccess,
-  createReplyError
+  createReplyError,
+  getRepliesSuccess,
+  getRepliesError
 } from "./reducers";
 import {
   showLoading, hideLoading
@@ -24,7 +26,9 @@ const initialState = {
   forums: [],
   topics: [],
   replies: [],
-  selectedForumId: "" || JSON.parse(localStorage.getItem("forumId")).id,
+  selectedForumId: ""
+    || JSON.parse(localStorage.getItem("forumId"))
+    && JSON.parse(localStorage.getItem("forumId")).id,
   error: ""
 };
 
@@ -71,6 +75,12 @@ export default (state = initialState, action) => {
 
       case types.CREATE_REPLY_REQUEST_ERROR:
           return createReplyError(state, action);
+
+      case types.GET_REPLIES_REQUEST_SUCCESS:
+      return getRepliesSuccess(state, action);
+
+      case types.GET_REPLIES_REQUEST_ERROR:
+      return getRepliesError(state, action);
 
       case types.SET_ACTIVE_FORUM_ID_SUCCESS:
           return setActiveForumId(state, action);
