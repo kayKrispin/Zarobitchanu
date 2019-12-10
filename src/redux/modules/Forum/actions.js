@@ -106,9 +106,11 @@ export const searchTopicsRequestError = error => ({
     error
 });
 
-export const createReplyRequest = data => ({
+export const createReplyRequest = (data, page, limit) => ({
     type: types.CREATE_REPLY_REQUEST,
-    data
+    data,
+    page,
+    limit
 });
 
 
@@ -132,10 +134,12 @@ export const setActiveForumidRequestSuccess = id => ({
     id
 });
 
-export const getRepliesRequest = (forumId, topicId) => ({
+export const getRepliesRequest = (forumId, topicId, page, pageLimit) => ({
    type: types.GET_REPLIES_REQUEST,
    forumId,
-   topicId
+   topicId,
+   page,
+   pageLimit
 });
 
 export const getReplyRequestSuccess = replies => ({

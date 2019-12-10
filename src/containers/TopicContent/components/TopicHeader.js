@@ -3,7 +3,7 @@ import { Pagination } from 'antd';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CreateEntityModal from "../../../components/CreateEntityModal";
 
-const TopicHeader = ({ openModal, topicId }) => (
+const TopicHeader = ({ openModal, topicId, handlePage, handlePagination, totalReplies, page, pageLimit, totalPages }) => (
     <div className="d-flex mb-3 align-items-center justify-content-between">
         <div>
             <button
@@ -12,6 +12,8 @@ const TopicHeader = ({ openModal, topicId }) => (
                         <CreateEntityModal
                             topicId={topicId}
                             isReply={true}
+                            page={page}
+                            limit={pageLimit}
                             title="Reply"
                         />, 500
                     )}
@@ -21,8 +23,8 @@ const TopicHeader = ({ openModal, topicId }) => (
             </button>
         </div>
         <div className="font-weight-bolder d-flex flex-row align-items-center topic-container--pagination">
-            <span className="mr-2">11 posts</span>
-            <Pagination defaultCurrent={1} total={30}/>
+            <span className="mr-2">{totalReplies && totalReplies} replies</span>
+            <Pagination onChange={e => handlePagination(e)} defaultCurrent={1} total={totalPages}/>
         </div>
     </div>
 );

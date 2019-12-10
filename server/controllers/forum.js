@@ -125,6 +125,7 @@ async function searchTopic (req, res, next) {
 async function createReply (req, res, next) {
 
     const {  forumId, topicId, userId } = req.body;
+    const { page, limit } = req.query;
 
     delete req.body.forumId;
     delete req.body.topicId;
@@ -137,12 +138,24 @@ async function createReply (req, res, next) {
 
         const forum = await Forum.findOne({ _id: forumId});
         const topic = forum.topics.id(topicId);
+        const repliesLength = topic.replies.length;
+
+
+        const pageNumber = parseInt(page);
+        const limitNumber = parseInt(limit);
+
+        const startIndex = (pageNumber - 1) * limitNumber;
+        const endIndex = pageNumber * limit;
 
         topic.replies.push(req.body);
 
         await forum.save();
 
-        res.send({ replies: [...topic.replies], users: [...users] })
+        res.send({
+            replies: [...topic.replies.slice(startIndex, endIndex)],
+            users: [...users],
+            totalReplies: repliesLength
+        })
 
     } catch (e) {
         return next({
@@ -159,10 +172,23 @@ async function getReplies (req, res, next) {
   try {
     const forum = await Forum.findOne({ _id: forumId});
     const users = await User.find({});
+    const { page, limit } = req.query;
 
     const topic = forum.topics.id(topicId);
+    const replies = topic.replies;
+    const repliesLength = replies.length;
 
-    res.json({ replies: [...topic.replies], users: [...users] })
+    const pageNumber = parseInt(page);
+    const limitNumber = parseInt(limit);
+
+    const startIndex = (pageNumber - 1) * limitNumber;
+    const endIndex = pageNumber * limit;
+
+    res.json({
+        replies: [...replies.slice(startIndex, endIndex)],
+        users: [...users],
+        totalReplies: repliesLength
+    })
 
   } catch (e) {
     return next({

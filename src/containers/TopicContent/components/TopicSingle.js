@@ -21,8 +21,6 @@ const TopicSingle = ({ item, users }) => {
     }
   };
 
-  console.log(active)
-
   return (
     <div className="topic d-flex justify-content-between mb-3">
       <div className="d-flex flex-column">

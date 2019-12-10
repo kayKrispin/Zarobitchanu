@@ -83,7 +83,8 @@ export const setActiveForumId = (state, action) => ({
 export const createReplySuccess = (state, action) => ({
     ...state,
     replies: action.replies.replies,
-    users: action.replies.users
+    users: action.replies.users,
+    totalReplies: action.replies.totalReplies
 });
 
 export const createReplyError = (state, action) => ({
@@ -94,7 +95,8 @@ export const createReplyError = (state, action) => ({
 export const getRepliesSuccess = (state, action) => ({
   ...state,
   replies: action.replies.replies,
-  users: action.replies.users
+  users: action.replies.users,
+  totalReplies: action.replies.totalReplies
 });
 
 export const getRepliesError = (state, action) => ({

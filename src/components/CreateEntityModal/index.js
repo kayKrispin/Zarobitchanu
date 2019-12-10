@@ -20,7 +20,9 @@ const CreateForumModal = ({
                               createReply,
                               selectedForumId,
     match,
-                              topicId
+                              topicId,
+    page,
+    limit
 }) => {
 
     const { register, handleSubmit, errors } = useForm(); // initialise the hook
@@ -46,7 +48,7 @@ const CreateForumModal = ({
             values.forumId = selectedForumId;
             values.topicId = topicId;
 
-            createReply(values);
+            createReply(values, page, limit);
             close();
             return;
         }
@@ -125,6 +127,6 @@ export default connect(
         clearForm: () => dispatch(actions.clearError()),
         createForum: data => dispatch(forumActions.createForumRequest(data)),
         createTopic: data => dispatch(forumActions.createTopicRequest(data)),
-        createReply: data => dispatch(forumActions.createReplyRequest(data))
+        createReply: (data, page, limit) => dispatch(forumActions.createReplyRequest(data, page, limit))
     })
 )(CreateForumModal);

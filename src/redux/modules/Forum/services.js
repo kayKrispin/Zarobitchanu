@@ -91,9 +91,9 @@ export const searchTopic = async ({ key, forumId }) => {
     }
 };
 
-export const createReply = async ({ data }) => {
+export const createReply = async ({ data, page, limit }) => {
     try {
-        return modifiedFetch(`${API_URL}/forum/createReply`, {
+        return modifiedFetch(`${API_URL}/forum/createReply?page=${page}&limit=${limit}`, {
             method: "POST",
             body: JSON.stringify(data)
         });
@@ -105,9 +105,9 @@ export const createReply = async ({ data }) => {
 };
 
 
-export const getReplies = async ({ forumId, topicId }) => {
+export const getReplies = async ({ forumId, topicId, page, pageLimit }) => {
     try {
-        return modifiedFetch(`${API_URL}/forum/getReplies`, {
+        return modifiedFetch(`${API_URL}/forum/getReplies?page=${page}&limit=${pageLimit}`, {
             method: "POST",
             body: JSON.stringify({ forumId, topicId })
         });
