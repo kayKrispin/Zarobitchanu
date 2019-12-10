@@ -132,6 +132,7 @@ async function createReply (req, res, next) {
     try {
           //Update user posts quantity
         await User.findOneAndUpdate({_id: userId}, {$push: {posts: 1}});
+        const users = await User.find({});
 
 
         const forum = await Forum.findOne({ _id: forumId});
@@ -141,7 +142,7 @@ async function createReply (req, res, next) {
 
         await forum.save();
 
-        res.send([...topic.replies])
+        res.send({ replies: [...topic.replies], users: [...users] })
 
     } catch (e) {
         return next({
@@ -157,10 +158,11 @@ async function getReplies (req, res, next) {
 
   try {
     const forum = await Forum.findOne({ _id: forumId});
+    const users = await User.find({});
 
     const topic = forum.topics.id(topicId);
 
-    res.send([...topic.replies])
+    res.json({ replies: [...topic.replies], users: [...users] })
 
   } catch (e) {
     return next({

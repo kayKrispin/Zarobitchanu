@@ -9,7 +9,14 @@ const TopicContent = props => (
         <div className="topics-container--topics">
           {
             props.replies && props.replies.map(reply => (
-              <TopicSingle key={reply.createdAt} item={reply}/>
+              <TopicSingle
+                active={props.likeClass}
+                counter={props.counter}
+                handleLike={props.handleCount}
+                users={props.users}
+                key={reply.createdAt}
+                item={reply}
+              />
             ))
           }
           {

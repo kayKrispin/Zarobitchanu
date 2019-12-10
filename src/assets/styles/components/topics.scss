@@ -25,6 +25,19 @@
         text-overflow: ellipsis;
         overflow: hidden;
       }
+
+      &--like {
+        font-size: 2rem;
+        cursor: pointer;
+      }
+
+      .active {
+        color: red;
+      }
+
+      &--text {
+        flex: 1;
+      }
     }
   }
 
@@ -43,4 +56,10 @@
       }
     }
   }
+}
+
+
+
+.active {
+  color: red;
 }
