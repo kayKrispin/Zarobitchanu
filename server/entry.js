@@ -1,20 +1,20 @@
-const express =  require('express');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
+const express = require("express");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 
-const cors = require('cors');
+const cors = require("cors");
 
-const app =  express();
+const app = express();
 
-mongoose.connect('mongodb://localhost:27017/zarobitchanu', { useNewUrlParser: true, useUnifiedTopology: true  });
+mongoose.connect("mongodb://localhost:27017/zarobitchanu", { useNewUrlParser: true, useUnifiedTopology: true });
 
 mongoose.Promise = global.Promise;
 
-app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
+app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 
-app.use(express.static(__dirname + '/uploads'));
+app.use(express.static(`${__dirname }/uploads`));
 
-app.use("/uploads", express.static('uploads'));
+app.use("/uploads", express.static("uploads"));
 
 app.use(bodyParser.json());
 
@@ -26,5 +26,5 @@ app.use(function (err, req, res, next) {
 });
 
 app.listen(8080, function () {
-  console.log('Now listening on ports 8080');
+  console.log("Now listening on ports 8080");
 });
