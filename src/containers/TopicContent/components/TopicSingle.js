@@ -13,12 +13,13 @@ const TopicSingle = ({ item, users }) => {
       handleCount(counter + 1);
       handleLike(true);
       active.push("active");
+
       return;
-    } else {
-      handleCount(counter - 1);
-      handleLike(false);
-      active.slice(0,1);
     }
+    handleCount(counter - 1);
+    handleLike(false);
+    active.slice(0, 1);
+
   };
 
   return (
@@ -45,14 +46,14 @@ const TopicSingle = ({ item, users }) => {
         </p>
         <span className="pb-2">
                 Posts:
-                <strong>
-               {
-                 users.length > 1
-                 && users.filter(user=> user._id === item.userId)[0]
-                 && users.filter(user=> user._id === item.userId)[0].posts.length
-               }
-                </strong>
-            </span>
+          <strong>
+            {
+              users.length > 1 &&
+                 users.filter(user => user._id === item.userId)[0] &&
+                 users.filter(user => user._id === item.userId)[0].posts.length
+            }
+          </strong>
+        </span>
       </div>
     </div>
   )

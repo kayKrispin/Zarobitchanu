@@ -13,10 +13,10 @@ const RegisterFormContainer = ({ handleRegister, loading, serverError, userAvata
   const { register, handleSubmit, errors } = useForm(); // initialise the form hook;
 
   const onSubmit = (values, e) => {
-      if (!values.email || Object.values(errors).length > 0) return;
-      values.img = imageFile;
-      handleRegister(values);
-      e.target.reset();
+    if (!values.email || Object.values(errors).length > 0) return;
+    values.img = imageFile;
+    handleRegister(values);
+    e.target.reset();
   };
 
   const handleImage = image => {
@@ -24,9 +24,9 @@ const RegisterFormContainer = ({ handleRegister, loading, serverError, userAvata
     handleImageFile(image);
   };
 
-  let avatar = imageBlob
-      ? <img className="user-avatar--icon" src={imageBlob} alt=""/>
-      : <Avatar className="user-avatar--icon" icon="user"/>;
+  const avatar = imageBlob
+    ? <img className="user-avatar--icon" src={imageBlob} alt=""/>
+    : <Avatar className="user-avatar--icon" icon="user"/>;
 
   const props = {
     imageBlob,
@@ -49,13 +49,13 @@ const RegisterFormContainer = ({ handleRegister, loading, serverError, userAvata
 };
 
 export default connect(
-    state => ({
-      loading: state.authStore.loading,
-      serverError: state.authStore.error,
-      user: state.authStore.user
-    }),
-    dispatch => ({
-        handleRegister: credentials => dispatch(authActions.registerRequest(credentials)),
-        close: () => dispatch(modalActions.closeModal())
-    })
+  state => ({
+    loading: state.authStore.loading,
+    serverError: state.authStore.error,
+    user: state.authStore.user
+  }),
+  dispatch => ({
+    handleRegister: credentials => dispatch(authActions.registerRequest(credentials)),
+    close: () => dispatch(modalActions.closeModal())
+  })
 )(RegisterFormContainer);

@@ -6,24 +6,24 @@ import { Redirect } from "react-router-dom";
 
 const AccountVeryfication = ({ handleActivate, match, isAccountActivated }) => {
 
-    useEffect(() => {
-        handleActivate(match.params.code);
-    }, []);
+  useEffect(() => {
+    handleActivate(match.params.code);
+  }, []);
 
-    if (isAccountActivated) return <Redirect to="/" />
+  if (isAccountActivated) return <Redirect to="/" />
 
-    return (
-        <React.Fragment>
+  return (
+    <React.Fragment>
             hello there
-        </React.Fragment>
-    );
+    </React.Fragment>
+  );
 };
 
 export default connect(
-    state => ({
-        isAccountActivated: state.authStore.user.emailVerifyed
-    }),
-    dispatch => ({
-        handleActivate: code => dispatch(actions.activateAccountRequest(code))
-    })
+  state => ({
+    isAccountActivated: state.authStore.user.emailVerifyed
+  }),
+  dispatch => ({
+    handleActivate: code => dispatch(actions.activateAccountRequest(code))
+  })
 )(AccountVeryfication);

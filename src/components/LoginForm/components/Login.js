@@ -1,21 +1,21 @@
 import React from "react";
 
 const Login = ({
-                   loginDivider,
-                   handleForgetPassword,
-                   register,
-                   handleSubmit,
-                   onSubmit,
-                   serverError,
+  loginDivider,
+  handleForgetPassword,
+  register,
+  handleSubmit,
+  onSubmit,
+  serverError,
 }) => (
   <React.Fragment>
     <form onSubmit={handleSubmit(onSubmit)} >
       {
-        !loginDivider &&  <div className="login-divider mb-3"/>
+        !loginDivider && <div className="login-divider mb-3"/>
       }
       <label className="d-flex form-label flex-column">
         Email:
-        <input name="email" ref={register}  type="text"/>
+        <input name="email" ref={register} type="text"/>
       </label>
       <label className="d-flex form-label flex-column">
         Password:
@@ -25,16 +25,16 @@ const Login = ({
         Login
       </button>
       {
-        !loginDivider &&  <div className="login-divider mb-3"/>
+        !loginDivider && <div className="login-divider mb-3"/>
       }
       {
-        !loginDivider &&  <div className="login-divider mb-3"/>
+        !loginDivider && <div className="login-divider mb-3"/>
       }
       <p className="forgot-pass-title mt-3" onClick={() => { handleForgetPassword(true) }}>I forgot my password</p>
       {
         serverError &&
         <span className="error-msg d-flex mt-3 justify-content-center">
-            {serverError.toString()}
+          {serverError.toString()}
         </span>
       }
     </form>

@@ -4,7 +4,6 @@ const Toggler = ({ onClick }) => {
   const [toggle, handleToggle] = useState(false);
 
 
-
   const handleClick = () => {
     onClick();
     handleToggle(!toggle);

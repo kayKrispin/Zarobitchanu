@@ -25,139 +25,139 @@ function *createForum ({ data }) {
 
 function *getForums () {
 
-    yield put({ type: types.SHOW_LOADING });
+  yield put({ type: types.SHOW_LOADING });
 
-    try {
-        const response = yield call(auth.getForums);
+  try {
+    const response = yield call(auth.getForums);
 
-        yield put(actions.getForumsRequestSuccess(response));
-    } catch (error) {
+    yield put(actions.getForumsRequestSuccess(response));
+  } catch (error) {
 
-        yield put(actions.getForumsRequestError(error));
-    } finally {
-        yield put({ type: types.HIDE_LOADING })
-    }
+    yield put(actions.getForumsRequestError(error));
+  } finally {
+    yield put({ type: types.HIDE_LOADING })
+  }
 }
 
 function *deleteForum ({ id }) {
 
-    yield put({ type: types.SHOW_LOADING });
+  yield put({ type: types.SHOW_LOADING });
 
-    try {
-        const response = yield call(auth.deleteForum, id);
+  try {
+    const response = yield call(auth.deleteForum, id);
 
-        yield put(actions.getForumsRequest());
-        yield put(actions.deleteForumRequestSuccess(response));
-    } catch (error) {
+    yield put(actions.getForumsRequest());
+    yield put(actions.deleteForumRequestSuccess(response));
+  } catch (error) {
 
-        yield put(actions.deleteForumRequestError(error));
-    } finally {
-        yield put({ type: types.HIDE_LOADING })
-    }
+    yield put(actions.deleteForumRequestError(error));
+  } finally {
+    yield put({ type: types.HIDE_LOADING })
+  }
 }
 
 function *createTopic ({ data }) {
 
-    yield put({ type: types.SHOW_LOADING });
+  yield put({ type: types.SHOW_LOADING });
 
-    try {
-        const response = yield call(auth.createTopic, data);
+  try {
+    const response = yield call(auth.createTopic, data);
 
-        yield put(actions.getTopicsRequest(data.forumId));
-        yield put(actions.createTopicRequestSuccess(response));
-    } catch (error) {
-        const errorMessage = yield error.json();
+    yield put(actions.getTopicsRequest(data.forumId));
+    yield put(actions.createTopicRequestSuccess(response));
+  } catch (error) {
+    const errorMessage = yield error.json();
 
-        yield put(actions.createTopicRequestError(errorMessage.error));
-    } finally {
-        yield put({ type: types.HIDE_LOADING })
-    }
+    yield put(actions.createTopicRequestError(errorMessage.error));
+  } finally {
+    yield put({ type: types.HIDE_LOADING })
+  }
 }
 
 function *getTopics ({ id }) {
 
-    yield put({ type: types.SHOW_LOADING });
+  yield put({ type: types.SHOW_LOADING });
 
-    try {
-        const response = yield call(auth.getTopics, id);
+  try {
+    const response = yield call(auth.getTopics, id);
 
-        yield put(actions.getTopicsRequestSuccess(response));
-    } catch (error) {
+    yield put(actions.getTopicsRequestSuccess(response));
+  } catch (error) {
 
-        yield put(actions.getTopicsRequestError(error));
-    } finally {
-        yield put({ type: types.HIDE_LOADING })
-    }
+    yield put(actions.getTopicsRequestError(error));
+  } finally {
+    yield put({ type: types.HIDE_LOADING })
+  }
 }
 
 function *deleteTopic (data) {
 
-    yield put({ type: types.SHOW_LOADING });
+  yield put({ type: types.SHOW_LOADING });
 
-    try {
-        const response = yield call(auth.deleteTopic, { ...data.forumId });
+  try {
+    const response = yield call(auth.deleteTopic, { ...data.forumId });
 
-        yield put(actions.getTopicsRequest(data.forumId.forumId))
-        yield put(actions.deleteTopicRequestSuccess(response));
-    } catch (error) {
+    yield put(actions.getTopicsRequest(data.forumId.forumId))
+    yield put(actions.deleteTopicRequestSuccess(response));
+  } catch (error) {
 
-        yield put(actions.deleteTopicRequestError(error));
-    } finally {
-        yield put({ type: types.HIDE_LOADING })
-    }
+    yield put(actions.deleteTopicRequestError(error));
+  } finally {
+    yield put({ type: types.HIDE_LOADING })
+  }
 }
 
 
 function *searchTopic (data) {
 
-    yield put({ type: types.SHOW_LOADING });
+  yield put({ type: types.SHOW_LOADING });
 
-    console.log(data)
+  console.log(data)
 
-    try {
-        const response = yield call(auth.searchTopic, data);
+  try {
+    const response = yield call(auth.searchTopic, data);
 
-        yield put(actions.searchTopicsRequestSuccess(response));
-    } catch (error) {
+    yield put(actions.searchTopicsRequestSuccess(response));
+  } catch (error) {
 
-        yield put(actions.searchTopicsRequestError(error));
-    } finally {
-        yield put({ type: types.HIDE_LOADING })
-    }
+    yield put(actions.searchTopicsRequestError(error));
+  } finally {
+    yield put({ type: types.HIDE_LOADING })
+  }
 }
 
 
 function *createReply (data) {
 
-    yield put({ type: types.SHOW_LOADING });
+  yield put({ type: types.SHOW_LOADING });
 
-    try {
-        const response = yield call(auth.createReply, data);
+  try {
+    const response = yield call(auth.createReply, data);
 
-        yield put(actions.createReplyRequestSuccess(response));
-    } catch (error) {
+    yield put(actions.createReplyRequestSuccess(response));
+  } catch (error) {
 
-        yield put(actions.createReplyRequestError(error));
-    } finally {
-        yield put({ type: types.HIDE_LOADING })
-    }
+    yield put(actions.createReplyRequestError(error));
+  } finally {
+    yield put({ type: types.HIDE_LOADING })
+  }
 }
 
 function *setForumId ({ id }) {
 
-    yield put({ type: types.SHOW_LOADING });
+  yield put({ type: types.SHOW_LOADING });
 
-    try {
+  try {
 
-        localStorage.setItem("forumId", JSON.stringify({id}))
+    localStorage.setItem("forumId", JSON.stringify({ id }))
 
-        yield put(actions.setActiveForumidRequestSuccess(id));
-    } catch (error) {
+    yield put(actions.setActiveForumidRequestSuccess(id));
+  } catch (error) {
 
-        yield put(actions.createReplyRequestError(error));
-    } finally {
-        yield put({ type: types.HIDE_LOADING })
-    }
+    yield put(actions.createReplyRequestError(error));
+  } finally {
+    yield put({ type: types.HIDE_LOADING })
+  }
 }
 
 function *getReplies (data) {

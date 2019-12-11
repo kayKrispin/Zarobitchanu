@@ -3,25 +3,24 @@ import PropTypes from "prop-types";
 import { Spin } from "antd";
 
 const RegisterForm = ({
-                        handleImage,
-                        avatar,
-                        register,
-                        handleSubmit,
-                        onSubmit,
-                        loading,
-                        serverError,
-                        userAvatar,
-    user,
-    errors
+  handleImage,
+  avatar,
+  register,
+  handleSubmit,
+  onSubmit,
+  loading,
+  serverError,
+  userAvatar,
+  user,
+  errors
 }) => {
 
   const btnStyles = ["login-btn mt-3 w-100"];
   const emailValidation = /^\S+@\S+\.\S+$/;
 
-
-    const failedMsg = serverError &&
+  const failedMsg = serverError &&
     <span className="error-msg d-flex mt-3 justify-content-center">
-            {serverError}
+      {serverError}
     </span>;
   const successMsg = user.email &&
     <span className="success-msg d-flex mt-3 justify-content-center">
@@ -39,8 +38,7 @@ const RegisterForm = ({
           </div>
           <p className="form-label mt-2">Choose your avatar</p>
           <input
-            onChange={ e =>
-              handleImage(e.target.files[0])
+            onChange={ e => handleImage(e.target.files[0])
             }
             className="user-avatar--file-uploader"
             type="file"
@@ -49,30 +47,30 @@ const RegisterForm = ({
         <label className="d-flex form-label flex-column">
           Email:
           <input name="email" ref={register({
-              required: true,
-              pattern: emailValidation
+            required: true,
+            pattern: emailValidation
           })} type="text"/>
-            {
-                errors.email && errors.email.type === "required" && (
-                    <span className="error-msg">Email is required!</span>
-                )
-            }
-            {
-                errors.email && errors.email.type !== "required" && (
-                    <span className="error-msg">Invalid email format!</span>
-                )
-            }
+          {
+            errors.email && errors.email.type === "required" && (
+              <span className="error-msg">Email is required!</span>
+            )
+          }
+          {
+            errors.email && errors.email.type !== "required" && (
+              <span className="error-msg">Invalid email format!</span>
+            )
+          }
         </label>
         <label className="d-flex form-label flex-column">
           Password:
           <input name="password" ref={register({
-              required: true
+            required: true
           })} type="text"/>
-            {
-                errors.password && errors.password.type === "required" && (
-                    <span className="error-msg">Password is required!</span>
-                )
-            }
+          {
+            errors.password && errors.password.type === "required" && (
+              <span className="error-msg">Password is required!</span>
+            )
+          }
         </label>
         <button disabled={loading} className={btnStyles.join(" ")}>
           {

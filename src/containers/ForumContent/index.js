@@ -8,25 +8,25 @@ import AppSkeleton from "../AppSkeleton";
 const ContentContainer = ({ getForums, forums }) => {
 
   useEffect(() => {
-      getForums()
+    getForums()
   }, []);
 
   const props = {
-      forums
+    forums
   };
 
-  if(!forums.length) return <AppSkeleton/>
+  if (!forums.length) return <AppSkeleton/>
 
   return <ForumContent {...props} />
 };
 
 export default connect(
-    state => ({
-        forums: state.forumStore.forums
-    }),
-    dispatch => ({
-        getForums: () => dispatch(actions.getForumsRequest())
-    })
+  state => ({
+    forums: state.forumStore.forums
+  }),
+  dispatch => ({
+    getForums: () => dispatch(actions.getForumsRequest())
+  })
 )(ContentContainer);
 
 ContentContainer.propTypes = {

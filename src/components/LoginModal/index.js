@@ -7,12 +7,12 @@ import { actions } from "../../redux/modules/Auth";
 
 const LoginModal = ({ loginDivider, close, clearForm }) => {
 
-    const handleClose = () => {
-        close();
-        clearForm();
-    };
+  const handleClose = () => {
+    close();
+    clearForm();
+  };
 
-    return (
+  return (
     <React.Fragment>
       <div>
         <FontAwesomeIcon onClick={handleClose} className="mr-2 cross-icon" icon={["fas", "times"]} />
@@ -25,7 +25,7 @@ const LoginModal = ({ loginDivider, close, clearForm }) => {
 export default connect(
   null,
   dispatch => ({
-      close: () => dispatch(modalActions.closeModal()),
-      clearForm: () => dispatch(actions.clearError())
+    close: () => dispatch(modalActions.closeModal()),
+    clearForm: () => dispatch(actions.clearError())
   })
 )(LoginModal);

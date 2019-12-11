@@ -14,19 +14,19 @@ const FooterBottom = () => (
         <FontAwesomeIcon className="mr-2" icon={["fas", "envelope"]} />
         <span className="title">
         Contact us
-      </span>
+        </span>
       </p>
       <p className="content-placeholder--home-btn cursor-pointer mr-3 ml-3 mb-0">
         <FontAwesomeIcon className="mr-2" icon={["fas", "users"]} />
         <span className="title">
         The team
-      </span>
+        </span>
       </p>
       <p className="content-placeholder--home-btn cursor-pointer mb-0">
         <FontAwesomeIcon className="mr-2" icon={["fas", "compass"]} />
         <span className="title">
         Our location
-      </span>
+        </span>
       </p>
     </div>
   </div>

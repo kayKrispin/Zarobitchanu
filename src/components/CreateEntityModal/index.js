@@ -8,125 +8,126 @@ import { actions as forumActions } from "../../redux/modules/Forum";
 import useForm from "react-hook-form";
 
 const CreateForumModal = ({
-                              close,
-                              clearForm,
-                              createForum,
-                              themeModal,
-                              createTopic,
-                              forumId,
-                              title,
-                              isReply,
-                              user,
-                              createReply,
-                              selectedForumId,
-    match,
-                              topicId,
-    page,
-    limit
+  close,
+  clearForm,
+  createForum,
+  themeModal,
+  createTopic,
+  forumId,
+  title,
+  isReply,
+  user,
+  createReply,
+  selectedForumId,
+  match,
+  topicId,
+  page,
+  limit
 }) => {
 
-    const { register, handleSubmit, errors } = useForm(); // initialise the hook
-    const [switchValue, handleSwitch] = useState(false);
+  const { register, handleSubmit, errors } = useForm(); // initialise the hook
+  const [switchValue, handleSwitch] = useState(false);
 
-    const onSubmit = values => {
-        //Create topic
-        if (themeModal) {
-            values.createdAt = new Date();
-            values.forumId = forumId;
+  const onSubmit = values => {
+    //Create topic
+    if (themeModal) {
+      values.createdAt = new Date();
+      values.forumId = forumId;
 
-            createTopic(values);
-            close();
+      createTopic(values);
+      close();
 
-            return
-        }
-        //Create reply
-        if (isReply) {
-            values.createdAt = new Date();
-            values.userName = user && user.email;
-            values.userAvatar = user && user.img;
-            values.userId = user && user._id;
-            values.forumId = selectedForumId;
-            values.topicId = topicId;
+      return
+    }
+    //Create reply
+    if (isReply) {
+      values.createdAt = new Date();
+      values.userName = user && user.email;
+      values.userAvatar = user && user.img;
+      values.userId = user && user._id;
+      values.forumId = selectedForumId;
+      values.topicId = topicId;
 
-            createReply(values, page, limit);
-            close();
-            return;
-        }
+      createReply(values, page, limit);
+      close();
 
-        //Create forum
-        values.isSpecial = switchValue;
-        values.createdAt = new Date();
+      return;
+    }
 
-        createForum(values);
-        close();
-    };
+    //Create forum
+    values.isSpecial = switchValue;
+    values.createdAt = new Date();
 
-    const handleClose = () => {
-        close();
-        clearForm();
-    };
+    createForum(values);
+    close();
+  };
 
-    return (
-        <React.Fragment>
-            <div>
-                <FontAwesomeIcon onClick={handleClose} className="mr-2 cross-icon" icon={["fas", "times"]} />
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    {
-                        isReply
-                            ? (
-                                <label className="d-flex form-label flex-column">
-                                    {title} Text:
-                                    <textarea name="text" ref={register} />
-                                </label>
-                            )
-                            : (
-                                <label className="d-flex form-label flex-column">
-                                    {title} Title:
-                                    <input name="title" ref={register}  type="text"/>
-                                </label>
-                            )
-                    }
+  const handleClose = () => {
+    close();
+    clearForm();
+  };
 
-                    {
-                        !themeModal && !isReply && (
-                            <div>
-                                <label className="d-flex form-label flex-column">
+  return (
+    <React.Fragment>
+      <div>
+        <FontAwesomeIcon onClick={handleClose} className="mr-2 cross-icon" icon={["fas", "times"]} />
+        <form onSubmit={handleSubmit(onSubmit)}>
+          {
+            isReply
+              ? (
+                <label className="d-flex form-label flex-column">
+                  {title} Text:
+                  <textarea name="text" ref={register} />
+                </label>
+              )
+              : (
+                <label className="d-flex form-label flex-column">
+                  {title} Title:
+                  <input name="title" ref={register} type="text"/>
+                </label>
+              )
+          }
+
+          {
+            !themeModal && !isReply && (
+              <div>
+                <label className="d-flex form-label flex-column">
                                     Description:
-                                    <input name="subTitle" ref={register} type="text"/>
-                                </label>
-                                <label className="d-flex form-label flex-column">
+                  <input name="subTitle" ref={register} type="text"/>
+                </label>
+                <label className="d-flex form-label flex-column">
                                     General:
-                                </label>
-                                <Switch
-                                    checked={switchValue}
-                                    onChange={e => handleSwitch(e)}
-                                    name="isSpecial"
-                                    ref={register}
-                                    type="text"
-                                />
-                            </div>
-                        )
-                    }
-                    <button className="login-btn mt-3 w-100">
+                </label>
+                <Switch
+                  checked={switchValue}
+                  onChange={e => handleSwitch(e)}
+                  name="isSpecial"
+                  ref={register}
+                  type="text"
+                />
+              </div>
+            )
+          }
+          <button className="login-btn mt-3 w-100">
                         Create {title}
-                    </button>
-                </form>
-            </div>
-        </React.Fragment>
+          </button>
+        </form>
+      </div>
+    </React.Fragment>
 
-    )
+  )
 };
 
 export default connect(
-    state => ({
-        user: state.authStore.user,
-        selectedForumId: state.forumStore.selectedForumId
-    }),
-    dispatch => ({
-        close: () => dispatch(modalActions.closeModal()),
-        clearForm: () => dispatch(actions.clearError()),
-        createForum: data => dispatch(forumActions.createForumRequest(data)),
-        createTopic: data => dispatch(forumActions.createTopicRequest(data)),
-        createReply: (data, page, limit) => dispatch(forumActions.createReplyRequest(data, page, limit))
-    })
+  state => ({
+    user: state.authStore.user,
+    selectedForumId: state.forumStore.selectedForumId
+  }),
+  dispatch => ({
+    close: () => dispatch(modalActions.closeModal()),
+    clearForm: () => dispatch(actions.clearError()),
+    createForum: data => dispatch(forumActions.createForumRequest(data)),
+    createTopic: data => dispatch(forumActions.createTopicRequest(data)),
+    createReply: (data, page, limit) => dispatch(forumActions.createReplyRequest(data, page, limit))
+  })
 )(CreateForumModal);

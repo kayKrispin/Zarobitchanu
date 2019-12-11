@@ -10,12 +10,12 @@ const ThemeContentContainer = ({ match, openModal, getTopics, forumTitle, topics
   const themes = [];
 
   useEffect(() => {
-      setForumId(forumId);
-      getTopics(forumId);
+    setForumId(forumId);
+    getTopics(forumId);
   }, []);
 
   const searchTopicByName = key => {
-      searchTopic(key, forumId)
+    searchTopic(key, forumId)
   };
 
   const props = {
@@ -32,17 +32,16 @@ const ThemeContentContainer = ({ match, openModal, getTopics, forumTitle, topics
 };
 
 export default connect(
-    state => ({
-        forumTitle: state.forumStore.forumTitle,
-        topics: state.forumStore.topics,
-        filteredTopics: state.forumStore.filteredTopics,
-    }),
-    dispatch => ({
-        openModal: (content, width) => dispatch(modalActions.openModal(content, width)),
-        getTopics: id => dispatch(actions.getTopicsRequest(id)),
-        searchTopic: (key, forumId) => dispatch(actions.searchTopicsRequest(key, forumId)),
-        setForumId: id => dispatch(actions.setActiveForumidRequest(id))
-    })
+  state => ({
+    forumTitle: state.forumStore.forumTitle,
+    topics: state.forumStore.topics,
+    filteredTopics: state.forumStore.filteredTopics,
+  }),
+  dispatch => ({
+    openModal: (content, width) => dispatch(modalActions.openModal(content, width)),
+    getTopics: id => dispatch(actions.getTopicsRequest(id)),
+    searchTopic: (key, forumId) => dispatch(actions.searchTopicsRequest(key, forumId)),
+    setForumId: id => dispatch(actions.setActiveForumidRequest(id))
+  })
 )(ThemeContentContainer);
-
 

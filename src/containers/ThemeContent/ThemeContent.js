@@ -13,23 +13,23 @@ const ThemeContent = ({ themeTitle, themes, openModal, forumId, forumTitle, topi
     </h2>
     <div className="d-flex mb-3 align-items-center justify-content-between">
       <div>
-          <button
-              onClick={() => openModal(<CreateEntityModal title="Topic" forumId={forumId} themeModal={true} />, 500)}
-              className="themes-container--new-topic mr-3"
-          >
+        <button
+          onClick={() => openModal(<CreateEntityModal title="Topic" forumId={forumId} themeModal={true} />, 500)}
+          className="themes-container--new-topic mr-3"
+        >
               New Topic
-              <FontAwesomeIcon className="ml-2" icon={["fas", "pencil-alt"]} />
-          </button>
-          <input
-              onChange={e => searchTopicByName(e.target.value)}
-              className="themes-container--search"
-              placeholder="Search topics by name"
-              type="text"
-          />
+          <FontAwesomeIcon className="ml-2" icon={["fas", "pencil-alt"]} />
+        </button>
+        <input
+          onChange={e => searchTopicByName(e.target.value)}
+          className="themes-container--search"
+          placeholder="Search topics by name"
+          type="text"
+        />
       </div>
-        <div>
-            <p className="font-weight-bolder">{topics && topics.length} Topics  Page 1 of 1</p>
-        </div>
+      <div>
+        <p className="font-weight-bolder">{topics && topics.length} Topics  Page 1 of 1</p>
+      </div>
     </div>
     <Accordion className="mb-3" defaultActiveKey="0">
       <Card>
@@ -55,13 +55,13 @@ const ThemeContent = ({ themeTitle, themes, openModal, forumId, forumTitle, topi
         <Accordion.Collapse eventKey="0">
           <Card.Body back-speed={100}>
             {
-            topics && topics.map((item, index) => (
+              topics && topics.map((item, index) => (
                 <Forum
-                    match={match}
-                    themes={true}
-                    item={item} id={index}
-                    className={index === 9 && "mb-0"}
-                    key={index}
+                  match={match}
+                  themes={true}
+                  item={item} id={index}
+                  className={index === 9 && "mb-0"}
+                  key={index}
                 />
               ))
             }

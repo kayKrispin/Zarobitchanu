@@ -1,4 +1,4 @@
-import  React from "react";
+import React from "react";
 import UnauthorizedSidebar from "./components/UnauthorizedSidebar";
 import AuthorizedSidebar from "./components/AuthenticatedSidebar";
 import { Accordion } from "react-bootstrap";
@@ -8,11 +8,11 @@ const Sidebar = ({ isAuthenticated, responseGoogle, responseFacebook }) => (
   <div className="sidebar">
     <div className="upper-divider"/>
     <Accordion defaultActiveKey="0">
-        {
-          isAuthenticated
-              ? <AuthorizedSidebar/>
-              : <UnauthorizedSidebar responseFacebook={responseFacebook} responseGoogle={responseGoogle} />
-        }
+      {
+        isAuthenticated
+          ? <AuthorizedSidebar/>
+          : <UnauthorizedSidebar responseFacebook={responseFacebook} responseGoogle={responseGoogle} />
+      }
     </Accordion>
     <div className="mt-2">
       <button className="buy-btn">

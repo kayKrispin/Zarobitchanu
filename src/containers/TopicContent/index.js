@@ -17,30 +17,30 @@ const TopicContentContainer = ({ openModal, match, selectedForumId, getReplies, 
     getReplies(selectedForumId, topicId, page, pageLimit)
   }, [page]);
 
-  const handlePagination = (page) => {
+  const handlePagination = page => {
     handlePage(page);
     getReplies(selectedForumId, topicId, page, pageLimit);
   };
 
-    const props = {
-      openModal,
-      topicId,
-      replies,
-      users,
-      likeClass,
-      handleCount,
-      counter,
-      handlePage,
-      handlePagination,
-      totalReplies,
-      page,
-      pageLimit,
-      totalPages
-    };
+  const props = {
+    openModal,
+    topicId,
+    replies,
+    users,
+    likeClass,
+    handleCount,
+    counter,
+    handlePage,
+    handlePagination,
+    totalReplies,
+    page,
+    pageLimit,
+    totalPages
+  };
 
-    console.log(page)
+  console.log(page)
 
-    return <TopicContent {...props} />
+  return <TopicContent {...props} />
 };
 
 export default connect(
@@ -50,10 +50,8 @@ export default connect(
     replies: state.forumStore.replies,
     users: state.forumStore.users
   }),
-    dispatch => ({
-        openModal: (content, width) =>
-            dispatch(modalActions.openModal(content, width)),
-        getReplies: (forumId, topicId, page, pageLimit) =>
-            dispatch(actions.getRepliesRequest(forumId, topicId, page, pageLimit))
-    })
+  dispatch => ({
+    openModal: (content, width) => dispatch(modalActions.openModal(content, width)),
+    getReplies: (forumId, topicId, page, pageLimit) => dispatch(actions.getRepliesRequest(forumId, topicId, page, pageLimit))
+  })
 )(TopicContentContainer);

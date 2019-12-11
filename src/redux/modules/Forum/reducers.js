@@ -18,78 +18,78 @@ export const createForumRequestError = (state, action) => ({
 
 export const getTopicsRequestSuccess = (state, action) => {
 
-    const filteredTopics = sortByDate(action.forum[0].topics);
+  const filteredTopics = sortByDate(action.forum[0].topics);
 
-    return {
-        ...state,
-         topics: [...filteredTopics],
-         forumTitle: action.forum[0].title,
-         error: ""
-    }
+  return {
+    ...state,
+    topics: [...filteredTopics],
+    forumTitle: action.forum[0].title,
+    error: ""
+  }
 };
 
 export const getTopicsRequestError = (state, action) => ({
-    ...state,
-    error: action.error
+  ...state,
+  error: action.error
 });
 
 export const searchTopicsRequestSuccess = (state, action) => {
 
-    return {
-        ...state,
-         topics: [...action.topics]
-    }
+  return {
+    ...state,
+    topics: [...action.topics]
+  }
 };
 
 export const deleteForumRequestSuccess = (state, action) => {
 
-    const filteredForums = sortByDate(action.forums);
+  const filteredForums = sortByDate(action.forums);
 
-    return {
-        ...state,
-        forums: [...filteredForums],
-        error: "",
-    }
+  return {
+    ...state,
+    forums: [...filteredForums],
+    error: "",
+  }
 };
 
 export const deleteForumRequestError = (state, action) => ({
-    ...state,
-    forum: {},
-    error: action.error
+  ...state,
+  forum: {},
+  error: action.error
 });
 
 export const deleteTopicRequestSuccess = (state, action) => {
 
-    const filteredTopics = sortByDate(action.topics);
+  const filteredTopics = sortByDate(action.topics);
 
-    return {
-        ...state,
-        forums: [...filteredTopics],
-        error: "",
-    }
+  return {
+    ...state,
+    forums: [...filteredTopics],
+    error: "",
+  }
 };
 
 export const deleteTopicRequestError = (state, action) => ({
-    ...state,
-    forum: {},
-    error: action.error
+  ...state,
+  forum: {},
+  error: action.error
 });
 
 export const setActiveForumId = (state, action) => ({
-    ...state,
-    selectedForumId: action.id
+  ...state,
+  selectedForumId: action.id
 });
 
 export const createReplySuccess = (state, action) => ({
-    ...state,
-    replies: action.replies.replies,
-    users: action.replies.users,
-    totalReplies: action.replies.totalReplies
+  ...state,
+  replies: action.replies.replies,
+  users: action.replies.users,
+  totalReplies: action.replies.totalReplies
 });
 
 export const createReplyError = (state, action) => ({
-    ...state,
-    error: action.error
+  ...state,
+  error: action.error
 });
 
 export const getRepliesSuccess = (state, action) => ({
@@ -106,19 +106,20 @@ export const getRepliesError = (state, action) => ({
 
 export const getForumsRequestSuccess = (state, action) => {
 
-    const filteredForums = sortByDate(action.forums);
-    return {
+  const filteredForums = sortByDate(action.forums);
+
+  return {
     ...state,
     forums: [...filteredForums],
     error: "",
-    }
+  }
 };
 
 export const getForumsRequestError = (state, action) => ({
-    ...state,
-    forum: {},
-    forums: [],
-    error: action.error
+  ...state,
+  forum: {},
+  forums: [],
+  error: action.error
 });
 
 export const hideLoading = state => ({
@@ -130,5 +131,4 @@ export const showLoading = state => ({
   ...state,
   loading: true,
 });
-
 
