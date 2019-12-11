@@ -22,7 +22,11 @@ const SidebarContainer = ({ isAuthenticated, socialLogin }) => {
     console.log(response)
   };
 
-  return <Sidebar responseGoogle={responseGoogle} responseFacebook={responseFacebook} isAuthenticated={isAuthenticated}/>
+  return <Sidebar
+    responseGoogle={responseGoogle}
+    responseFacebook={responseFacebook}
+    isAuthenticated={isAuthenticated}
+  />
 };
 
 export default connect(

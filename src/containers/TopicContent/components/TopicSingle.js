@@ -23,8 +23,8 @@ const TopicSingle = ({ item, users }) => {
   };
 
   return (
-    <div className="topic d-flex justify-content-between mb-3">
-      <div className="d-flex flex-column">
+    <div className="topic d-flex flex-wrap-reverse justify-content-between mb-3">
+      <div className="d-flex flex-column ">
         <div className="topic--time-container mb-3">
           <FontAwesomeIcon className="mr-2" icon={["fas", "clock"]} />
           {getCurrentTime(item.createdAt)} pm
@@ -37,7 +37,7 @@ const TopicSingle = ({ item, users }) => {
           <span className="ml-2">{counter}</span>
         </div>
       </div>
-      <div className="d-flex justify-content-center flex-column align-items-center">
+      <div className="d-flex justify-content-center flex-column align-items-center topic--user-info">
         <img className="topic--avatar" src={item.userAvatar} alt=""/>
         <p className="mt-2 mb-2 topic--fullName">
           <strong>

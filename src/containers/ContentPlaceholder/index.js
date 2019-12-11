@@ -2,6 +2,7 @@ import React from "react";
 import ContentPlaceholder from "./ContentPlaceholder";
 import { connect } from "react-redux";
 import { modalActions } from "../../redux/modules/Modal";
+import PropTypes from "prop-types";
 
 
 const ContentPlaceholderContainer = ({ openModal }) => {
@@ -20,3 +21,6 @@ export default connect(
   })
 )(ContentPlaceholderContainer);
 
+ContentPlaceholderContainer.propTypes = {
+  openModal: PropTypes.func.isRequired
+};

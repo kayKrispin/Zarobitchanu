@@ -9,6 +9,7 @@ import Sidebar from "../Sidebar";
 import { Switch, Route, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Row, Col } from "react-bootstrap";
+import PropTypes from "prop-types";
 
 const ContetPlaceholder = ({ openModal }) => (
   <div className="main-container">
@@ -53,3 +54,7 @@ const ContetPlaceholder = ({ openModal }) => (
 );
 
 export default ContetPlaceholder;
+
+ContetPlaceholder.propTypes = {
+  openModal: PropTypes.func.isRequired
+};

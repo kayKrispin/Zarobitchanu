@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CreateEntityModal from "../../../components/CreateEntityModal";
 
 const TopicHeader = ({ openModal, topicId, handlePage, handlePagination, totalReplies, page, pageLimit, totalPages }) => (
-  <div className="d-flex mb-3 align-items-center justify-content-between">
+  <div className="d-flex mb-3 align-items-center justify-content-between flex-wrap">
     <div>
       <button
         onClick={() => openModal(
@@ -21,7 +21,7 @@ const TopicHeader = ({ openModal, topicId, handlePage, handlePagination, totalRe
         <FontAwesomeIcon className="ml-2" icon={["fas", "reply"]} />
       </button>
     </div>
-    <div className="font-weight-bolder d-flex flex-row align-items-center topic-container--pagination">
+    <div className="font-weight-bolder d-flex flex-row align-items-center topic-container--pagination flex-wrap">
       <span className="mr-2">{totalReplies && totalReplies} replies</span>
       <Pagination onChange={e => handlePagination(e)} defaultCurrent={1} total={totalPages}/>
     </div>

@@ -14,6 +14,11 @@
     canvas {
       position: absolute;
       height: 340px!important;
+
+      @include breakpoint(sm-max) {
+        display: none;
+      }
+
     }
   }
 
