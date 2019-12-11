@@ -6,6 +6,8 @@ function getHeaders(extraHeaders = {}, removeContentType = false) {
   const token = JSON.parse(localStorage.getItem("token") || "{}");
 
   if (token) headers.Authorization = `Bearer ${token}`;
+
+  //For image uploading via form data
   if (removeContentType) delete headers["Content-Type"];
 
   Object.keys(extraHeaders).forEach(key => {

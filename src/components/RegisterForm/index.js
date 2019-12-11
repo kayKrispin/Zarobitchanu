@@ -12,6 +12,7 @@ const RegisterFormContainer = ({ handleRegister, loading, serverError, userAvata
   const [imageFile, handleImageFile] = useState(null);
   const { register, handleSubmit, errors } = useForm(); // initialise the form hook;
 
+  //Validate and register user
   const onSubmit = (values, e) => {
     if (!values.email || Object.values(errors).length > 0) return;
     values.img = imageFile;
@@ -19,6 +20,7 @@ const RegisterFormContainer = ({ handleRegister, loading, serverError, userAvata
     e.target.reset();
   };
 
+  //Save image file and image blob for img tag
   const handleImage = image => {
     handleImageBlob(URL.createObjectURL(image));
     handleImageFile(image);

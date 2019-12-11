@@ -7,6 +7,7 @@ import { actions } from "../../redux/modules/Auth";
 
 const LoginModal = ({ loginDivider, close, clearForm }) => {
 
+  //Close and clear reducer errors
   const handleClose = () => {
     close();
     clearForm();

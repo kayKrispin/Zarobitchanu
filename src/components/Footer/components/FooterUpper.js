@@ -5,6 +5,7 @@ const FooterUpper = () => {
 
   const socialItems = ["facebook-f", "apple", "twitter", "google", "codepen", "digg", "pinterest"];
 
+  //Render social icons
   const handleSocialItems = () => {
     return socialItems.map(value => (
       <div key={value} className="upper--item mr-1 ml-1">

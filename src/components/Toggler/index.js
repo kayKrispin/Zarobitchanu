@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const Toggler = ({ onClick }) => {
   const [toggle, handleToggle] = useState(false);
 
-
+  //Expand accordion component
   const handleClick = () => {
     onClick();
     handleToggle(!toggle);

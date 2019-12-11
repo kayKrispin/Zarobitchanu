@@ -16,6 +16,7 @@ const Modal = ({ isOpen, content, close, width }) => {
 
     modalContainer.appendChild(div);
 
+    //Remove modal from DOM
     return () => {
       div.removeEventListener("click", close);
       modalContainer.removeChild(div);

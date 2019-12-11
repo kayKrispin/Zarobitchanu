@@ -73,6 +73,7 @@ const CreateForumModal = ({
         <FontAwesomeIcon onClick={handleClose} className="mr-2 cross-icon" icon={["fas", "times"]} />
         <form onSubmit={handleSubmit(onSubmit)}>
           {
+            //Render replies fields
             isReply
               ? (
                 <label className="d-flex form-label flex-column">
@@ -89,6 +90,7 @@ const CreateForumModal = ({
           }
 
           {
+            //Render forum fields
             !themeModal && !isReply && (
               <div>
                 <label className="d-flex form-label flex-column">

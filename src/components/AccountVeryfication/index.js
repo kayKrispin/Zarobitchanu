@@ -7,6 +7,7 @@ import { Redirect } from "react-router-dom";
 const AccountVeryfication = ({ handleActivate, match, isAccountActivated }) => {
 
   useEffect(() => {
+    //Set user field emailVerifyied to true
     handleActivate(match.params.code);
   }, []);
 
