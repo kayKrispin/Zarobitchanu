@@ -1,8 +1,14 @@
 .topics-container {
+
+  &--amount {
+    @include breakpoint(md-max) {
+      display: none;
+    }
+  }
+
   &--topics {
     background: #F8F8F8;
     padding: 1rem;
-
 
     .topic {
       background: white;
@@ -12,6 +18,12 @@
       &--time-container {
         color: lightgrey;
         font-size: 1rem;
+      }
+
+      &--main-text {
+        @include breakpoint(md-max) {
+          width: 100%;
+        }
       }
 
       &--avatar {

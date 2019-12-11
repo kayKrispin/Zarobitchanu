@@ -17,9 +17,11 @@ const ForgetPassword = ({ handleForgetPassword, handleResetPassword, serverError
   return (
     <React.Fragment>
       <form onSubmit={handleSubmit(onResetSubmit)}>
-        <p className="forget-password-main">Please type your email, that we can send you your new password</p>
+        <p className="forget-password-main">
+            Please type your email, that we can send you your new password
+        </p>
         <label className="d-flex form-label flex-column">
-                    Email:
+            Email:
           <input name="email" ref={register({
             required: true,
             pattern: emailValidation
@@ -49,12 +51,12 @@ const ForgetPassword = ({ handleForgetPassword, handleResetPassword, serverError
           }
         </label>
         <button className="login-btn mt-3 w-100">
-                    Send new password
+            Send new password
         </button>
 
         <p className="forgot-pass-title mt-3" onClick={() => { handleForgetPassword(false) }}>
           <FontAwesomeIcon className="mr-2" icon={["fas", "arrow-left"]} />
-                    Back to login
+            Back to login
         </p>
       </form>
     </React.Fragment>

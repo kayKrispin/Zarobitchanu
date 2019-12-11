@@ -2,25 +2,17 @@ import React from "react";
 import ContentPlaceholder from "./ContentPlaceholder";
 import { connect } from "react-redux";
 import { modalActions } from "../../redux/modules/Modal";
-import PropTypes from "prop-types";
 
-
-const ContentPlaceholderContainer = ({ openModal }) => {
-
-  const props = {
-    openModal
-  };
+const ContentPlaceholderContainer = props => {
 
   return <ContentPlaceholder {...props}/>
 };
 
 export default connect(
-  null,
+    state => ({
+        isAdmin: state.authStore.user.isAdmin
+    }),
   dispatch => ({
     openModal: (content, width) => dispatch(modalActions.openModal(content, width)),
   })
 )(ContentPlaceholderContainer);
-
-ContentPlaceholderContainer.propTypes = {
-  openModal: PropTypes.func.isRequired
-};

@@ -23,6 +23,11 @@
   &--right-section {
     position: relative;
 
+    @include breakpoint(sm-max) {
+      flex-grow: 0!important;
+      margin-left: 0!important;
+    }
+
 
     .author-name {
       font-weight: bold;

@@ -7,14 +7,16 @@ const SidebarProfile = ({ avatar, name, handleLogout }) => (
     <div className="sidebar-profile d-flex ">
       {avatar}
       <div className="ml-4">
-        <h3 className="sidebar-profile--title">Hello, {name}</h3>
+        <h3 className="sidebar-profile--title">
+            Hello, {name}
+            </h3>
         <p className="sidebar-profile--description">
           <FontAwesomeIcon className="mr-2" icon={["fas", "user"]} />
-                    Profile
+            Profile
         </p>
         <p onClick={handleLogout} className="sidebar-profile--description">
           <FontAwesomeIcon className="mr-2" icon={["fas", "sign-out-alt"]} />
-                    Logout
+            Logout
         </p>
       </div>
     </div>

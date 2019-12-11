@@ -1,4 +1,5 @@
 import React from "react";
+import LabeledInput from "../../LabeledInput";
 
 const Login = ({
   loginDivider,
@@ -13,24 +14,30 @@ const Login = ({
       {
         !loginDivider && <div className="login-divider mb-3"/>
       }
-      <label className="d-flex form-label flex-column">
-        Email:
-        <input name="email" ref={register} type="text"/>
-      </label>
-      <label className="d-flex form-label flex-column">
-        Password:
-        <input name="password" ref={register} type="text"/>
-      </label>
+      <LabeledInput
+          register={register}
+          title="Email:"
+          name="email"
+      />
+        <LabeledInput
+            register={register}
+            title="Password:"
+            name="password"
+        />
       <button className="login-btn mt-3 w-100">
         Login
       </button>
       {
         !loginDivider && <div className="login-divider mb-3"/>
       }
-      {
-        !loginDivider && <div className="login-divider mb-3"/>
-      }
-      <p className="forgot-pass-title mt-3" onClick={() => { handleForgetPassword(true) }}>I forgot my password</p>
+      <p
+          className="forgot-pass-title mt-3"
+          onClick={() =>
+          { handleForgetPassword(true) }
+          }
+      >
+          I forgot my password
+      </p>
       {
         serverError &&
         <span className="error-msg d-flex mt-3 justify-content-center">

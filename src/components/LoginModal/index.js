@@ -16,7 +16,11 @@ const LoginModal = ({ loginDivider, close, clearForm }) => {
   return (
     <React.Fragment>
       <div>
-        <FontAwesomeIcon onClick={handleClose} className="mr-2 cross-icon" icon={["fas", "times"]} />
+        <FontAwesomeIcon
+            onClick={handleClose}
+            className="mr-2 cross-icon"
+            icon={["fas", "times"]}
+        />
         <LoginForm loginDivider={loginDivider}/>
       </div>
     </React.Fragment>

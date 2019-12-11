@@ -11,7 +11,7 @@ const AccountVeryfication = ({ handleActivate, match, isAccountActivated }) => {
     handleActivate(match.params.code);
   }, []);
 
-  if (isAccountActivated) return <Redirect to="/" />
+  if (isAccountActivated) return <Redirect to="/" />;
 
   return (
     <React.Fragment>

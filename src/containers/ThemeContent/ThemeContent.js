@@ -28,7 +28,7 @@ const ThemeContent = ({ themeTitle, themes, openModal, forumId, forumTitle, topi
         />
       </div>
       <div>
-        <p className="font-weight-bolder">{topics && topics.length} Topics  Page 1 of 1</p>
+        <p className="font-weight-bolder">{topics && topics.length} Topics</p>
       </div>
     </div>
     <Accordion className="mb-3" defaultActiveKey="0">
@@ -37,7 +37,7 @@ const ThemeContent = ({ themeTitle, themes, openModal, forumId, forumTitle, topi
           <h5 className="m-0 title flex-grow-3 themes-container--title font-weight-bold">
             Topics
           </h5>
-          <div className="d-flex align-items-center flex-grow-1 justify-content-between">
+          <div className="d-flex themes-container--icons align-items-center flex-grow-1 justify-content-between">
             <div className="d-flex">
               <p className="m-0">
                 <FontAwesomeIcon className="mr-2" icon={["fas", "scroll"]} />

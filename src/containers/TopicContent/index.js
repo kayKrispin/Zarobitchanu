@@ -10,7 +10,7 @@ const TopicContentContainer = ({ openModal, match, selectedForumId, getReplies, 
   const [page, handlePage] = useState(1);
   const pageLimit = 3;
   const topicId = match.params.id;
-  const totalPages = Math.ceil(totalReplies / pageLimit) * 10;
+  const totalPages =  Math.ceil(totalReplies / pageLimit) * 10;
   const likeClass = counter === 1 ? [].push("active") : [].push("");
 
   useEffect(() => {
@@ -38,8 +38,6 @@ const TopicContentContainer = ({ openModal, match, selectedForumId, getReplies, 
     totalPages
   };
 
-  console.log(page)
-
   return <TopicContent {...props} />
 };
 
@@ -52,6 +50,7 @@ export default connect(
   }),
   dispatch => ({
     openModal: (content, width) => dispatch(modalActions.openModal(content, width)),
-    getReplies: (forumId, topicId, page, pageLimit) => dispatch(actions.getRepliesRequest(forumId, topicId, page, pageLimit))
+    getReplies: (forumId, topicId, page, pageLimit) =>
+        dispatch(actions.getRepliesRequest(forumId, topicId, page, pageLimit))
   })
 )(TopicContentContainer);

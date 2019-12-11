@@ -18,5 +18,16 @@
   &--search {
     padding: .2rem .6rem;
     color: black;
+
+    @include breakpoint(sm-max) {
+      display: none;
+    }
   }
-}
+
+  &--icons {
+    @include breakpoint(sm-max) {
+      display: none!important;
+    }
+  }
+  }
+

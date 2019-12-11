@@ -8,6 +8,10 @@
   .forum-icons {
     position: relative;
     left: 11.5rem;
+
+    @include breakpoint(md-max) {
+    display: none!important;
+    }
   }
 
   .information-header {

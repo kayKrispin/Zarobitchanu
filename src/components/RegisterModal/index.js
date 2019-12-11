@@ -15,7 +15,11 @@ const RegisterModal = ({ close, clearForm }) => {
   return (
     <React.Fragment>
       <div>
-        <FontAwesomeIcon onClick={handleClose} className="mr-2 cross-icon" icon={["fas", "times"]} />
+        <FontAwesomeIcon
+            onClick={handleClose}
+            className="mr-2 cross-icon"
+            icon={["fas", "times"]}
+        />
         <RegisterForm />
       </div>
     </React.Fragment>

@@ -3,7 +3,7 @@ import Forum from "./Forum";
 import { actions } from "../../redux/modules/Forum";
 import { connect } from "react-redux";
 
-const ForumContainer = ({ className, id, themes, item, deleteForum, match, deleteTopic }) => {
+const ForumContainer = ({ className, id, themes, item, deleteForum, match, deleteTopic, isAdmin }) => {
 
   const forumId = match && match.params.id;
 
@@ -23,14 +23,17 @@ const ForumContainer = ({ className, id, themes, item, deleteForum, match, delet
     item,
     themes,
     forumId,
-    deleteEntity
+    deleteEntity,
+    isAdmin
   };
 
   return <Forum {...props}/>
 };
 
 export default connect(
-  null,
+  state => ({
+      isAdmin: state.authStore.user.isAdmin
+  }),
   dispatch => ({
     deleteForum: id => dispatch(actions.deleteForumRequest(id)),
     deleteTopic: (topicId, forumId) => dispatch(actions.deleteTopicRequest({ forumId: forumId, topicId: topicId }))

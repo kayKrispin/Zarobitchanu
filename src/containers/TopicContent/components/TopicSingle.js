@@ -24,7 +24,7 @@ const TopicSingle = ({ item, users }) => {
 
   return (
     <div className="topic d-flex flex-wrap-reverse justify-content-between mb-3">
-      <div className="d-flex flex-column ">
+      <div className="d-flex flex-column topic--main-text">
         <div className="topic--time-container mb-3">
           <FontAwesomeIcon className="mr-2" icon={["fas", "clock"]} />
           {getCurrentTime(item.createdAt)} pm

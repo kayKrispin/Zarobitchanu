@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { connect } from "react-redux";
-import { Switch } from "antd";
 import { modalActions } from "../../redux/modules/Modal";
 import { actions } from "../../redux/modules/Auth";
 import { actions as forumActions } from "../../redux/modules/Forum";
 import useForm from "react-hook-form";
+import ForumTile from "./components/ForumTile";
+import TopicTile from "./components/TopicTile";
+import ThemeTile from "./components/ThemeTile";
 
 const CreateForumModal = ({
   close,
@@ -25,7 +27,7 @@ const CreateForumModal = ({
   limit
 }) => {
 
-  const { register, handleSubmit, errors } = useForm(); // initialise the hook
+  const { register, handleSubmit } = useForm(); // initialise the hook
   const [switchValue, handleSwitch] = useState(false);
 
   const onSubmit = values => {
@@ -70,48 +72,36 @@ const CreateForumModal = ({
   return (
     <React.Fragment>
       <div>
-        <FontAwesomeIcon onClick={handleClose} className="mr-2 cross-icon" icon={["fas", "times"]} />
+        <FontAwesomeIcon
+            onClick={handleClose}
+            className="mr-2 cross-icon"
+            icon={["fas", "times"]}
+        />
         <form onSubmit={handleSubmit(onSubmit)}>
           {
             //Render replies fields
             isReply
-              ? (
-                <label className="d-flex form-label flex-column">
-                  {title} Text:
-                  <textarea name="text" ref={register} />
-                </label>
-              )
-              : (
-                <label className="d-flex form-label flex-column">
-                  {title} Title:
-                  <input name="title" ref={register} type="text"/>
-                </label>
-              )
+              ? <TopicTile
+                    title={title}
+                    register={register}
+                />
+                //Render theme fields
+              : <ThemeTile
+                    title={title}
+                    register={register}
+                />
           }
-
           {
             //Render forum fields
-            !themeModal && !isReply && (
-              <div>
-                <label className="d-flex form-label flex-column">
-                                    Description:
-                  <input name="subTitle" ref={register} type="text"/>
-                </label>
-                <label className="d-flex form-label flex-column">
-                                    General:
-                </label>
-                <Switch
-                  checked={switchValue}
-                  onChange={e => handleSwitch(e)}
-                  name="isSpecial"
-                  ref={register}
-                  type="text"
-                />
-              </div>
-            )
+            !themeModal && !isReply &&
+              <ForumTile
+                  register={register}
+                  switchValue={switchValue}
+                  handleSwitch={handleSwitch}
+              />
           }
           <button className="login-btn mt-3 w-100">
-                        Create {title}
+              Create {title}
           </button>
         </form>
       </div>

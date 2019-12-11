@@ -11,9 +11,7 @@ const Toggler = ({ onClick }) => {
 
   return (
     <span onClick={handleClick} className="toggler">
-      {
-        !toggle ? "-" : "+"
-      }
+      {!toggle ? "-" : "+"}
     </span>
   )
 };

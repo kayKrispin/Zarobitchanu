@@ -32,6 +32,7 @@ export default connect(
     confirmMessage: state.authStore.message
   }),
   dispatch => ({
-    handleResetConfirmation: (password, code) => (dispatch(actions.resetPasswordConfirmationRequest(password, code)))
+    handleResetConfirmation: (password, code) =>
+        (dispatch(actions.resetPasswordConfirmationRequest(password, code)))
   })
 )(ResetPassword);
