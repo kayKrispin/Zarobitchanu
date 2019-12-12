@@ -112,8 +112,6 @@ function *searchTopic (data) {
 
   yield put({ type: types.SHOW_LOADING });
 
-  console.log(data)
-
   try {
     const response = yield call(auth.searchTopic, data);
 

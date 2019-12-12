@@ -54,10 +54,9 @@ const ThemeContent = ({
           <h5 className="m-0 title flex-grow-3 themes-container--title font-weight-bold">
             Topics
           </h5>
-          <div className="d-flex themes-container--icons align-items-center flex-grow-1 justify-content-between">
-            <div className="d-flex">
+          <div className="d-flex themes-container--icons align-items-center justify-content-between">
+            <div className="d-flex icons-title">
               <p className="m-0">
-                <FontAwesomeIcon className="mr-2" icon={["fas", "scroll"]} />
               </p>
               <p className="m-0 mr-5 ml-5">
                 <FontAwesomeIcon className="ml-2 mr-2" icon={["fas", "comments"]} />

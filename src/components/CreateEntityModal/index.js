@@ -72,6 +72,8 @@ const CreateForumModal = ({
     clearForm();
   };
 
+  console.log(isAuthenticated)
+
   return (
     <React.Fragment>
       <div>
@@ -113,7 +115,10 @@ const CreateForumModal = ({
                 </button>
               </form>
             )
-            : <h3>Nope buddy, you need to register firstly to taste some functionality</h3>
+            : <div className="text-center">
+                  <h4>Nope buddy, you need to register firstly to taste some functionality. </h4>
+                  😃
+              </div>
         }
       </div>
     </React.Fragment>
@@ -123,7 +128,7 @@ const CreateForumModal = ({
 
 export default connect(
   state => ({
-    isAuthenticated: state.authStore,
+    isAuthenticated: state.authStore.isAuthenticated,
     user: state.authStore.user,
     selectedForumId: state.forumStore.selectedForumId
   }),

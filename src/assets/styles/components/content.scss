@@ -6,8 +6,7 @@
   }
 
   .forum-icons {
-    position: relative;
-    left: 11.5rem;
+    margin-right: 7rem;
 
     @include breakpoint(md-max) {
     display: none!important;
@@ -49,4 +48,13 @@
 
 input {
   padding: 0 .5rem;
+}
+
+.title-accordion {
+  flex: 1;
+}
+
+
+.icons-title {
+  margin-right: 7.3rem;
 }

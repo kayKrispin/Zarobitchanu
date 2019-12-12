@@ -8,9 +8,9 @@ const General = ({ forums }) => (
   <Accordion className="mb-3" defaultActiveKey="0">
     <Card>
       <Card.Header className="d-flex justify-content-between align-items-center mb-0">
-        <h5 className="m-0 title font-weight-bold">
+        <h6 className="m-0 title-accordion font-weight-bold">
           General themes
-        </h5>
+        </h6>
         <div className="d-flex align-items-center justify-content-between forum-icons">
           <div className="d-flex">
             <p className="m-0">

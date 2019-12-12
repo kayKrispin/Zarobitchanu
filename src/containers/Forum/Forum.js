@@ -15,7 +15,7 @@ const Forum = props => {
       />
       <div
         className="forum-container--right-section d-flex
-        flex-grow-1 justify-content-center ml-4"
+         justify-content-end ml-4"
       >
         <LeftSection {...props} />
         <RightSection {...props} isTopic={isTopic} />

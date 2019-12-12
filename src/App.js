@@ -34,6 +34,6 @@ export default connect(
 )(App);
 
 App.propTypes = {
-  verifyingToken: PropTypes.bool.isRequired,
+  verifyingToken: PropTypes.bool,
   verifyToken: PropTypes.func,
 };
