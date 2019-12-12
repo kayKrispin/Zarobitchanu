@@ -16,8 +16,7 @@ const Sidebar = ({
         isAuthenticated
           ? <AuthorizedSidebar/>
           : <UnauthorizedSidebar
-            responseFacebook={responseFacebook} r
-            esponseGoogle={responseGoogle}
+            responseFacebook={responseFacebook} responseGoogle={responseGoogle}
           />
       }
     </Accordion>

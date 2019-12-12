@@ -7,7 +7,8 @@ const Header = ({
   item,
   deleteEntity,
   isTopic,
-  isAdmin
+  isAdmin,
+  titleStyles
 }) => (
   <div className="forum-container--left-section d-flex align-items-center">
     {
@@ -22,12 +23,12 @@ const Header = ({
       )
     }
     <div className="d-flex flex-column">
-      <h3 className="title">
+      <h3 className={titleStyles.join(" ")}>
         <Link to={`${isTopic}/${item && item._id}`}>
           {item && item.title}
         </Link>
       </h3>
-      <p>
+      <p className={!isAdmin && "ml-4"} >
         {item && item.subTitle}
       </p>
     </div>

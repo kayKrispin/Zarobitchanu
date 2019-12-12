@@ -82,6 +82,11 @@ const ThemeContent = ({
                 />
               ))
             }
+            {
+              topics.length < 1 && (
+                <span>There is no topics in this forum..cmon you can be a first one</span>
+              )
+            }
           </Card.Body>
         </Accordion.Collapse>
       </Card>

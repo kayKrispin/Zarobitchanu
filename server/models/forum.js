@@ -21,12 +21,15 @@ const ForumSchema = new Schema({
       createdAt: {
         type: Schema.Types.String
       },
+      lastCreatedItem: Schema.Types.Object
     }
   ],
   createdAt: {
     type: Schema.Types.String
   },
-  totalReplies: Schema.Types.String
+  totalReplies: Schema.Types.String,
+
+  lastCreatedItem: Schema.Types.Object
 }
 );
 

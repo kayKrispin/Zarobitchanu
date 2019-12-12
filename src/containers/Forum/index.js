@@ -2,6 +2,7 @@ import React from "react";
 import Forum from "./Forum";
 import { actions } from "../../redux/modules/Forum";
 import { connect } from "react-redux";
+import { sortByDate } from "../../helpers";
 
 const ForumContainer = ({
   className,
@@ -15,6 +16,11 @@ const ForumContainer = ({
 }) => {
 
   const forumId = match && match.params.id;
+  const titleStyles = ["title"];
+
+  if (!isAdmin) titleStyles.push("ml-4")
+
+  let lastItem;
 
   //Delete forum or topic
   const deleteEntity = itemId => {
@@ -24,8 +30,15 @@ const ForumContainer = ({
       return
     }
     deleteForum(itemId);
-
   };
+
+  //Get last created item in forum/topic
+  if (!themes) {
+    lastItem = item && sortByDate(item.lastCreatedItem)[0];
+  } else if (item.lastCreatedItem !== undefined) {
+    lastItem = item && item.lastCreatedItem;
+  }
+
 
   const props = {
     className,
@@ -34,7 +47,9 @@ const ForumContainer = ({
     themes,
     forumId,
     deleteEntity,
-    isAdmin
+    isAdmin,
+    lastItem,
+    titleStyles
   };
 
   return <Forum {...props}/>
@@ -42,7 +57,7 @@ const ForumContainer = ({
 
 export default connect(
   state => ({
-    isAdmin: state.authStore.user.isAdmin
+    isAdmin: state.authStore.user.isAdmin,
   }),
   dispatch => ({
     deleteForum: id => dispatch(actions.deleteForumRequest(id)),

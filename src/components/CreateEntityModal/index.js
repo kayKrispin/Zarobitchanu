@@ -24,7 +24,8 @@ const CreateForumModal = ({
   match,
   topicId,
   page,
-  limit
+  limit,
+  isAuthenticated
 }) => {
 
   const { register, handleSubmit } = useForm(); // initialise the hook
@@ -35,6 +36,8 @@ const CreateForumModal = ({
     if (themeModal) {
       values.createdAt = new Date();
       values.forumId = forumId;
+      values.email = user.email;
+      values.img = user.img;
 
       createTopic(values);
       close();
@@ -77,33 +80,41 @@ const CreateForumModal = ({
           className="mr-2 cross-icon"
           icon={["fas", "times"]}
         />
-        <form onSubmit={handleSubmit(onSubmit)}>
-          {
-            //Render replies fields
-            isReply
-              ? <TopicTile
-                title={title}
-                register={register}
-              />
-            //Render theme fields
-              : <ThemeTile
-                title={title}
-                register={register}
-              />
-          }
-          {
-            //Render forum fields
-            !themeModal && !isReply &&
-              <ForumTile
-                register={register}
-                switchValue={switchValue}
-                handleSwitch={handleSwitch}
-              />
-          }
-          <button className="login-btn mt-3 w-100">
-              Create {title}
-          </button>
-        </form>
+        {
+          //Disable creating entitis if not authenticated
+
+          isAuthenticated
+            ? (
+              <form onSubmit={handleSubmit(onSubmit)}>
+                {
+                  //Render replies fields
+                  isReply
+                    ? <TopicTile
+                      title={title}
+                      register={register}
+                    />
+                    //Render theme fields
+                    : <ThemeTile
+                      title={title}
+                      register={register}
+                    />
+                }
+                {
+                  //Render forum fields
+                  !themeModal && !isReply &&
+                  <ForumTile
+                    register={register}
+                    switchValue={switchValue}
+                    handleSwitch={handleSwitch}
+                  />
+                }
+                <button className="login-btn mt-3 w-100">
+                  Create {title}
+                </button>
+              </form>
+            )
+            : <h3>Nope buddy, you need to register firstly to taste some functionality</h3>
+        }
       </div>
     </React.Fragment>
 
@@ -112,6 +123,7 @@ const CreateForumModal = ({
 
 export default connect(
   state => ({
+    isAuthenticated: state.authStore,
     user: state.authStore.user,
     selectedForumId: state.forumStore.selectedForumId
   }),

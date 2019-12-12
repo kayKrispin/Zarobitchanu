@@ -50,10 +50,13 @@ async function createTopic (req, res, next) {
 
   const { forumId } = req.body;
 
+
   delete req.body.forumId;
 
   try {
     await Forum.findOneAndUpdate({ _id: forumId }, { $push: { topics: req.body } });
+    //Update last created topic
+    await Forum.findOneAndUpdate({ _id: forumId }, { $push: { lastCreatedItem: req.body } });
     const updatedForum = await Forum.find({ _id: forumId });
 
     res.json({ updatedForum })
@@ -138,6 +141,9 @@ async function createReply (req, res, next) {
 
     const forum = await Forum.findOne({ _id: forumId });
     const topic = forum.topics.id(topicId);
+
+    topic.lastCreatedItem = req.body;
+
     const repliesLength = topic.replies.length;
 
 

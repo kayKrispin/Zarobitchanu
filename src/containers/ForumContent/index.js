@@ -23,6 +23,7 @@ const ContentContainer = ({ getForums, forums }) => {
 export default connect(
   state => ({
     forums: state.forumStore.forums
+
   }),
   dispatch => ({
     getForums: () => dispatch(actions.getForumsRequest())
