@@ -6,7 +6,16 @@ import Forum from "../Forum";
 import CreateEntityModal from "../../components/CreateEntityModal";
 
 
-const ThemeContent = ({ themeTitle, themes, openModal, forumId, forumTitle, topics, match, searchTopicByName }) => (
+const ThemeContent = ({
+  themeTitle,
+  themes,
+  openModal,
+  forumId,
+  forumTitle,
+  topics,
+  match,
+  searchTopicByName
+}) => (
   <div className="themes-container">
     <h2>
       {forumTitle && forumTitle}
@@ -14,7 +23,13 @@ const ThemeContent = ({ themeTitle, themes, openModal, forumId, forumTitle, topi
     <div className="d-flex mb-3 align-items-center justify-content-between">
       <div>
         <button
-          onClick={() => openModal(<CreateEntityModal title="Topic" forumId={forumId} themeModal={true} />, 500)}
+          onClick={() => openModal(
+            <CreateEntityModal
+              title="Topic"
+              forumId={forumId}
+              themeModal={true}
+            />,
+            500)}
           className="themes-container--new-topic mr-3"
         >
               New Topic
@@ -28,7 +43,9 @@ const ThemeContent = ({ themeTitle, themes, openModal, forumId, forumTitle, topi
         />
       </div>
       <div>
-        <p className="font-weight-bolder">{topics && topics.length} Topics</p>
+        <p className="font-weight-bolder">
+          {topics && topics.length} Topics
+        </p>
       </div>
     </div>
     <Accordion className="mb-3" defaultActiveKey="0">

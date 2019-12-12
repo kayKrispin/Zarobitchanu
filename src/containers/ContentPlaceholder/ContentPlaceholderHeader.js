@@ -5,37 +5,37 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
 
 const Header = ({ openModal, isAdmin }) => (
-    <div className="d-flex">
-        <Link to="/" className="content-placeholder--home-btn">
-            <FontAwesomeIcon className="mr-2" icon={["fas", "home"]} />
-            <span className="title">
+  <div className="d-flex">
+    <Link to="/" className="content-placeholder--home-btn">
+      <FontAwesomeIcon className="mr-2" icon={["fas", "home"]} />
+      <span className="title">
         Board home
-          </span>
-        </Link>
-        {
-            isAdmin && (
-                <div
-                    onClick={() => openModal(
-                        <CreateForumModal
-                            title="Forum"
-                            themeModal={false}
-                        />, 500
-                    )}
-                    className="content-placeholder--home-btn ml-3">
-                    <FontAwesomeIcon className="mr-2" icon={["fas", "plus"]} />
-                    <span className="title">
+      </span>
+    </Link>
+    {
+      isAdmin && (
+        <div
+          onClick={() => openModal(
+            <CreateForumModal
+              title="Forum"
+              themeModal={false}
+            />, 500
+          )}
+          className="content-placeholder--home-btn ml-3">
+          <FontAwesomeIcon className="mr-2" icon={["fas", "plus"]} />
+          <span className="title">
         Add forum
           </span>
-                </div>
-            )
-        }
-    </div>
+        </div>
+      )
+    }
+  </div>
 );
 
 export default Header;
 
 
 Header.propTypes = {
-    openModal: PropTypes.func.isRequired,
-    isAdmin: PropTypes.bool
+  openModal: PropTypes.func.isRequired,
+  isAdmin: PropTypes.bool
 };

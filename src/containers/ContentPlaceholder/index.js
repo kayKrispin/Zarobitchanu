@@ -9,9 +9,9 @@ const ContentPlaceholderContainer = props => {
 };
 
 export default connect(
-    state => ({
-        isAdmin: state.authStore.user.isAdmin
-    }),
+  state => ({
+    isAdmin: state.authStore.user.isAdmin
+  }),
   dispatch => ({
     openModal: (content, width) => dispatch(modalActions.openModal(content, width)),
   })

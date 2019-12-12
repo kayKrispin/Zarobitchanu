@@ -4,13 +4,25 @@ import { actions } from "../../redux/modules/Forum";
 import { modalActions } from "../../redux/modules/Modal";
 import { connect } from "react-redux";
 
-const TopicContentContainer = ({ openModal, match, selectedForumId, getReplies, replies, users, totalReplies }) => {
+const TopicContentContainer = ({
+  openModal,
+  match,
+  selectedForumId,
+  getReplies,
+  replies,
+  users,
+  totalReplies
+}) => {
 
   const [counter, handleCount] = useState(0);
   const [page, handlePage] = useState(1);
+
   const pageLimit = 3;
   const topicId = match.params.id;
-  const totalPages =  Math.ceil(totalReplies / pageLimit) * 10;
+
+  //Get total pages for forum
+  const totalPages = Math.ceil(totalReplies / pageLimit) * 10;
+
   const likeClass = counter === 1 ? [].push("active") : [].push("");
 
   useEffect(() => {
@@ -50,7 +62,7 @@ export default connect(
   }),
   dispatch => ({
     openModal: (content, width) => dispatch(modalActions.openModal(content, width)),
-    getReplies: (forumId, topicId, page, pageLimit) =>
-        dispatch(actions.getRepliesRequest(forumId, topicId, page, pageLimit))
+    getReplies:
+      (forumId, topicId, page, pageLimit) => dispatch(actions.getRepliesRequest(forumId, topicId, page, pageLimit))
   })
 )(TopicContentContainer);

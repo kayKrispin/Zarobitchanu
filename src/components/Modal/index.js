@@ -27,11 +27,11 @@ const Modal = ({ isOpen, content, close, width }) => {
 
   return ReactDOM.createPortal(
     <CSSTransition
-        in={isOpen}
-        timeout={500}
-        classNames="ddd"
-        mountOnEnter
-        unmountOnExit
+      in={isOpen}
+      timeout={500}
+      classNames="ddd"
+      mountOnEnter
+      unmountOnExit
     >
       <div className="modal-container" onClick={close}>
         <div

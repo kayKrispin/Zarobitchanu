@@ -9,7 +9,7 @@ const SidebarProfile = ({ avatar, name, handleLogout }) => (
       <div className="ml-4">
         <h3 className="sidebar-profile--title">
             Hello, {name}
-            </h3>
+        </h3>
         <p className="sidebar-profile--description">
           <FontAwesomeIcon className="mr-2" icon={["fas", "user"]} />
             Profile

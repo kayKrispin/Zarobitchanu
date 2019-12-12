@@ -73,31 +73,31 @@ const CreateForumModal = ({
     <React.Fragment>
       <div>
         <FontAwesomeIcon
-            onClick={handleClose}
-            className="mr-2 cross-icon"
-            icon={["fas", "times"]}
+          onClick={handleClose}
+          className="mr-2 cross-icon"
+          icon={["fas", "times"]}
         />
         <form onSubmit={handleSubmit(onSubmit)}>
           {
             //Render replies fields
             isReply
               ? <TopicTile
-                    title={title}
-                    register={register}
-                />
-                //Render theme fields
+                title={title}
+                register={register}
+              />
+            //Render theme fields
               : <ThemeTile
-                    title={title}
-                    register={register}
-                />
+                title={title}
+                register={register}
+              />
           }
           {
             //Render forum fields
             !themeModal && !isReply &&
               <ForumTile
-                  register={register}
-                  switchValue={switchValue}
-                  handleSwitch={handleSwitch}
+                register={register}
+                switchValue={switchValue}
+                handleSwitch={handleSwitch}
               />
           }
           <button className="login-btn mt-3 w-100">

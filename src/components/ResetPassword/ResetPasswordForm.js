@@ -1,7 +1,17 @@
 import React, { useRef } from "react";
+import ErrorMessage from "../ErrorMessage";
+import PropTypes from "prop-types";
 
-const ResetPasswordForm = ({ onSubmit, register, errors, handleSubmit, watch, confirmMessage }) => {
+const ResetPasswordForm = ({
+  onSubmit,
+  register,
+  errors,
+  handleSubmit,
+  watch,
+  confirmMessage
+}) => {
 
+  //Validate confirm password
   const password = useRef({});
   password.current = watch("password", "");
 
@@ -19,9 +29,11 @@ const ResetPasswordForm = ({ onSubmit, register, errors, handleSubmit, watch, co
             }
           })} type="password"/>
           {
-            errors.password && (
-              <span className="error-msg">{errors.password.message}</span>
-            )
+            errors.password &&
+            <ErrorMessage
+              className="error-msg"
+              error={errors.password.message}
+            />
           }
         </label>
         <label className="d-flex form-label flex-column">
@@ -31,15 +43,18 @@ const ResetPasswordForm = ({ onSubmit, register, errors, handleSubmit, watch, co
           })}
           type="password"/>
           {
-            errors.confirmPassword && (
-              <span className="error-msg">{errors.confirmPassword.message}</span>
-            )
+            errors.confirmPassword &&
+            <ErrorMessage
+              className="error-msg"
+              error={errors.confirmPassword.message}
+            />
           }
         </label>
         {
-          confirmMessage && <span className="success-msg d-flex mt-3 justify-content-center">
-            {confirmMessage}
-          </span>
+          confirmMessage && <ErrorMessage
+            className="success-msg d-flex mt-3 justify-content-center"
+            error={confirmMessage}
+          />
         }
         <button className="login-btn mt-3 w-100">
                     Change Password
@@ -50,3 +65,11 @@ const ResetPasswordForm = ({ onSubmit, register, errors, handleSubmit, watch, co
 };
 
 export default ResetPasswordForm;
+
+ResetPasswordForm.propTypes = {
+  onSubmit: PropTypes.func,
+  register: PropTypes.func,
+  errors: PropTypes.array,
+  handleSubmit: PropTypes.func,
+  confirmMessage: PropTypes.string
+};

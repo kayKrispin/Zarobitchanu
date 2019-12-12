@@ -7,7 +7,7 @@ import { Row, Col } from "react-bootstrap";
 const ContetPlaceholder = props => (
   <div className="main-container">
     <div className="content-placeholder">
-        <Header {...props} />
+      <Header {...props} />
       <Row className="mt-4">
         <Col xl={9}>
           <Routes/>

@@ -3,8 +3,13 @@ import ResetPasswordForm from "./ResetPasswordForm";
 import { actions } from "../../redux/modules/Auth";
 import { connect } from "react-redux";
 import useForm from "react-hook-form";
+import PropTypes from "prop-types";
 
-const ResetPassword = ({ handleResetConfirmation, match, confirmMessage }) => {
+const ResetPassword = ({
+  handleResetConfirmation,
+  match,
+  confirmMessage
+}) => {
 
   const { register, handleSubmit, errors, watch } = useForm({}); // initialise the hook
 
@@ -32,7 +37,12 @@ export default connect(
     confirmMessage: state.authStore.message
   }),
   dispatch => ({
-    handleResetConfirmation: (password, code) =>
-        (dispatch(actions.resetPasswordConfirmationRequest(password, code)))
+    handleResetConfirmation: (password, code) => (dispatch(actions.resetPasswordConfirmationRequest(password, code)))
   })
 )(ResetPassword);
+
+ResetPassword.propTypes = {
+  handleResetConfirmation: PropTypes.func,
+  match: PropTypes.object,
+  confirmMessage: PropTypes.func
+};

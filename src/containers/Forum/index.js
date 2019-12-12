@@ -3,10 +3,20 @@ import Forum from "./Forum";
 import { actions } from "../../redux/modules/Forum";
 import { connect } from "react-redux";
 
-const ForumContainer = ({ className, id, themes, item, deleteForum, match, deleteTopic, isAdmin }) => {
+const ForumContainer = ({
+  className,
+  id,
+  themes,
+  item,
+  deleteForum,
+  match,
+  deleteTopic,
+  isAdmin
+}) => {
 
   const forumId = match && match.params.id;
 
+  //Delete forum or topic
   const deleteEntity = itemId => {
     if (themes) {
       deleteTopic(itemId, forumId);
@@ -32,10 +42,12 @@ const ForumContainer = ({ className, id, themes, item, deleteForum, match, delet
 
 export default connect(
   state => ({
-      isAdmin: state.authStore.user.isAdmin
+    isAdmin: state.authStore.user.isAdmin
   }),
   dispatch => ({
     deleteForum: id => dispatch(actions.deleteForumRequest(id)),
-    deleteTopic: (topicId, forumId) => dispatch(actions.deleteTopicRequest({ forumId: forumId, topicId: topicId }))
+    deleteTopic: (topicId, forumId) => dispatch(actions.deleteTopicRequest({
+      forumId: forumId, topicId: topicId
+    }))
   })
 )(ForumContainer);

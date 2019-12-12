@@ -3,7 +3,16 @@ import { Pagination } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CreateEntityModal from "../../../components/CreateEntityModal";
 
-const TopicHeader = ({ openModal, topicId, handlePage, handlePagination, totalReplies, page, pageLimit, totalPages }) => (
+const TopicHeader = ({
+  openModal,
+  topicId,
+  handlePage,
+  handlePagination,
+  totalReplies,
+  page,
+  pageLimit,
+  totalPages
+}) => (
   <div className="d-flex mb-3 align-items-center justify-content-between flex-wrap">
     <div>
       <button
@@ -23,15 +32,14 @@ const TopicHeader = ({ openModal, topicId, handlePage, handlePagination, totalRe
     </div>
     <div className="font-weight-bolder d-flex flex-row align-items-center topic-container--pagination flex-wrap">
       <span className="mr-2 topics-container--amount">
-          {totalReplies && totalReplies} replies
+        {totalReplies && totalReplies} replies
       </span>
       <Pagination
-          simple={true}
-          onChange={e =>
-              handlePagination(e)
-          }
-          defaultCurrent={1}
-          total={typeof totalPages === "number" && totalPages}
+        simple={true}
+        onChange={e => handlePagination(e)
+        }
+        defaultCurrent={1}
+        total={typeof totalPages === "number" && totalPages}
       />
     </div>
   </div>

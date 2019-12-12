@@ -6,9 +6,6 @@ import React from "react";
 
 const General = ({ forums }) => (
   <Accordion className="mb-3" defaultActiveKey="0">
-    {
-      console.log(forums, "general")
-    }
     <Card>
       <Card.Header className="d-flex justify-content-between align-items-center mb-0">
         <h5 className="m-0 title font-weight-bold">

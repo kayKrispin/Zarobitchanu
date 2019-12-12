@@ -3,7 +3,10 @@ import Sidebar from "./Sidebar";
 import { connect } from "react-redux";
 import { actions as authActions } from "../../redux/modules/Auth";
 
-const SidebarContainer = ({ isAuthenticated, socialLogin }) => {
+const SidebarContainer = ({
+  isAuthenticated,
+  socialLogin
+}) => {
 
   const responseGoogle = response => {
 

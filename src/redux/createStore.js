@@ -1,6 +1,5 @@
 import createSagaMiddleware from "redux-saga";
 import { applyMiddleware, createStore } from "redux";
-import logger from "redux-logger";
 import { combineReducers } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { store as modalStore } from "./modules/Modal";

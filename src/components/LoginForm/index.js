@@ -6,10 +6,17 @@ import PropTypes from "prop-types";
 import useForm from "react-hook-form";
 import { modalActions } from "../../redux/modules/Modal";
 
-const LoginFormContainer = ({ loginDivider, login, serverError, close, token, handleResetPassword, user }) => {
+const LoginFormContainer = ({
+  loginDivider,
+  login,
+  serverError,
+  handleResetPassword,
+  user
+}) => {
 
   const [forgetPasswordForm, handleForgetPassword] = useState(false);
   const { register, handleSubmit, errors } = useForm(); // initialise the hook
+  //Email regex
   const emailValidation = /^\S+@\S+\.\S+$/;
 
   const onSubmit = (values, e) => {
@@ -50,5 +57,8 @@ export default connect(
 
 LoginFormContainer.propTypes = {
   loginDivider: PropTypes.bool,
-  login: PropTypes.func.isRequired
+  login: PropTypes.func.isRequired,
+  serverError: PropTypes.string,
+  handleResetPassword: PropTypes.func,
+  user: PropTypes.object
 };

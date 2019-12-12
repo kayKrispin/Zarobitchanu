@@ -1,8 +1,16 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useForm from "react-hook-form";
+import ErrorsContent from "./ForgotPasswordErrors";
+import PropTypes from "prop-types";
+import LabeledInput from "../../LabeledInput";
 
-const ForgetPassword = ({ handleForgetPassword, handleResetPassword, serverError, user }) => {
+const ForgetPassword = ({
+  handleForgetPassword,
+  handleResetPassword,
+  serverError,
+  user
+}) => {
 
   const { register, handleSubmit, errors } = useForm(); // initialise the hook
   const emailValidation = /^\S+@\S+\.\S+$/;
@@ -20,36 +28,20 @@ const ForgetPassword = ({ handleForgetPassword, handleResetPassword, serverError
         <p className="forget-password-main">
             Please type your email, that we can send you your new password
         </p>
-        <label className="d-flex form-label flex-column">
-            Email:
-          <input name="email" ref={register({
-            required: true,
-            pattern: emailValidation
-          })} type="text"/>
-          {
-            errors.email && errors.email.type === "required" && (
-              <span className="error-msg">Email is required!</span>
-            )
+        <LabeledInput
+          title="Email:"
+          content={
+            <ErrorsContent
+              errors={errors}
+              serverError={serverError}
+              user={user}
+            />
           }
-          {
-            errors.email && errors.email.type !== "required" && (
-              <span className="error-msg">Invalid email format!</span>
-            )
-          }
-          {
-            serverError && (
-              <span className="error-msg d-flex mt-3 justify-content-center">
-                {serverError}
-              </span>
-            )
-          }
-          {
-            user.email &&
-                        <span className="success-msg d-flex mt-3 justify-content-center">
-                            Please confirm link to create new password in your email.
-                        </span>
-          }
-        </label>
+          name="email"
+          register={register}
+          required={true}
+          pattern={emailValidation}
+        />
         <button className="login-btn mt-3 w-100">
             Send new password
         </button>
@@ -64,3 +56,11 @@ const ForgetPassword = ({ handleForgetPassword, handleResetPassword, serverError
 };
 
 export default ForgetPassword;
+
+
+ForgetPassword.propTypes = {
+  serverError: PropTypes.string,
+  handleResetPassword: PropTypes.func,
+  user: PropTypes.object,
+  handleForgetPassword: PropTypes.func
+};
