@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import ContentHolder from "./containers/ContentPlaceholder";
+import Content from "./containers/ContentPlaceholder";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Modal from "./components/Modal";
@@ -19,12 +19,12 @@ const App = ({ verifyingToken, verifyToken }) => {
   if (verifyingToken) return <AppSkeleton/>;
 
   return (
-    <div>
+    <React.Fragment>
       <Header/>
-      <ContentHolder/>
+      <Content/>
       <Footer/>
       <Modal/>
-    </div>
+    </React.Fragment>
   );
 };
 
