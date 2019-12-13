@@ -22,10 +22,13 @@
 
   &--right-section {
     position: relative;
+    margin-right: 5.5rem;
+    padding-bottom: 1rem;
 
     @include breakpoint(sm-max) {
       flex-grow: 0!important;
       margin-left: 0!important;
+      margin-right: 1rem;
     }
 
 
@@ -56,6 +59,9 @@
 
     .created-date {
       font-size: .8rem;
+      position: absolute;
+      width: 8.6rem;
+      top: 2.5rem;
 
       @include breakpoint(md-max) {
         display: none!important;

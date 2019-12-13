@@ -54,6 +54,8 @@
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "client": "react-scripts start",
     "server": "nodemon ./server/entry.js",
+    "test-dev": "jest --watch --watchAll.",
+    "coverage": "jest --coverage",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
