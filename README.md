@@ -26,3 +26,4 @@ Online platform for sharing thoughts between people who lives abroad and works f
 
 ## Home View
 
+<img src="/docs/Home.png" alt="My cool logo"/>
