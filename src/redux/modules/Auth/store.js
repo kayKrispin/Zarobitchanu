@@ -17,7 +17,7 @@ import {
   clearError
 } from "./reducers";
 
-const initialState = {
+export const initialState = {
   isAuthenticated: false,
   user: {},
   loading: false,

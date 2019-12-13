@@ -68,7 +68,6 @@ export const showLoading = state => ({
 
 export const logoutRequestSuccess = state => ({
   ...state,
-  loading: true,
   isAuthenticated: false,
   user: {}
 });
