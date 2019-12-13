@@ -2,11 +2,19 @@ import authReducer, { initialState } from "./store";
 import * as types from "./types";
 import * as modalTypes from "../Modal/types";
 import authSagas from "./sagas";
-import { login, register, verify } from "./services";
+import {
+  login,
+  register,
+  verify,
+  resetPassword,
+  socialLogin
+} from "./services";
 import {
   loginRequest,
   registerRequest,
-  verifyRequest
+  verifyRequest,
+  resetPasswordRequest,
+  loginSocialRequest
 } from "./actions";
 import { call } from "redux-saga/effects";
 import { expectSaga } from "redux-saga-test-plan";
@@ -35,6 +43,68 @@ describe("Redux: Auth", () => {
         ...user,
       })
       .dispatch(loginRequest(fakeData))
+      .silentRun();
+  });
+
+  it("Should log in the user with social account", () => {
+    const user = { user: {}, isAuthenticated: true, loading: false, error: " ",
+      verifying: true };
+    const fakeData = { email: "admin@coaxsoft.com", password: "qwerty" };
+
+    return expectSaga(authSagas)
+      .withReducer(authReducer)
+
+      // Test Saga
+      .put({ type: types.SHOW_LOADING })
+      .put({ type: modalTypes.CLOSE_MODAL })
+      .provide([
+        [call(socialLogin, fakeData), user],
+      ])
+      .put({ type: types.LOGIN_REQUEST_SUCCESS, user })
+      .put({ type: types.HIDE_LOADING })
+
+      // Test reducer
+      .hasFinalState({
+        ...user,
+      })
+      .dispatch(loginSocialRequest(fakeData))
+      .silentRun();
+  });
+
+  it("Should throw error during social login", () => {
+    const response = { error: { user: {},
+      isAuthenticated: true,
+      loading: false,
+      error: " ",
+      verifying: true } }
+    const fakeData = { email: "admin@coaxsoft.com", password: "qwerty" };
+
+    return expectSaga(authSagas)
+      .withReducer(authReducer)
+
+      // Test Saga
+      .put({ type: types.SHOW_LOADING })
+      .provide([
+        [call(socialLogin, fakeData), throwError(response)],
+      ])
+      .put({ type: types.LOGIN_REQUEST_ERROR, error: response })
+      .put({ type: types.HIDE_LOADING })
+
+      // Test reducer
+      .hasFinalState({
+        isAuthenticated: false,
+        user: {},
+        loading: false,
+        verifying: true,
+        error:
+          { error:
+              { user: {},
+                isAuthenticated: true,
+                loading: false,
+                error: " ",
+                verifying: true } },
+      })
+      .dispatch(loginSocialRequest(fakeData))
       .silentRun();
   });
 
@@ -91,6 +161,85 @@ describe("Redux: Auth", () => {
         verifying: false,
       })
       .dispatch(verifyRequest())
+      .silentRun();
+  });
+
+
+  it("Should throw register error", () => {
+    const response = "TypeError: Network request failed";
+    const fakeData = { firstName: "michael", lastName: "jackson", emailVerified: false }
+
+
+    return expectSaga(authSagas)
+      .withReducer(authReducer)
+
+      // Test Saga
+      .put({ type: types.SHOW_LOADING })
+      .provide([
+        [call(register, fakeData), throwError(response)],
+      ])
+      .put({ type: types.REGISTER_REQUEST_ERROR, error: response })
+      .put({ type: types.HIDE_LOADING })
+
+      // Test reducer
+      .hasFinalState({
+        verifying: true,
+        isAuthenticated: false,
+        loading: false,
+        user: {},
+        error: response,
+      })
+      .dispatch(registerRequest(fakeData))
+      .silentRun();
+  });
+
+  it("Should throw error during login", () => {
+    const response = "TypeError: Network request failed";
+    const fakeData = { email: "admin@coaxsoft.com", password: "qwerty" };
+
+    return expectSaga(authSagas)
+      .withReducer(authReducer)
+
+      // Test Saga
+      .put({ type: types.SHOW_LOADING })
+      .provide([
+        [call(login, fakeData), throwError(response)],
+      ])
+      .put({ type: types.LOGIN_REQUEST_ERROR, error: response })
+      .put({ type: types.HIDE_LOADING })
+
+      // Test reducer
+      .hasFinalState({
+        ...initialState,
+        isAuthenticated: false,
+        error: response,
+      })
+      .dispatch(loginRequest(fakeData))
+      .silentRun();
+  });
+
+  it("Should throw error during reset password", () => {
+    const response = "TypeError: Network request failed";
+    const fakeData = { email: "admin@coaxsoft.com", password: "qwerty" };
+
+    return expectSaga(authSagas)
+      .withReducer(authReducer)
+
+      // Test Saga
+      .put({ type: types.SHOW_LOADING })
+      .provide([
+        [call(resetPassword, fakeData), throwError(response)],
+      ])
+      .put({ type: types.RESET_PASSWORD_REQUEST_ERROR, error: response })
+      .put({ type: types.HIDE_LOADING })
+
+      // Test reducer
+      .hasFinalState({
+        ...initialState,
+        isAuthenticated: false,
+        error: response,
+      })
+      .dispatch(resetPasswordRequest(fakeData))
       .silentRun();
   });
 });

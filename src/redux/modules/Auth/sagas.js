@@ -16,9 +16,8 @@ function *register ({ credentials }) {
 
     yield put(actions.registerRequestSuccess(response));
   } catch (error) {
-    const errorMessage = yield error.json();
 
-    yield put(actions.registerRequestError(errorMessage.error));
+    yield put(actions.registerRequestError(error.toString()));
   } finally {
     yield put({ type: types.HIDE_LOADING })
   }
@@ -37,9 +36,9 @@ function *login ({ credentials }) {
 
     yield put(actions.loginRequestSuccess(response));
   } catch (error) {
-    const errorMessage = yield error.json();
+    console.log(error)
 
-    yield put(actions.loginRequestError(errorMessage.error));
+    yield put(actions.loginRequestError(error.toString()));
   } finally {
     yield put({ type: types.HIDE_LOADING })
   }
@@ -87,9 +86,8 @@ function *resetPassword ({ email }) {
 
     yield put(actions.resetPasswordSuccess(response));
   } catch (error) {
-    const errorMessage = yield error.json();
 
-    yield put(actions.resetPasswordRequestError(errorMessage.error));
+    yield put(actions.resetPasswordRequestError(error.toString()));
   } finally {
     yield put({ type: types.HIDE_LOADING })
   }
@@ -139,8 +137,6 @@ function *socialLogin ({ credentials }) {
 
     yield put(actions.loginSocialRequestSuccess(response));
   } catch (error) {
-
-    console.log(error)
 
     yield put(actions.loginSocialRequestError(error));
   } finally {
