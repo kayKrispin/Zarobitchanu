@@ -1,0 +1,99 @@
+.forum-container {
+  background: white;
+  padding: .5rem;
+  display: flex;
+  margin-bottom: .5rem;
+
+  &--left-section {
+    flex: 2;
+    .title {
+      color: #676767;
+      margin-bottom: 0;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+
+      a {
+        text-decoration: none;
+        color: #676767;
+      }
+    }
+  }
+
+  &--right-section {
+    position: relative;
+    margin-right: 5.5rem;
+    padding-bottom: 1rem;
+
+    @include breakpoint(sm-max) {
+      flex-grow: 0!important;
+      margin-left: 0!important;
+      margin-right: 1rem;
+    }
+
+
+    .author-name {
+      font-weight: bold;
+      color: #AA0000;
+      cursor: pointer;
+      font-size: .8rem;
+    }
+
+    .author-container {
+      font-size: .8rem;
+
+      @include breakpoint(md-max) {
+        display: none!important;
+      }
+    }
+
+    .theme-name {
+      color: #676767;
+      font-weight: bold;
+      font-size: .8rem;
+
+      @include breakpoint(md-max) {
+        display: none!important;
+      }
+    }
+
+    .created-date {
+      font-size: .8rem;
+      position: absolute;
+      width: 8.6rem;
+      top: 2.5rem;
+
+      @include breakpoint(md-max) {
+        display: none!important;
+      }
+    }
+  }
+
+  .avatar {
+    width: 2rem;
+    height: 2rem;
+    background: red;
+    border-radius: 50%;
+  }
+
+  .topics-info {
+    position: relative;
+
+    @include breakpoint(md-max) {
+      display: none!important;
+    }
+  }
+
+  .forum-vision {
+    width: 2rem;
+    height: 2rem;
+    background: white;
+    border-radius: 50%;
+    border: 2px solid  lightgrey;
+    cursor: pointer;
+
+    .minus-sign {
+      color: lightgrey;
+    }
+  }
+}

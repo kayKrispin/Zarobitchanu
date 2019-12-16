@@ -1,0 +1,60 @@
+.content {
+  background: white;
+
+  .title {
+    font-size: 1rem;
+  }
+
+  .forum-icons {
+    margin-right: 9rem;
+
+    @include breakpoint(md-max) {
+    display: none!important;
+    }
+  }
+
+  .information-header {
+    margin-top: 1rem;
+    background: #4C5D77;
+  }
+
+  .information-container {
+    background: white;
+    padding: 1rem;
+
+    .subtitle-info {
+      font-size: .8rem;
+    }
+  }
+}
+
+.card {
+  border: none;
+}
+
+
+.card-body {
+  background: #ECF0F1;
+  padding: .5rem;
+}
+
+
+.card-header {
+  background: #4a569d;
+  background: linear-gradient(to right, #4a569d 1%,#dc2424 100%);
+  color: white;
+}
+
+
+input {
+  padding: 0 .5rem;
+}
+
+.title-accordion {
+  flex: 1;
+}
+
+
+.icons-title {
+  margin-right: 8.3rem;
+}

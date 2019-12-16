@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import Content from "./containers/ContentPlaceholder";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Modal from "./components/Modal";
+import { connect } from "react-redux";
+import { actions } from "./redux/modules/Auth";
+import PropTypes from "prop-types";
+import AppSkeleton from "./containers/AppSkeleton";
+import "./App.css";
 
-function App() {
+
+const App = ({ verifyingToken, verifyToken }) => {
+
+  useEffect(() => {
+    verifyToken();
+  }, []);
+
+  if (verifyingToken) return <AppSkeleton/>;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <Header/>
+      <Content/>
+      <Footer/>
+      <Modal/>
+    </React.Fragment>
   );
-}
+};
 
-export default App;
+export default connect(
+  state => ({ verifyingToken: state.authStore.verifying }),
+  dispatch => ({ verifyToken: () => dispatch(actions.verifyRequest()) })
+)(App);
+
+App.propTypes = {
+  verifyingToken: PropTypes.bool,
+  verifyToken: PropTypes.func,
+};

@@ -1,0 +1,59 @@
+.user-avatar {
+  margin-bottom: .5rem;
+  text-align: center;
+  color: grey;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+
+  &--container {
+    height: 4rem;
+    width: 4rem;
+    background: lightgrey;
+    border-radius: 50%;
+    margin: 0 auto;
+  }
+
+  &--icon {
+    display: flex;
+    font-size: 2rem;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    border-radius: 50%;
+    object-fit: cover;
+
+    i {
+      font-size: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  &--file-uploader {
+    width: 6rem;
+    height: 6rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    opacity: 0;
+    cursor: pointer;
+  }
+}
+
+.error-msg {
+  color: red;
+}
+
+
+.success-msg {
+  color: lime;
+}
+
+
+.reset-password-form {
+  width: 25rem;
+  margin: auto;
+}

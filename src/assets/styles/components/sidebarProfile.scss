@@ -1,0 +1,36 @@
+.sidebar-profile {
+
+  &--title {
+    font-size: 1rem;
+    width: 8rem;
+  }
+
+  &--description {
+    font-size: .8rem;
+    cursor: pointer;
+
+    i {
+      color: lightgrey;
+    }
+  }
+
+  &--info-container {
+    display: flex;
+  }
+
+  .avatar {
+    width: 7rem;
+    height: 7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+
+    i {
+      font-size: 5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

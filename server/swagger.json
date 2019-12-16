@@ -1,0 +1,589 @@
+{
+  "info": {
+    "version": "1.0.0",
+    "title": "Zarobitchanu-documantation",
+    "description": "Basic documenation for zarobitchanu",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "API for auth"
+    },
+    {
+      "name": "Forum",
+      "description": "API for forums"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+
+    "/api/signup": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Create new user in the system",
+        "requestBody": {
+          "description": "User Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "403": {
+            "description": "Something goes wrong"
+          }
+        }
+      }
+    },
+    "/api/signin": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Log in to the system",
+        "requestBody": {
+          "description": "User Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "403": {
+            "description": "Invalid password or email"
+          }
+        }
+      }
+    },
+    "/api/socialSignin": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Log in to the system with google account",
+        "requestBody": {
+          "description": "User Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "403": {
+            "description": "Invalid password or email"
+          }
+        }
+      }
+    },
+
+    "/api/verify": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Check token",
+        "requestBody": {
+          "description": "User Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Token"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "401": {
+            "description": "Anauthorized"
+          }
+        }
+      }
+    },
+    "/api/activateAccount": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Set user field emailVerifyed to true, and activate user in system",
+        "requestBody": {
+          "description": "User Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Token"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "401": {
+            "description": "Anauthorized"
+          }
+        }
+      }
+    },
+    "/api/resetPassword": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Sending activation link to email to start reseting password",
+        "requestBody": {
+          "description": "User Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Token"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "401": {
+            "description": "Anauthorized"
+          }
+        }
+      }
+    },
+    "/api/resetPasswordConfirmation": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Accept reseting password, and redirect to create new password form",
+        "requestBody": {
+          "description": "User Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Token"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "401": {
+            "description": "Anauthorized"
+          }
+        }
+      }
+    },
+
+    "/api/forum/getForums": {
+      "get": {
+        "tags": [
+          "Forum"
+        ],
+        "summary": "Get all forums",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "401": {
+            "description": "Anauthorized"
+          }
+        }
+      }
+    },
+    "/api/forum/createForum": {
+      "post": {
+        "tags": [
+          "Forum"
+        ],
+        "summary": "Create forum",
+        "requestBody": {
+          "description": "Forum Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Forum"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Forum"
+            }
+          },
+          "401": {
+            "description": "Anauthorized"
+          }
+        }
+      }
+    },
+    "/api/forum/deleteForum": {
+      "delete": {
+        "tags": [
+          "Forum"
+        ],
+        "summary": "Delete forum",
+        "requestBody": {
+          "description": "Forum Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Forum"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Forum"
+            }
+          },
+          "403": {
+            "description": "Something goes wrong"
+          }
+        }
+      }
+    },
+    "/api/forum/createTopic": {
+      "post": {
+        "tags": [
+          "Forum"
+        ],
+        "summary": "Create topic",
+        "requestBody": {
+          "description": "Forum Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Forum"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Forum"
+            }
+          },
+          "403": {
+            "description": "Something goes wrong"
+          }
+        }
+      }
+    },
+    "/api/forum/getTopics": {
+      "get": {
+        "tags": [
+          "Forum"
+        ],
+        "summary": "Get topics",
+        "requestBody": {
+          "description": "Forum Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Forum"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Forum"
+            }
+          },
+          "403": {
+            "description": "Something goes wrong"
+          }
+        }
+      }
+    },
+    "/api/forum/deleteTopic": {
+      "delete": {
+        "tags": [
+          "Forum"
+        ],
+        "summary": "Delete topic",
+        "requestBody": {
+          "description": "Forum Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Forum"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Forum"
+            }
+          },
+          "403": {
+            "description": "Something goes wrong"
+          }
+        }
+      }
+    },
+    "/api/forum/searchTopic": {
+      "post": {
+        "tags": [
+          "Forum"
+        ],
+        "summary": "Search topic",
+        "requestBody": {
+          "description": "Forum Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Forum"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Forum"
+            }
+          },
+          "403": {
+            "description": "Something goes wrong"
+          }
+        }
+      }
+    },
+    "/api/forum/createReply": {
+      "post": {
+        "tags": [
+          "Forum"
+        ],
+        "summary": "Create reply",
+        "requestBody": {
+          "description": "Forum Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Forum"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Forum"
+            }
+          },
+          "403": {
+            "description": "Something goes wrong"
+          }
+        }
+      }
+    },
+    "/api/forum/getReplies": {
+      "post": {
+        "tags": [
+          "Forum"
+        ],
+        "summary": "Get replies",
+        "requestBody": {
+          "description": "Forum Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Forum"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Forum"
+            }
+          },
+          "403": {
+            "description": "Something goes wrong"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "id": {
+      "properties": {
+        "uuid": {
+          "type": "string"
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "Forum": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        }
+      }
+    },
+    "Token": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "swagger": "2.0"
+}

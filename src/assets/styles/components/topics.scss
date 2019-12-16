@@ -1,0 +1,98 @@
+.topics-container {
+
+  &--amount {
+    @include breakpoint(md-max) {
+      display: none;
+    }
+  }
+
+  &--topics {
+    background: #F8F8F8;
+    padding: 1rem;
+
+    .topic {
+      background: white;
+      padding: 1rem;
+      border-bottom: 1px solid #ECF0F1;
+
+      &--time-container {
+        color: lightgrey;
+        font-size: 1rem;
+      }
+
+      &--main-text {
+        @include breakpoint(md-max) {
+          width: 100%;
+        }
+      }
+
+      &--avatar {
+        height: 8rem;
+        width: 8rem;
+        border-radius: 50%;
+
+        @include breakpoint(md-max) {
+          height: 2rem;
+          width: 2rem;
+        }
+      }
+
+      &--fullName {
+        width: 7rem;
+        text-overflow: ellipsis;
+        overflow: hidden;
+
+        @include breakpoint(md-max) {
+          width: 100%;
+          font-size: 1rem;
+          margin-left: 1rem;
+        }
+      }
+
+      &--like {
+        font-size: 2rem;
+        cursor: pointer;
+
+
+        @include breakpoint(md-max) {
+          margin-left: auto;
+          font-size: 1.3rem;
+        }
+      }
+
+      .active {
+        color: red;
+      }
+
+      &--text {
+        flex: 1;
+      }
+
+      &--user-info {
+        @include breakpoint(md-max) {
+            flex-direction: row!important;
+          margin-bottom: 1rem;
+          span {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  &--pagination {
+
+    .ant-pagination-prev {
+      display: none;
+    }
+
+    .ant-pagination-item-active {
+      border: none;
+      color: white;
+      a {
+        background-color: #4a569d;
+        color: white;
+      }
+    }
+  }
+}

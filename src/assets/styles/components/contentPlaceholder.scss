@@ -1,0 +1,52 @@
+@import "../colors";
+
+.main-container {
+  background: #ECF0F1;
+  box-shadow: 0 0 5px rgba(0,0,0,0.05);
+
+  .content-placeholder {
+    margin: auto;
+    width: 95%;
+    background: $white;
+    position: relative;
+    padding: 2rem 1.5rem;
+    z-index: 100;
+    margin-top: -50px;
+    margin-bottom: -50px;
+
+    &--home-btn {
+      color: #676767;
+      position: relative;
+      cursor: pointer;
+      text-decoration: none;
+
+      .title {
+        position: relative;
+      }
+
+      .title:after {
+        content: "";
+        display: none;
+        height: 1px;
+        background: #4a569d;
+        position: absolute;
+      }
+    }
+
+    &--home-btn:hover {
+      color: #4a569d;
+
+      .title:after {
+        content: "";
+        display: block;
+        height: 1px;
+        background: #4a569d;
+        position: absolute;
+        width: 100%;
+        left: 0;
+      }
+    }
+
+  }
+
+}
