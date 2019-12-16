@@ -1,6 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger.json");
 
 const cors = require("cors");
 
@@ -19,6 +21,8 @@ app.use("/uploads", express.static("uploads"));
 app.use(bodyParser.json());
 
 app.use("/api", require("./routes"));
+
+app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use(function (err, req, res, next) {
   const status = err.status || 500;

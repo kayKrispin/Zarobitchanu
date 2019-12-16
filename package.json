@@ -54,7 +54,8 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.1.3",
-    "redux-saga-test-plan": "^4.0.0-rc.3"
+    "redux-saga-test-plan": "^4.0.0-rc.3",
+    "swagger-ui-express": "^4.1.2"
   },
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",
@@ -90,4 +91,3 @@
     "react-test-renderer": "^16.12.0"
   }
 }
-
