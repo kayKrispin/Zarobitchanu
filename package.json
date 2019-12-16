@@ -58,7 +58,7 @@
     "swagger-ui-express": "^4.1.2"
   },
   "scripts": {
-    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "start": "node ./server/entry.js",
     "client": "react-scripts start",
     "server": "nodemon ./server/entry.js",
     "test-dev": "jest --watch --watchAll.",
