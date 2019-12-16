@@ -15,9 +15,8 @@ function *createForum ({ data }) {
 
     yield put(actions.createForumRequestSuccess(response));
   } catch (error) {
-    const errorMessage = yield error.json();
 
-    yield put(actions.createForumRequestError(errorMessage.error));
+    yield put(actions.createForumRequestError(error.toString()));
   } finally {
     yield put({ type: types.HIDE_LOADING })
   }

@@ -21,7 +21,7 @@ import {
   showLoading, hideLoading
 } from "./reducers";
 
-const initialState = {
+export const initialState = {
   forum: {},
   forums: [],
   topics: [],

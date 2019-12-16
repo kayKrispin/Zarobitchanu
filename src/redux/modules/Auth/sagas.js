@@ -36,7 +36,6 @@ function *login ({ credentials }) {
 
     yield put(actions.loginRequestSuccess(response));
   } catch (error) {
-    console.log(error)
 
     yield put(actions.loginRequestError(error.toString()));
   } finally {
