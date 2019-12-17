@@ -17,10 +17,7 @@ const app = express();
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(publicPath));
-
-  app.use("/api", require("./routes"));
-
-
+  
   app.get("*", (req, res) => {
     res.sendFile(path.join(publicPath, "index.html"));
   });
