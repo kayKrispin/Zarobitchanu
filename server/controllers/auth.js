@@ -46,6 +46,8 @@ async function signIn (req, res, next) {
   const { email, password } = req.body;
   const user = await User.findOne({ email: email });
 
+  console.log(req.body)
+
   try {
     if (user !== null && User.isValidPassword(password, user.password)) {
       if (!user.emailVerifyed) {

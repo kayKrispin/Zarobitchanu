@@ -20,6 +20,8 @@ const LoginFormContainer = ({
   const emailValidation = /^\S+@\S+\.\S+$/;
 
   const onSubmit = (values, e) => {
+
+    console.log(values)
     login(values);
     e.target.reset();
   };

@@ -31,7 +31,7 @@ const LabeledInput = ({
   return (
     <label className="d-flex form-label flex-column">
       {title}
-      <input name={name} ref={registerFunction} type="text"/>
+      <input name={name} ref={registerFunction || register} type="text"/>
       {content}
     </label>
   )
