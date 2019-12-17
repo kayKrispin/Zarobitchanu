@@ -49,5 +49,5 @@ app.use(function (err, req, res, next) {
 });
 
 app.listen(port, function () {
-  console.log("Now listening on ports 8080", port);
+  console.log("Now listening on ports 8080");
 });

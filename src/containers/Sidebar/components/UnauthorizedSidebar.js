@@ -28,7 +28,7 @@ const UnauthorizedSidebar = ({ responseGoogle }) => (
           <h3 className="mb-0 mt-3  social-title">Social login </h3>
         </div>
         <GoogleLogin
-          clientId="613880626150-c69acudo8li5c1qgmf9dkokuruioq37r.apps.googleusercontent.com"
+          clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
           render={renderProps => (
             <button onClick={renderProps.onClick} className="login-btn google-btn mt-3 w-100">
                             Login with Google

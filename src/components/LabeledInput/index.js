@@ -7,16 +7,24 @@ const LabeledInput = ({
   name,
   required,
   content,
-  pattern
+  pattern,
+  requiredSingle
 }) => {
 
-  //Set field validation
+  //Set custom field validation
   let registerFunction;
 
   if (required) {
     registerFunction = register({
       required: true,
       pattern: pattern
+    })
+  }
+
+  //Set only required validation
+  if (requiredSingle) {
+    registerFunction = register({
+      required
     })
   }
 
@@ -37,4 +45,5 @@ LabeledInput.propTypes = {
   title: PropTypes.string,
   name: PropTypes.string,
   required: PropTypes.bool,
+  requiredSingle: PropTypes.bool
 };

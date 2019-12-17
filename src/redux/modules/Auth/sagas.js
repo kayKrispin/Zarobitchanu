@@ -11,7 +11,7 @@ function *register ({ credentials }) {
 
   try {
     const response = yield call(auth.register, credentials);
-    
+
     yield put(actions.registerRequestSuccess(response));
   } catch (error) {
 
