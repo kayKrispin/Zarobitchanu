@@ -70,7 +70,7 @@ async function createTopic (req, res, next) {
 }
 
 async function getTopics (req, res, next) {
-
+  
   const { id } = req.body;
 
   try {
