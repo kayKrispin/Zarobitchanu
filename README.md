@@ -21,7 +21,7 @@ Online platform for sharing thoughts between people who lives abroad and works f
 
 ## Documentations
 
-[API Docs](https://google.com)
+[API Docs](http://localhost:8080/swagger/)
 
 
 ## Home View
