@@ -37,6 +37,9 @@ app.use(express.static(publicPath));
 
 app.use("/api", require("./routes"));
 
+app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+
 app.get("*", (req, res) => {
   res.sendFile(path.join(publicPath, "index.html"));
 });
