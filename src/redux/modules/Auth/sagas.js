@@ -11,9 +11,7 @@ function *register ({ credentials }) {
 
   try {
     const response = yield call(auth.register, credentials);
-
-    localStorage.setItem("token", JSON.stringify(response.token));
-
+    
     yield put(actions.registerRequestSuccess(response));
   } catch (error) {
 
