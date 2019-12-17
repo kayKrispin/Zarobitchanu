@@ -1,10 +1,15 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const path = require("path");
 const mongoose = require("mongoose");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
+const publicPath = path.join(__dirname, "..", "public");
+
 
 const cors = require("cors");
+
+const port = process.env.PORT || 3000;
 
 const app = express();
 
@@ -18,6 +23,12 @@ app.use(express.static(`${__dirname }/uploads`));
 
 app.use("/uploads", express.static("uploads"));
 
+app.use(express.static(publicPath));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(publicPath, "index.html"));
+});
+
 app.use(bodyParser.json());
 
 app.use("/api", require("./routes"));
@@ -29,6 +40,6 @@ app.use(function (err, req, res, next) {
   res.status(status).send({ error: err.message });
 });
 
-app.listen(8080, function () {
+app.listen(port, function () {
   console.log("Now listening on ports 8080");
 });
