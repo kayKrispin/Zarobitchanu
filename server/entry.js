@@ -22,6 +22,11 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
+
+console.log(typeof config.mongoDb, "hello")
+
+
+
 mongoose.connect(config.mongoDb, { useNewUrlParser: true, useUnifiedTopology: true });
 
 mongoose.Promise = global.Promise;
