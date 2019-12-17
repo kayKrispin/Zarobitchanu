@@ -4,14 +4,25 @@ const path = require("path");
 const mongoose = require("mongoose");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
-const publicPath = path.join(__dirname, "..", "public");
+const publicPath = path.join(__dirname, "..", "build");
 
 
 const cors = require("cors");
 
-const port = process.env.PORT || 3000;
+console.log(publicPath)
+
+const port = process.env.PORT || 8080;
 
 const app = express();
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(publicPath));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(publicPath, "index.html"));
+  });
+
+}
 
 mongoose.connect("mongodb://localhost:27017/zarobitchanu", { useNewUrlParser: true, useUnifiedTopology: true });
 
