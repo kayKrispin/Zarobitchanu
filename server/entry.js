@@ -4,7 +4,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
-const publicPath = path.join(__dirname, "..", "build");
+const publicPath = path.join(__dirname, "..", "public");
 
 
 const cors = require("cors");
@@ -17,6 +17,9 @@ const app = express();
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(publicPath));
+
+  app.use("/api", require("./routes"));
+
 
   app.get("*", (req, res) => {
     res.sendFile(path.join(publicPath, "index.html"));
