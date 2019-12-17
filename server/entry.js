@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
 const publicPath = path.join(__dirname, "..", "build");
+const config = require("./config");
 
 
 const cors = require("cors");
@@ -21,7 +22,7 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-mongoose.connect("mongodb://localhost:27017/zarobitchanu", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(config.mongoDb, { useNewUrlParser: true, useUnifiedTopology: true });
 
 mongoose.Promise = global.Promise;
 

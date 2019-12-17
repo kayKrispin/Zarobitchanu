@@ -20,10 +20,10 @@ const RegisterForm = ({
   const btnStyles = ["login-btn mt-3 w-100"];
   const emailValidation = /^\S+@\S+\.\S+$/;
 
-  const failedMsg = serverError &&
+  const failedMsg = serverError.length > 1 &&
     <ErrorMessage
       className="error-msg d-flex mt-3 justify-content-center"
-      error={serverError}
+      error="User already exists"
     />;
 
   const successMsg = user.email &&
@@ -54,6 +54,8 @@ const RegisterForm = ({
   </div>;
 
   if (loading) btnStyles.push("disabled-login");
+
+  console.log(serverError, "hello")
 
   return (
     <div>
