@@ -4,7 +4,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./server/swagger.json");
-const publicPath = path.join(__dirname, "..", "build");
+const publicPath = path.join(__dirname, "build");
 const config = require("./server/config");
 
 const cors = require("cors");
