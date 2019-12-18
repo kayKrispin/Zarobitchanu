@@ -13,14 +13,6 @@ const port = process.env.PORT || 8080;
 
 const app = express();
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(publicPath));
-
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(publicPath, "index.html"));
-  });
-}
-
 mongoose.connect("mongodb://localhost:27017/zarobitchanu", { useNewUrlParser: true, useUnifiedTopology: true });
 
 mongoose.Promise = global.Promise;
@@ -40,6 +32,15 @@ app.use("/api", require("./server/routes"));
 app.get("/cmon", (req, res) => {
   res.json({ kaec: "goy" })
 });
+
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(publicPath));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(publicPath, "index.html"));
+  });
+}
 
 app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
