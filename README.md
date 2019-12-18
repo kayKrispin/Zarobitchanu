@@ -21,7 +21,7 @@ Online platform for sharing thoughts between people who lives abroad and works f
 
 ## Documentations
 
-[API Docs](http://localhost:8080/swagger/)
+[API Docs](https://zarobitchany.herokuapp.com/swagger/)
 
 
 ## Home View
