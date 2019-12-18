@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getCurrentTime } from "../../../helpers";
+import { Avatar } from "antd";
 
 const TopicSingle = ({ item, users }) => {
 
@@ -38,7 +39,12 @@ const TopicSingle = ({ item, users }) => {
         </div>
       </div>
       <div className="d-flex justify-content-center flex-column align-items-center topic--user-info">
-        <img className="topic--avatar" src={item.userAvatar} alt=""/>
+        {
+          item.userAvatar
+            ? <img className="topic--avatar" src={item.userAvatar} alt=""/>
+
+            : <Avatar className="user-avatar--icon mr-2" icon="user"/>
+        }
         <p className="mt-2 mb-2 topic--fullName">
           <strong>
             {item.userName}

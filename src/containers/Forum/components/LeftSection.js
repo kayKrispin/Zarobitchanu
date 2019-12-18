@@ -12,7 +12,7 @@ const LeftSection = ({ item, themes }) => (
             {themes && item.replies && item.replies.length || 20}
           </p>
         </div>
-      ) : "Empty topic"
+      ) : <div className="empty-topic">Empty topic</div>
     }
   </div>
 );

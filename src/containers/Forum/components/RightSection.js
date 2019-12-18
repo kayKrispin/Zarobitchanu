@@ -1,15 +1,21 @@
 import React from "react";
 import { getCurrentTime } from "../../../helpers";
+import { Avatar } from "antd";
 
 const RightSection = ({ lastItem }) => (
   <div>
     {
       lastItem && (
         <div className="d-flex align-items-start ml-5 flex-wrap">
-          <img
-            src={lastItem && (lastItem.img || lastItem.userAvatar)}
-            alt=""
-            className="avatar mr-3 mt-2"/>
+
+          {
+            (lastItem.img || lastItem.userAvatar)
+              ? <img
+                src={lastItem && (lastItem.img || lastItem.userAvatar)}
+                alt=""
+                className="avatar mr-3 mt-2"/>
+              : <Avatar className="user-avatar--icon avatar mr-3 mt-2" size="small" icon="user"/>
+          }
           <div className="flex-column d-flex">
             <p className="theme-name">
               {lastItem && (lastItem.title || lastItem.text)}

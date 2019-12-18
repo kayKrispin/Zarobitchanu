@@ -48,6 +48,8 @@ function *activateAccount ({ code }) {
   try {
     const response = yield call(auth.activateAccount, code);
 
+    localStorage.setItem("token", JSON.stringify(response.token));
+
     yield put(actions.activateAccountSuccess(response));
   } catch (error) {
     const errorMessage = yield error.json();

@@ -69,6 +69,12 @@
       }
 
       &--user-info {
+
+        .ant-avatar {
+          width: 8rem;
+          height: 8rem;
+        }
+
         @include breakpoint(md-max) {
             flex-direction: row!important;
           margin-bottom: 1rem;
@@ -95,4 +101,10 @@
       }
     }
   }
+}
+
+
+.topic-default-avatar {
+  height: 8rem;
+  width: 8rem;
 }
