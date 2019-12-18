@@ -1,4 +1,4 @@
 //Server url
-const HOST = "https://zarobitchany.herokuapp.com";
+const HOST = "http://localhost:8080";
 
 export const API_URL = `${HOST}/api`;

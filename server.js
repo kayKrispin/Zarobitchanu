@@ -3,10 +3,9 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const mongoose = require("mongoose");
 const swaggerUi = require("swagger-ui-express");
-const swaggerDocument = require("./swagger.json");
+const swaggerDocument = require("./server/swagger.json");
 const publicPath = path.join(__dirname, "..", "build");
-const config = require("./config");
-
+const config = require("./server/config");
 
 const cors = require("cors");
 
@@ -36,7 +35,11 @@ app.use("/uploads", express.static("uploads"));
 
 app.use(express.static(publicPath));
 
-app.use("/api", require("./routes"));
+app.use("/api", require("./server/routes"));
+
+app.get("/cmon", (req, res) => {
+  res.json({ kaec: "goy" })
+});
 
 app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
