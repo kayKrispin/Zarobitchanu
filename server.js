@@ -29,10 +29,7 @@ app.use(express.static(publicPath));
 
 app.use("/api", require("./server/routes"));
 
-app.get("/cmon", (req, res) => {
-  res.json({ kaec: "goy" })
-});
-
+app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(publicPath));
@@ -41,15 +38,6 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(publicPath, "index.html"));
   });
 }
-
-app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-
-
-app.get("*", (req, res) => {
-  res.sendFile(path.join(publicPath, "index.html"));
-});
-
-app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use(function (err, req, res, next) {
   const status = err.status || 500;
