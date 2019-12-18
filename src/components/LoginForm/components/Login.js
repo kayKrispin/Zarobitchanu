@@ -41,10 +41,10 @@ const Login = ({
           I forgot my password
       </p>
       {
-        serverError &&
+        serverError.length > 1 &&
         <ErrorMessage
           className="error-msg d-flex mt-3 justify-content-center"
-          error={serverError.toString()}
+          error="Invalid email or password"
         />
 
       }

@@ -14,6 +14,8 @@ const RegisterFormContainer = ({ handleRegister, loading, serverError, userAvata
 
   //Validate and register user
   const onSubmit = (values, e) => {
+
+    console.log(values)
     if (!values.email || Object.values(errors).length > 0) return;
     values.img = imageFile;
     handleRegister(values);

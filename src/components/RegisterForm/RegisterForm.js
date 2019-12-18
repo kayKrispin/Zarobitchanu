@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { Spin } from "antd";
 import ErrorMessage from "../ErrorMessage";
 import LabeledInput from "../LabeledInput";
-import ErrorsContent from "../LoginForm/components/ForgotPasswordErrors";
 
 const RegisterForm = ({
   handleImage,
@@ -21,10 +20,10 @@ const RegisterForm = ({
   const btnStyles = ["login-btn mt-3 w-100"];
   const emailValidation = /^\S+@\S+\.\S+$/;
 
-  const failedMsg = serverError &&
+  const failedMsg = serverError.length > 1 &&
     <ErrorMessage
       className="error-msg d-flex mt-3 justify-content-center"
-      error={serverError}
+      error="User already exists"
     />;
 
   const successMsg = user.email &&
@@ -44,7 +43,19 @@ const RegisterForm = ({
     }
   </div>;
 
+  const emailError = <div>
+    {
+      errors.email && errors.email.type !== "required" &&
+      <ErrorMessage
+        className="error-msg"
+        error="Invalid email format"
+      />
+    }
+  </div>;
+
   if (loading) btnStyles.push("disabled-login");
+
+  console.log(serverError, "hello")
 
   return (
     <div>
@@ -63,13 +74,7 @@ const RegisterForm = ({
         </div>
         <LabeledInput
           title="Email:"
-          content={
-            <ErrorsContent
-              errors={errors}
-              serverError={serverError}
-              user={user}
-            />
-          }
+          content={emailError}
           name="email"
           register={register}
           required={true}
@@ -80,7 +85,7 @@ const RegisterForm = ({
           content={passwordError }
           name="password"
           register={register}
-          required={true}
+          requiredSingle={true}
           pattern={emailValidation}
         />
         <button disabled={loading} className={btnStyles.join(" ")}>

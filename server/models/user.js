@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const config = require("../config");
 
@@ -70,13 +70,13 @@ User.generateConfirmationJWT = email => {
 };
 
 User.generatAccountVerificationLink = id => (
-`<a href='http://localhost:3000/verifyAccount/${User.generateConfirmationJWT(id)}'>
-        https://localhost:3000/verifyAccount/${User.generateConfirmationJWT(id)}</a>`
+`<a href='https://zarobitchany.herokuapp.com/verifyAccount/${User.generateConfirmationJWT(id)}'>
+        https://zarobitchany.herokuapp.com/verifyAccount/${User.generateConfirmationJWT(id)}</a>`
 );
 
 User.generateResetPasswordLink = email => (
-    `<a href='http://localhost:3000/resetPassword/${User.generateConfirmationJWT(email)}'>
-        https://localhost:3000/resetPassword/${User.generateConfirmationJWT(email)}</a>`
+    `<a href='https://zarobitchany.herokuapp.com/resetPassword/${User.generateConfirmationJWT(email)}'>
+        https://zarobitchany.herokuapp.com/resetPassword/${User.generateConfirmationJWT(email)}</a>`
 );
 
 module.exports = User;
