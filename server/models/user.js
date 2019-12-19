@@ -56,7 +56,7 @@ User.generateJWT = email => {
     {
       email: email,
     },
-      config.jwt_secret
+    config.jwt_secret
   );
 };
 
@@ -65,14 +65,14 @@ User.generateConfirmationJWT = email => {
     {
       email: email,
     },
-    config.jwt_secret,
-    { expiresIn: "1h" }
+      config.jwt_secret,
+    { expiresIn: "10h" }
   );
 };
 
 User.generatAccountVerificationLink = id => (
-    `<a href='http://localhost:8080/verifyAccount/${User.generateConfirmationJWT(id)}'>
-        https://localhost:8080/verifyAccount/${User.generateConfirmationJWT(id)}</a>`
+`<a href='https://zarobitchany.herokuapp.com/verifyAccount/${User.generateConfirmationJWT(id)}'>
+        https://zarobitchany.herokuapp.com/verifyAccount/${User.generateConfirmationJWT(id)}</a>`
 );
 
 User.generateResetPasswordLink = email => (
