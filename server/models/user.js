@@ -51,6 +51,9 @@ User.isValidPassword = (password, encodedPassword) => {
 };
 
 User.generateJWT = email => {
+
+
+
   return jwt.sign(
     {
       email: email,
