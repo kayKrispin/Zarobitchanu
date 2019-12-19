@@ -9,6 +9,8 @@ async function signUp (req, res, next) {
   const { email } = req.body;
   const duplicate = await User.findOne({ email: email });
 
+  console.log(config)
+
   const mailOptions = {
     from: email,
     to: email,
