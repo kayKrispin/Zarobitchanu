@@ -7,9 +7,42 @@ const verifyEmail = require("../services/mailer");
 console.log(config)
 
 async function signUp (req, res, next) {
+  const { email } = req.body;
+  const duplicate = await User.findOne({ email: email });
 
-  res.json({ user: "hello" })
+  console.log(config)
 
+  const mailOptions = {
+    from: email,
+    to: email,
+    subject: "Email verification",
+    text: "To acivate your account, please click link below",
+    html: `<p><b>To acivate your account, please click link below</b></p>
+        <div>${User.generatAccountVerificationLink(email)}</div>`,
+  };
+
+  if (req.file) {
+    const IMAGE_URL = `http://localhost:8080/${req.file.path}`;
+    req.body.img = IMAGE_URL;
+  }
+
+  try {
+    if (duplicate) {
+      return next({
+        status: 403,
+        message: "User already exists"
+      });
+    }
+    const user = await User.create(req.body);
+    await verifyEmail(mailOptions);
+    res.json({ user, token: User.generateJWT(email) })
+
+  } catch (e) {
+    return next({
+      status: 404,
+      message: "Something goes wrong"
+    })
+  }
 }
 
 async function signIn (req, res, next) {
