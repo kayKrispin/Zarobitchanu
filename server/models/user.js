@@ -52,13 +52,11 @@ User.isValidPassword = (password, encodedPassword) => {
 
 User.generateJWT = email => {
 
-
-
   return jwt.sign(
     {
       email: email,
     },
-    config.jwt_secret,
+    "hello there"
   );
 };
 
@@ -67,7 +65,7 @@ User.generateConfirmationJWT = email => {
     {
       email: email,
     },
-    config.jwt_secret,
+    "hello there",
     { expiresIn: "1h" }
   );
 };

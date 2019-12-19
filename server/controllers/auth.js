@@ -14,7 +14,7 @@ async function signUp (req, res, next) {
     subject: "Email verification",
     text: "To acivate your account, please click link below",
     html: `<p><b>To acivate your account, please click link below</b></p>
-      `,
+        <div>${User.generatAccountVerificationLink(email)}</div>`,
   };
 
   if (req.file) {
@@ -31,7 +31,7 @@ async function signUp (req, res, next) {
     }
     const user = await User.create(req.body);
     await verifyEmail(mailOptions);
-    res.json({ user})
+    res.json({ user, token: User.generateJWT(email) })
 
   } catch (e) {
     return next({
