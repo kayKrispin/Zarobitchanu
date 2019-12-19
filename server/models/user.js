@@ -55,7 +55,7 @@ User.generateJWT = email => {
     {
       email: email,
     },
-    "hello there",
+    config.jwt_secret,
   );
 };
 
@@ -64,7 +64,7 @@ User.generateConfirmationJWT = email => {
     {
       email: email,
     },
-    "hello there",
+    config.jwt_secret,
     { expiresIn: "1h" }
   );
 };

@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const config = require("../config");
 const verifyEmail = require("../services/mailer");
 
+console.log(config)
 
 async function signUp (req, res, next) {
   const { email } = req.body;
