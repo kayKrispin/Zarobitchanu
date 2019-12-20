@@ -23,6 +23,12 @@ async function signUp (req, res, next) {
   }
 
   try {
+    if (duplicate) {
+      return next({
+        status: 403,
+        message: "User already exists"
+      });
+    }
     const user = await User.create(req.body);
     await verifyEmail(mailOptions);
     res.json({ user, token: User.generateJWT(email) })

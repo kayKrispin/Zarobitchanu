@@ -144,9 +144,6 @@ async function createReply (req, res, next) {
 
     topic.lastCreatedItem = req.body;
 
-    const repliesLength = topic.replies.length;
-
-
     const pageNumber = parseInt(page);
     const limitNumber = parseInt(limit);
 
@@ -156,6 +153,9 @@ async function createReply (req, res, next) {
     topic.replies.push(req.body);
 
     await forum.save();
+
+    const repliesLength = topic.replies.length;
+
 
     res.send({
       replies: [...topic.replies.slice(startIndex, endIndex)],
