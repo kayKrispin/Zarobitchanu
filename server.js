@@ -13,7 +13,7 @@ const port = process.env.PORT || 8080;
 
 const app = express();
 
-mongoose.connect(process.env.MONGODB_URI || config.mongoDb);
+mongoose.connect(process.env.MONGODB_URI || "mongodb://nascar8606:nascar8606@ds157544.mlab.com:57544/heroku_r7snstx7");
 
 mongoose.Promise = global.Promise;
 
