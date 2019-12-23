@@ -2,7 +2,10 @@
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 const config = require("../config");
+const S3Service = require("../services/S3");
 const verifyEmail = require("../services/mailer");
+const S3 = new S3Service();
+
 
 async function signUp (req, res, next) {
   const { email } = req.body;
@@ -18,7 +21,10 @@ async function signUp (req, res, next) {
   };
 
   if (req.file) {
-    const IMAGE_URL = `http://localhost:8080/${req.file.path}`;
+    const response = await S3.uploadFile(req.file.filename, "companyLogo");
+
+    const IMAGE_URL = response.Location;
+
     req.body.img = IMAGE_URL;
   }
 
@@ -30,7 +36,7 @@ async function signUp (req, res, next) {
       });
     }
     const user = await User.create(req.body);
-    await verifyEmail(mailOptions);
+    // await verifyEmail(mailOptions);
     res.json({ user, token: User.generateJWT(email) })
 
   } catch (e) {
