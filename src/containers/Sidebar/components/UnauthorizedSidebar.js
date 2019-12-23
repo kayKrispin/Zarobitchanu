@@ -3,6 +3,7 @@ import { Card, Accordion } from "react-bootstrap";
 import LoginForm from "../../../components/LoginForm";
 import Toggler from "../../../components/Toggler";
 import { GoogleLogin } from "react-google-login";
+import PropTypes from "prop-types";
 
 
 const UnauthorizedSidebar = ({ responseGoogle }) => (
@@ -28,7 +29,7 @@ const UnauthorizedSidebar = ({ responseGoogle }) => (
           <h3 className="mb-0 mt-3  social-title">Social login </h3>
         </div>
         <GoogleLogin
-          clientId="613880626150-c69acudo8li5c1qgmf9dkokuruioq37r.apps.googleusercontent.com"
+          clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID || process.env.GOOGLE_ID}
           render={renderProps => (
             <button onClick={renderProps.onClick} className="login-btn google-btn mt-3 w-100">
                             Login with Google
@@ -45,3 +46,7 @@ const UnauthorizedSidebar = ({ responseGoogle }) => (
 );
 
 export default UnauthorizedSidebar;
+
+UnauthorizedSidebar.propTypes = {
+  responseGoogle: PropTypes.func
+}

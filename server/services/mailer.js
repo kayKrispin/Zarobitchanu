@@ -12,7 +12,7 @@ const transporter = nodemailer.createTransport({
 });
 
 const verifyEmail = mailOptions => {
-  console.log(mailOptions)
+
   return transporter.sendMail(mailOptions, function(error, info) {
     if (error) {
       console.log(error);
