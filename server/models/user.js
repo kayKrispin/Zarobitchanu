@@ -65,7 +65,7 @@ User.generateConfirmationJWT = email => {
     {
       email: email,
     },
-      config.jwt_secret,
+    config.jwt_secret,
     { expiresIn: "10h" }
   );
 };
