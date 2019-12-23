@@ -5,7 +5,6 @@ const mongoose = require("mongoose");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./server/swagger.json");
 const publicPath = path.join(__dirname, "build");
-const config = require("./server/config");
 
 const cors = require("cors");
 
@@ -13,7 +12,7 @@ const port = process.env.PORT || 8080;
 
 const app = express();
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://nascar8606:nascar8606@ds157544.mlab.com:57544/heroku_r7snstx7");
+mongoose.connect(process.env.MONGODB_URI);
 
 mongoose.Promise = global.Promise;
 
