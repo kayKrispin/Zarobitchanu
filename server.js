@@ -13,7 +13,7 @@ const port = process.env.PORT || 8080;
 
 const app = express();
 
-mongoose.connect(process.env.MONGODB_URI || process.env.REACT_APP_MONGO_DB_URL);
+mongoose.connect(process.env.MONGODB_URI || config.mongoDb);
 
 mongoose.Promise = global.Promise;
 

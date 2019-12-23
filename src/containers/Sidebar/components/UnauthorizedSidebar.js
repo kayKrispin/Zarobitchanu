@@ -4,6 +4,7 @@ import LoginForm from "../../../components/LoginForm";
 import Toggler from "../../../components/Toggler";
 import { GoogleLogin } from "react-google-login";
 import PropTypes from "prop-types";
+import config from "../../../../server/config"
 
 
 const UnauthorizedSidebar = ({ responseGoogle }) => (
@@ -29,7 +30,7 @@ const UnauthorizedSidebar = ({ responseGoogle }) => (
           <h3 className="mb-0 mt-3  social-title">Social login </h3>
         </div>
         <GoogleLogin
-          clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID || process.env.GOOGLE_ID}
+          clientId={config.googleId}
           render={renderProps => (
             <button onClick={renderProps.onClick} className="login-btn google-btn mt-3 w-100">
                             Login with Google
@@ -49,4 +50,4 @@ export default UnauthorizedSidebar;
 
 UnauthorizedSidebar.propTypes = {
   responseGoogle: PropTypes.func
-}
+};
