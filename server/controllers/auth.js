@@ -36,7 +36,7 @@ async function signUp (req, res, next) {
       });
     }
     const user = await User.create(req.body);
-    // await verifyEmail(mailOptions);
+    await verifyEmail(mailOptions);
     res.json({ user, token: User.generateJWT(email) })
 
   } catch (e) {

@@ -1,12 +1,13 @@
 const aws = require("aws-sdk");
 const fs = require("fs");
 const env = process.env;
+const config = require("../config");
 
 class S3Service {
   constructor() {
     aws.config.update({
-      accessKeyId: "AKIAWOXVHKG4WCYPWPLI",
-      secretAccessKey: "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",
+      accessKeyId: config.s3_access,
+      secretAccessKey: config.s3_secret,
       region: "us-east-2",
     });
 
