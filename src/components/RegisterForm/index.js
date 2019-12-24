@@ -4,9 +4,17 @@ import useForm from "react-hook-form";
 import { modalActions } from "../../redux/modules/Modal";
 import { Avatar } from "antd";
 import { connect } from "react-redux";
-import { actions as authActions } from "../../redux/modules/Auth"
+import { actions as authActions } from "../../redux/modules/Auth";
+import PropTypes from "prop-types";
 
-const RegisterFormContainer = ({ handleRegister, loading, serverError, userAvatar, close, user }) => {
+const RegisterFormContainer = ({
+  handleRegister,
+  loading,
+  serverError,
+  userAvatar,
+  close,
+  user
+}) => {
 
   const [imageBlob, handleImageBlob] = useState(null);
   const [imageFile, handleImageFile] = useState(null);
@@ -15,7 +23,6 @@ const RegisterFormContainer = ({ handleRegister, loading, serverError, userAvata
   //Validate and register user
   const onSubmit = (values, e) => {
 
-    console.log(values)
     if (!values.email || Object.values(errors).length > 0) return;
     values.img = imageFile;
     handleRegister(values);
@@ -28,6 +35,7 @@ const RegisterFormContainer = ({ handleRegister, loading, serverError, userAvata
     handleImageFile(image);
   };
 
+  //Render avatar placeholder if no image choosed
   const avatar = imageBlob
     ? <img className="user-avatar--icon" src={imageBlob} alt=""/>
     : <Avatar className="user-avatar--icon" icon="user"/>;
@@ -63,3 +71,10 @@ export default connect(
     close: () => dispatch(modalActions.closeModal())
   })
 )(RegisterFormContainer);
+
+RegisterFormContainer.propTypes = {
+  handleRegister: PropTypes.func,
+  loading: PropTypes.bool,
+  user: PropTypes.object,
+  serverError: PropTypes.string
+};

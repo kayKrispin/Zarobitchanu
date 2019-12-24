@@ -1,5 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import PropTypes from "prop-types";
 
 const SidebarProfile = ({ avatar, name, handleLogout }) => (
   <React.Fragment>
@@ -25,3 +26,9 @@ const SidebarProfile = ({ avatar, name, handleLogout }) => (
 );
 
 export default SidebarProfile;
+
+SidebarProfile.propTypes = {
+  img: PropTypes.string,
+  name: PropTypes.string,
+  handleLogout: PropTypes.func
+};

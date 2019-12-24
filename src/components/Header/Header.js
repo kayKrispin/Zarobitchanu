@@ -10,7 +10,7 @@ const Header = props => (
     <div className="header-container--gradient h-100">
       <Particles/>
       <div className="header-container--upper d-flex justify-content-between">
-       <QuickLinks />
+        <QuickLinks />
         <div className="d-flex right-section align-items-center">
           {
             props.isAuthenticated
@@ -19,7 +19,7 @@ const Header = props => (
           }
         </div>
       </div>
-    <MainText/>
+      <MainText/>
     </div>
   </div>
 );

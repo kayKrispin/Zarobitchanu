@@ -2,11 +2,17 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { actions } from "../../redux/modules/Auth";
 import { Redirect } from "react-router-dom";
+import PropTypes from "prop-types";
 
 
-const AccountVeryfication = ({ handleActivate, match, isAccountActivated }) => {
+const AccountVeryfication = ({
+  handleActivate,
+  match,
+  isAccountActivated
+}) => {
 
   useEffect(() => {
+
     //Set user field emailVerifyied to true
     handleActivate(match.params.code);
   }, []);
@@ -28,3 +34,10 @@ export default connect(
     handleActivate: code => dispatch(actions.activateAccountRequest(code))
   })
 )(AccountVeryfication);
+
+
+AccountVeryfication.propTypes = {
+  handleActivate: PropTypes.func,
+  match: PropTypes.object,
+  isAccountActivated: PropTypes.bool
+};

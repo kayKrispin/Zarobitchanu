@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const TopicTile = ({ title, register }) => (
   <label className="d-flex form-label flex-column">
@@ -8,3 +9,8 @@ const TopicTile = ({ title, register }) => (
 );
 
 export default TopicTile;
+
+TopicTile.propTypes = {
+  title: PropTypes.string,
+  register: PropTypes.func
+};

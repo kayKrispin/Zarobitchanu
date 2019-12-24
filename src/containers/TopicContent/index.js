@@ -3,6 +3,7 @@ import TopicContent from "./TopicContent";
 import { actions } from "../../redux/modules/Forum";
 import { modalActions } from "../../redux/modules/Modal";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 const TopicContentContainer = ({
   openModal,
@@ -66,3 +67,11 @@ export default connect(
       (forumId, topicId, page, pageLimit) => dispatch(actions.getRepliesRequest(forumId, topicId, page, pageLimit))
   })
 )(TopicContentContainer);
+
+
+TopicContentContainer.propTypes = {
+  openModal: PropTypes.func,
+  match: PropTypes.object,
+  getReplies: PropTypes.func,
+  replies: PropTypes.array,
+};

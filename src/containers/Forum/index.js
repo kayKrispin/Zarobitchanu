@@ -3,6 +3,7 @@ import Forum from "./Forum";
 import { actions } from "../../redux/modules/Forum";
 import { connect } from "react-redux";
 import { sortByDate } from "../../helpers";
+import PropTypes from "prop-types";
 
 const ForumContainer = ({
   className,
@@ -18,7 +19,7 @@ const ForumContainer = ({
   const forumId = match && match.params.id;
   const titleStyles = ["title"];
 
-  if (!isAdmin) titleStyles.push("ml-4")
+  if (!isAdmin) titleStyles.push("ml-4");
 
   let lastItem;
 
@@ -66,3 +67,13 @@ export default connect(
     }))
   })
 )(ForumContainer);
+
+
+ForumContainer.propTypes = {
+  themes: PropTypes.bool,
+  item: PropTypes.object,
+  match: PropTypes.object,
+  deleteForum: PropTypes.func,
+  isAdmin: PropTypes.bool,
+  deleteTopic: PropTypes.func
+};

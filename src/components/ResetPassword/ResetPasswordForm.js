@@ -71,5 +71,6 @@ ResetPasswordForm.propTypes = {
   register: PropTypes.func,
   errors: PropTypes.array,
   handleSubmit: PropTypes.func,
-  confirmMessage: PropTypes.string
+  confirmMessage: PropTypes.string,
+  watch: PropTypes.func
 };

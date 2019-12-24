@@ -3,12 +3,13 @@ import SidebarProfile from "./SidebarProfile";
 import { connect } from "react-redux";
 import { actions } from "../../redux/modules/Auth"
 import { Avatar } from "antd";
+import PropTypes from "prop-types";
 
 const SidebarProfileContainer = ({ img, name, handleLogout }) => {
 
   const avatar = img
     ? <img className="avatar" src={img} alt=""/>
-    : <Avatar className="avatar mr-2" icon="user"/>
+    : <Avatar className="avatar mr-2" icon="user"/>;
 
   const props = {
     avatar,
@@ -28,3 +29,10 @@ export default connect(
     handleLogout: () => dispatch(actions.logoutRequest())
   })
 )(SidebarProfileContainer);
+
+
+SidebarProfileContainer.propTypes = {
+  img: PropTypes.string,
+  name: PropTypes.string,
+  handleLogout: PropTypes.func
+};

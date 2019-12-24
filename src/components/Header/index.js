@@ -49,5 +49,6 @@ HeaderContainer.propTypes = {
   userName: PropTypes.any,
   openModal: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
-  avatar: PropTypes.string
+  avatar: PropTypes.string,
+  handleLogout: PropTypes.func
 };

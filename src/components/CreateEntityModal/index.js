@@ -8,6 +8,7 @@ import useForm from "react-hook-form";
 import ForumTile from "./components/ForumTile";
 import TopicTile from "./components/TopicTile";
 import ThemeTile from "./components/ThemeTile";
+import PropTypes from "prop-types";
 
 const CreateForumModal = ({
   close,
@@ -72,8 +73,6 @@ const CreateForumModal = ({
     clearForm();
   };
 
-  console.log(isAuthenticated)
-
   return (
     <React.Fragment>
       <div>
@@ -116,9 +115,9 @@ const CreateForumModal = ({
               </form>
             )
             : <div className="text-center">
-                  <h4>Nope buddy, you need to register firstly to taste some functionality. </h4>
+              <h4>Nope buddy, you need to register firstly to taste some functionality. </h4>
                   😃
-              </div>
+            </div>
         }
       </div>
     </React.Fragment>
@@ -140,3 +139,16 @@ export default connect(
     createReply: (data, page, limit) => dispatch(forumActions.createReplyRequest(data, page, limit))
   })
 )(CreateForumModal);
+
+
+CreateForumModal.propTypes = {
+  close: PropTypes.func,
+  clearForm: PropTypes.func,
+  createForum: PropTypes.func,
+  themeModal: PropTypes.bool,
+  createTopic: PropTypes.func,
+  isReply: PropTypes.bool,
+  createReply: PropTypes.func,
+  isAuthenticated: PropTypes.bool,
+  title: PropTypes.string
+};

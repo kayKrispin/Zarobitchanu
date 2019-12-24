@@ -1,5 +1,6 @@
 import React from "react";
 import { Switch } from "antd";
+import PropTypes from "prop-types";
 
 const ForumTile = ({ register, switchValue, handleSwitch }) => (
   <div>
@@ -21,3 +22,10 @@ const ForumTile = ({ register, switchValue, handleSwitch }) => (
 );
 
 export default ForumTile;
+
+ForumTile.propTypes = {
+  title: PropTypes.string,
+  register: PropTypes.func,
+  handleSwitch: PropTypes.func,
+  switchValue: PropTypes.bool
+};

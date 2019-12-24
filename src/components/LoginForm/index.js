@@ -21,7 +21,6 @@ const LoginFormContainer = ({
 
   const onSubmit = (values, e) => {
 
-    console.log(values)
     login(values);
     e.target.reset();
   };

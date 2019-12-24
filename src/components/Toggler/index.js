@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 const Toggler = ({ onClick }) => {
   const [toggle, handleToggle] = useState(false);
@@ -16,5 +17,8 @@ const Toggler = ({ onClick }) => {
   )
 };
 
-
 export default Toggler;
+
+Toggler.propTypes = {
+  onClick: PropTypes.func
+};

@@ -1,10 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import ThemeContent from "./ThemeContent";
 import { connect } from "react-redux";
 import { actions } from "../../redux/modules/Forum";
 import { modalActions } from "../../redux/modules/Modal";
+import PropTypes from "prop-types";
 
-const ThemeContentContainer = ({ match, openModal, getTopics, forumTitle, topics, searchTopic, setForumId }) => {
+const ThemeContentContainer = ({
+  match,
+  openModal,
+  getTopics,
+  forumTitle,
+  topics,
+  searchTopic,
+  setForumId
+}) => {
 
   const forumId = match.params.id;
   const themes = [];
@@ -45,3 +54,13 @@ export default connect(
   })
 )(ThemeContentContainer);
 
+
+ThemeContentContainer.propTypes = {
+  match: PropTypes.object,
+  openModal: PropTypes.func,
+  getTopics: PropTypes.func,
+  searchTopic: PropTypes.func,
+  setForumId: PropTypes.func,
+  forumTitle: PropTypes.string,
+  topics: PropTypes.array
+};

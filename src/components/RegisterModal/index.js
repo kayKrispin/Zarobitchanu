@@ -4,6 +4,7 @@ import { actions } from "../../redux/modules/Auth";
 import { connect } from "react-redux";
 import RegisterForm from "../RegisterForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import PropTypes from "prop-types";
 
 const RegisterModal = ({ close, clearForm }) => {
 
@@ -34,3 +35,8 @@ export default connect(
     clearForm: () => dispatch(actions.clearError())
   })
 )(RegisterModal);
+
+RegisterModal.propTypes = {
+  close: PropTypes.func,
+  clearForm: PropTypes.func
+};

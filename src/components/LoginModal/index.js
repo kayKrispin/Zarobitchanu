@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { connect } from "react-redux";
 import { modalActions } from "../../redux/modules/Modal";
 import { actions } from "../../redux/modules/Auth";
+import PropTypes from "prop-types";
 
 const LoginModal = ({ loginDivider, close, clearForm }) => {
 
@@ -34,3 +35,9 @@ export default connect(
     clearForm: () => dispatch(actions.clearError())
   })
 )(LoginModal);
+
+
+LoginModal.propTypes = {
+  close: PropTypes.func,
+  clearForm: PropTypes.func
+};
