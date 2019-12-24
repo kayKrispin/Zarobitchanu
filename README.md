@@ -23,6 +23,8 @@ Online platform for sharing thoughts between people who lives abroad and works f
 
 [API Docs](https://zarobitchany.herokuapp.com/swagger/)
 
+## Live demo
+[Demo](https://zarobitchany.herokuapp.com)
 
 ## Home View
 
