@@ -1,4 +1,5 @@
 import { all, put, call, takeLatest } from "redux-saga/effects";
+import { push } from "react-router-redux";
 import * as auth from "./services";
 import * as actions from "./actions";
 import * as types from "./types";
@@ -116,6 +117,8 @@ function *logout () {
   try {
     localStorage.clear();
     yield put(actions.logoutSuccess());
+    yield put(push("/"));
+
   } catch (error) {
     throw new Error("Something goes wrong");
   } finally {

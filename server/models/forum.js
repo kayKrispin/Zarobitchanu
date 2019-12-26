@@ -16,7 +16,13 @@ const ForumSchema = new Schema({
     {
       title: Schema.Types.String,
       replies: [
-
+        {
+          likes: [],
+          text: Schema.Types.String,
+          createdAt: Schema.Types.String,
+          userName: Schema.Types.String,
+          userId: Schema.Types.String,
+        }
       ],
       createdAt: {
         type: Schema.Types.String

@@ -152,3 +152,23 @@ export const getReplyRequestError = error => ({
   error
 });
 
+export const likeUnlikeRequest = (userId, replyId, isLiked, topicId, forumId, page, pageLimit) => ({
+  type: types.LIKE_UNLIKE_REPLY,
+  userId,
+  replyId,
+  isLiked,
+  topicId,
+  forumId,
+  page,
+  pageLimit
+});
+
+export const likeUnlikeSuccess = length => ({
+  type: types.LIKE_UNLIKE_REPLY_SUCCESS,
+  length
+});
+
+export const resetForums = () => ({
+  type: types.RESET_FORUMS
+});
+

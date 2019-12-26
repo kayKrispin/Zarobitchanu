@@ -117,3 +117,16 @@ export const getReplies = async ({ forumId, topicId, page, pageLimit }) => {
     throw err;
   }
 };
+
+export const likeUnlikeReply = async data => {
+  try {
+    return modifiedFetch(`${API_URL}/forum/likeUnlikeReply`, {
+      method: "POST",
+      body: JSON.stringify(data)
+    });
+  }
+  catch (err) {
+    if (err.response && err.response.data) throw err.response.data;
+    throw err;
+  }
+};

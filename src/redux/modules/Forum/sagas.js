@@ -173,6 +173,25 @@ function *getReplies (data) {
   }
 }
 
+function *likeUnlikeReply (data) {
+
+  const { forumId, topicId, page, pageLimit } = data;
+
+  yield put({ type: types.SHOW_LOADING });
+
+  try {
+    const response = yield call(auth.likeUnlikeReply, data);
+
+    yield put(actions.likeUnlikeSuccess(response));
+    yield put(actions.getRepliesRequest(forumId, topicId, page, pageLimit));
+  } catch (error) {
+
+    yield put(actions.getReplyRequestError(error));
+  } finally {
+    yield put({ type: types.HIDE_LOADING })
+  }
+}
+
 export default function *() {
   yield all([
     yield takeLatest(types.CREATE_FORUM_REQUEST, createForum),
@@ -184,6 +203,7 @@ export default function *() {
     yield takeLatest(types.SEARCH_TOPICS_REQUEST, searchTopic),
     yield takeLatest(types.CREATE_REPLY_REQUEST, createReply),
     yield takeLatest(types.SET_ACTIVE_FORUM_ID, setForumId),
-    yield takeLatest(types.GET_REPLIES_REQUEST, getReplies)
+    yield takeLatest(types.GET_REPLIES_REQUEST, getReplies),
+    yield takeLatest(types.LIKE_UNLIKE_REPLY, likeUnlikeReply)
   ])
 }

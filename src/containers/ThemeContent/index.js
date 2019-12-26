@@ -12,7 +12,8 @@ const ThemeContentContainer = ({
   forumTitle,
   topics,
   searchTopic,
-  setForumId
+  setForumId,
+  resetForums
 }) => {
 
   const forumId = match.params.id;
@@ -21,6 +22,10 @@ const ThemeContentContainer = ({
   useEffect(() => {
     setForumId(forumId);
     getTopics(forumId);
+
+    return () => {
+      resetForums();
+    }
   }, []);
 
   const searchTopicByName = key => {
@@ -50,7 +55,8 @@ export default connect(
     openModal: (content, width) => dispatch(modalActions.openModal(content, width)),
     getTopics: id => dispatch(actions.getTopicsRequest(id)),
     searchTopic: (key, forumId) => dispatch(actions.searchTopicsRequest(key, forumId)),
-    setForumId: id => dispatch(actions.setActiveForumidRequest(id))
+    setForumId: id => dispatch(actions.setActiveForumidRequest(id)),
+    resetForums: () => dispatch(actions.resetForums())
   })
 )(ThemeContentContainer);
 
@@ -62,5 +68,6 @@ ThemeContentContainer.propTypes = {
   searchTopic: PropTypes.func,
   setForumId: PropTypes.func,
   forumTitle: PropTypes.string,
-  topics: PropTypes.array
+  topics: PropTypes.array,
+  resetForums: PropTypes.func
 };

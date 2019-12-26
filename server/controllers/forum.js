@@ -204,6 +204,39 @@ async function getReplies (req, res, next) {
   }
 }
 
+async function handleReplyLikes (req, res, next) {
+
+  const { forumId, topicId, userId, replyId, isLiked } = req.body;
+
+  try {
+    const forum = await Forum.findOne({ _id: forumId });
+    const topic = forum.topics.id(topicId);
+
+    const reply = topic.replies.find(rep => rep.createdAt === replyId);
+
+    if (isLiked) {
+      reply.likes.push({ user: userId });
+    }
+
+    if (!isLiked) {
+      const updatedLikes = reply.likes.filter(like => like.user !== userId);
+      reply.likes = updatedLikes;
+    }
+
+    await forum.save();
+
+    const length = reply.likes.length;
+
+    res.json({ length })
+
+  } catch (e) {
+    return next({
+      status: 404,
+      message: "Something goes wrong"
+    })
+  }
+}
+
 module.exports = {
   createForum,
   getForums,
@@ -213,5 +246,6 @@ module.exports = {
   deleteTopic,
   searchTopic,
   createReply,
-  getReplies
+  getReplies,
+  handleReplyLikes
 };

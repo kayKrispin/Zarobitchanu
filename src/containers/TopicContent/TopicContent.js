@@ -16,6 +16,13 @@ const TopicContent = props => (
             users={props.users}
             key={reply.createdAt}
             item={reply}
+            likeUnlikeReply={props.likeUnlikeReply}
+            user={props.user}
+            topicId={props.topicId}
+            selectedForumId={props.selectedForumId}
+            page={props.page}
+            pageLimit={props.pageLimit}
+            newLikesLength={props.newLikesLength}
           />
         ))
       }

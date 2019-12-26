@@ -39,4 +39,8 @@ router.post("/getReplies", (req, res, next) => {
   forumController.getReplies(req, res, next).catch(err => next(err));
 });
 
+router.post("/likeUnlikeReply", (req, res, next) => {
+  forumController.handleReplyLikes(req, res, next).catch(err => next(err));
+});
+
 module.exports = router;

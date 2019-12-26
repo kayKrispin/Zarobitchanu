@@ -132,3 +132,12 @@ export const showLoading = state => ({
   loading: true,
 });
 
+export const likeUnlikeSuccess = (state, action) => ({
+  ...state,
+  length: action.length.length,
+});
+
+export const resetForums = state => ({
+  ...state,
+  topics: [],
+});

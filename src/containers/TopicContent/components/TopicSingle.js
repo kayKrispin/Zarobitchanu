@@ -1,26 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getCurrentTime } from "../../../helpers";
 import { Avatar } from "antd";
 
-const TopicSingle = ({ item, users }) => {
+const TopicSingle = ({
+  item,
+  users,
+  likeUnlikeReply,
+  user,
+  topicId,
+  selectedForumId,
+  page,
+  pageLimit,
+  newLikesLength
+}) => {
 
-  const [counter, handleCount] = useState(0);
   const [isLiked, handleLike] = useState(false);
-  const active = [];
 
+  // Check if user liked the reply
+  useEffect(() => {
+    if (item.likes.filter(like => like.user === user._id).length) {
+      handleBtn();
+    }
+  }, []);
+
+  // Fill thumbs icon with certain color
   const handleBtn = () => {
     if (!isLiked) {
-      handleCount(counter + 1);
       handleLike(true);
-      active.push("active");
 
       return;
     }
-    handleCount(counter - 1);
     handleLike(false);
-    active.slice(0, 1);
-
   };
 
   return (
@@ -34,8 +45,20 @@ const TopicSingle = ({ item, users }) => {
           {item.text}
         </p>
         <div onClick={() => handleBtn()} className="topic--like">
-          <FontAwesomeIcon className={active.join(" ")} icon={["far", "thumbs-up"]} />
-          <span className="ml-2">{counter}</span>
+          <FontAwesomeIcon
+            onClick={() => likeUnlikeReply(
+              user._id,
+              item.createdAt,
+              !isLiked,
+              topicId,
+              selectedForumId,
+              page,
+              pageLimit
+            )}
+            className={isLiked ? "active" : ""}
+            icon={["fas", "thumbs-up"]}
+          />
+          <span className="ml-2">{item.likes.length}</span>
         </div>
       </div>
       <div className="d-flex justify-content-center flex-column align-items-center topic--user-info">

@@ -15,7 +15,9 @@ import {
   createReplySuccess,
   createReplyError,
   getRepliesSuccess,
-  getRepliesError
+  getRepliesError,
+  likeUnlikeSuccess,
+  resetForums
 } from "./reducers";
 import {
   showLoading, hideLoading
@@ -85,8 +87,14 @@ export default (state = initialState, action) => {
     case types.SET_ACTIVE_FORUM_ID_SUCCESS:
       return setActiveForumId(state, action);
 
+    case types.LIKE_UNLIKE_REPLY_SUCCESS:
+      return likeUnlikeSuccess(state, action);
+
     case types.SHOW_LOADING:
       return showLoading(state, action);
+
+    case types.RESET_FORUMS:
+      return resetForums(state, action);
 
     case types.HIDE_LOADING:
       return hideLoading(state, action);

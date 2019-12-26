@@ -12,7 +12,10 @@ const TopicContentContainer = ({
   getReplies,
   replies,
   users,
-  totalReplies
+  totalReplies,
+  likeUnlikeReply,
+  newLikesLength,
+  user
 }) => {
 
   const [counter, handleCount] = useState(0);
@@ -48,7 +51,11 @@ const TopicContentContainer = ({
     totalReplies,
     page,
     pageLimit,
-    totalPages
+    totalPages,
+    likeUnlikeReply,
+    user,
+    selectedForumId,
+    newLikesLength
   };
 
   return <TopicContent {...props} />
@@ -56,15 +63,26 @@ const TopicContentContainer = ({
 
 export default connect(
   state => ({
+    user: state.authStore.user,
     selectedForumId: state.forumStore.selectedForumId,
     totalReplies: state.forumStore.totalReplies,
     replies: state.forumStore.replies,
-    users: state.forumStore.users
+    users: state.forumStore.users,
+    newLikesLength: state.forumStore.length
   }),
   dispatch => ({
     openModal: (content, width) => dispatch(modalActions.openModal(content, width)),
     getReplies:
-      (forumId, topicId, page, pageLimit) => dispatch(actions.getRepliesRequest(forumId, topicId, page, pageLimit))
+      (forumId, topicId, page, pageLimit) => dispatch(actions.getRepliesRequest(forumId, topicId, page, pageLimit)),
+    likeUnlikeReply: (
+      userId,
+      replyId,
+      isLiked,
+      topicId,
+      selectedForumId,
+      page,
+      pageLimit
+    ) => dispatch(actions.likeUnlikeRequest(userId, replyId, isLiked, topicId, selectedForumId, page, pageLimit))
   })
 )(TopicContentContainer);
 
@@ -74,4 +92,7 @@ TopicContentContainer.propTypes = {
   match: PropTypes.object,
   getReplies: PropTypes.func,
   replies: PropTypes.array,
+  likeUnlikeReply: PropTypes.func,
+  user: PropTypes.object,
+  newLikesLength: PropTypes.number
 };

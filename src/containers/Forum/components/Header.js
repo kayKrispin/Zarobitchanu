@@ -28,7 +28,7 @@ const Header = ({
           {item && item.title}
         </Link>
       </h3>
-      <p className={!isAdmin && "ml-4"} >
+      <p className={!isAdmin ? "ml-4" : ""} >
         {item && item.subTitle}
       </p>
     </div>
