@@ -39,5 +39,6 @@ export default connect(
 
 LoginModal.propTypes = {
   close: PropTypes.func,
-  clearForm: PropTypes.func
+  clearForm: PropTypes.func,
+  loginDivider: PropTypes.bool
 };

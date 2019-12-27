@@ -15,7 +15,7 @@ const Header = props => (
           {
             props.isAuthenticated
               ? <AuthenticatedHeader {...props}/>
-              : <UnauthorizedHeader openModal={props.openModal} />
+              : <UnauthorizedHeader {...props}/>
           }
         </div>
       </div>

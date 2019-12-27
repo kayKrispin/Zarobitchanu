@@ -35,9 +35,9 @@ const ForumContainer = ({
 
   //Get last created item in forum/topic
   if (!themes) {
-    lastItem = item && item.lastCreatedItem && sortByDate(item.lastCreatedItem)[0];
+    lastItem = item.lastCreatedItem && sortByDate(item.lastCreatedItem)[0];
   } else if (item.lastCreatedItem !== undefined) {
-    lastItem = item && item.lastCreatedItem;
+    lastItem = item.lastCreatedItem;
   }
 
 

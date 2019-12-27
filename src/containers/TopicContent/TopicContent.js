@@ -1,6 +1,7 @@
 import React from "react";
 import TopicHeader from "./components/TopicHeader";
 import TopicSingle from "./components/TopicSingle";
+import PropTypes from "prop-types";
 
 
 const TopicContent = props => (
@@ -8,29 +9,21 @@ const TopicContent = props => (
     <TopicHeader {...props}/>
     <div className="topics-container--topics">
       {
-        props.replies && props.replies.map(reply => (
-          <TopicSingle
-            active={props.likeClass}
-            counter={props.counter}
-            handleLike={props.handleCount}
-            users={props.users}
-            key={reply.createdAt}
-            item={reply}
-            likeUnlikeReply={props.likeUnlikeReply}
-            user={props.user}
-            topicId={props.topicId}
-            selectedForumId={props.selectedForumId}
-            page={props.page}
-            pageLimit={props.pageLimit}
-            newLikesLength={props.newLikesLength}
-          />
+        props.replies && props.replies.map((reply, index) => (
+          <TopicSingle key={index} item={reply} {...props} />
         ))
       }
       {
-        props.replies.length < 1 && <span>There is no reply in this topics..cmon you can be a first one</span>
+        props.replies.length < 1 && (
+          <span>There is no reply in this topics..cmon you can be a first one</span>
+        )
       }
     </div>
   </div>
 );
 
 export default TopicContent;
+
+TopicContent.propTypes = {
+  replies: PropTypes.array
+};

@@ -15,7 +15,7 @@ const ContentContainer = ({ getForums, forums }) => {
     forums
   };
 
-  if (!forums.length) return <AppSkeleton/>
+  if (!forums.length) return <AppSkeleton/>;
 
   return <ForumContent {...props} />
 };

@@ -2,6 +2,7 @@ import React from "react";
 import Sidebar from "./Sidebar";
 import { connect } from "react-redux";
 import { actions as authActions } from "../../redux/modules/Auth";
+import PropTypes from "prop-types";
 
 const SidebarContainer = ({
   isAuthenticated,
@@ -40,3 +41,8 @@ export default connect(
     socialLogin: credentials => dispatch(authActions.loginSocialRequest(credentials)),
   })
 )(SidebarContainer);
+
+SidebarContainer.propTypes = {
+  isAuthenticated: PropTypes.bool,
+  socialLogin: PropTypes.func
+};
